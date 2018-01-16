@@ -1,0 +1,149 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ImportMappingLineItem should render correctly with input values 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <ImportMappingLineItem
+    handleOnChange={[Function]}
+    importedFieldName="# Bedrooms"
+    standardFieldDescription="Number of bedrooms in the property."
+    standardFieldId="123"
+    standardFieldName="Num Bedrooms"
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": null,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <Connect(SelectWithImportOptions)
+          handleOnChange={[Function]}
+          importedFieldName="# Bedrooms"
+          standardFieldId="123"
+        />,
+        <span>
+          Num Bedrooms
+        </span>,
+        <span>
+          Number of bedrooms in the property.
+        </span>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": null,
+        "nodeType": "class",
+        "props": Object {
+          "handleOnChange": [Function],
+          "importedFieldName": "# Bedrooms",
+          "standardFieldId": "123",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": null,
+        "nodeType": "host",
+        "props": Object {
+          "children": "Num Bedrooms",
+        },
+        "ref": null,
+        "rendered": "Num Bedrooms",
+        "type": "span",
+      },
+      Object {
+        "instance": null,
+        "key": null,
+        "nodeType": "host",
+        "props": Object {
+          "children": "Number of bedrooms in the property.",
+        },
+        "ref": null,
+        "rendered": "Number of bedrooms in the property.",
+        "type": "span",
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": null,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <Connect(SelectWithImportOptions)
+            handleOnChange={[Function]}
+            importedFieldName="# Bedrooms"
+            standardFieldId="123"
+          />,
+          <span>
+            Num Bedrooms
+          </span>,
+          <span>
+            Number of bedrooms in the property.
+          </span>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": null,
+          "nodeType": "class",
+          "props": Object {
+            "handleOnChange": [Function],
+            "importedFieldName": "# Bedrooms",
+            "standardFieldId": "123",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": null,
+          "nodeType": "host",
+          "props": Object {
+            "children": "Num Bedrooms",
+          },
+          "ref": null,
+          "rendered": "Num Bedrooms",
+          "type": "span",
+        },
+        Object {
+          "instance": null,
+          "key": null,
+          "nodeType": "host",
+          "props": Object {
+            "children": "Number of bedrooms in the property.",
+          },
+          "ref": null,
+          "rendered": "Number of bedrooms in the property.",
+          "type": "span",
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;

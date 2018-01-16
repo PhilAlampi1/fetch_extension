@@ -1,0 +1,521 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MapImportToStandardFields renders correctly 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <MapImportToStandardFields
+    setMapImportToStandardFieldsERROR={[Function]}
+    standardFields={
+      Array [
+        Object {
+          "importRowIdentifier": false,
+          "importedFieldName": "IDX Address Mapg",
+          "standardFieldDescription": "A field for mapping.",
+          "standardFieldId": "1",
+          "standardFieldName": "Mapping Field (IDX)",
+        },
+        Object {
+          "importRowIdentifier": false,
+          "importedFieldName": "Property Type",
+          "standardFieldDescription": "The type of building or structure the property is.",
+          "standardFieldId": "2",
+          "standardFieldName": "Type of Property",
+        },
+        Object {
+          "importRowIdentifier": true,
+          "importedFieldName": "Street Address",
+          "standardFieldDescription": "Address of property.",
+          "standardFieldId": "3",
+          "standardFieldName": "Address",
+        },
+      ]
+    }
+    updateImportFileMapping={[Function]}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": null,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <p>
+          Your file was uploaded successfully, nice work!
+        </p>,
+        <p>
+          We've taken a stab at mapping your import file to the Standard Fields we use in the system. However, it's unlikely we got this completely right. This is a very important step, so please check this over and make corrections where needed.
+        </p>,
+        <div
+          className="list-header"
+        >
+          <div>
+            Import Field
+          </div>
+          <div>
+            Standard Field
+          </div>
+          <div>
+            Description
+          </div>
+        </div>,
+        <div
+          className="list-body"
+        >
+          <ImportMappingLineItem
+            handleOnChange={[Function]}
+            importedFieldName="IDX Address Mapg"
+            standardFieldDescription="A field for mapping."
+            standardFieldId="1"
+            standardFieldName="Mapping Field (IDX)"
+          />
+          <ImportMappingLineItem
+            handleOnChange={[Function]}
+            importedFieldName="Property Type"
+            standardFieldDescription="The type of building or structure the property is."
+            standardFieldId="2"
+            standardFieldName="Type of Property"
+          />
+          <ImportMappingLineItem
+            handleOnChange={[Function]}
+            importedFieldName="Street Address"
+            standardFieldDescription="Address of property."
+            standardFieldId="3"
+            standardFieldName="Address"
+          />
+        </div>,
+        undefined,
+        <button
+          onClick={[Function]}
+        >
+          Next
+        </button>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": null,
+        "nodeType": "host",
+        "props": Object {
+          "children": "Your file was uploaded successfully, nice work!",
+        },
+        "ref": null,
+        "rendered": "Your file was uploaded successfully, nice work!",
+        "type": "p",
+      },
+      Object {
+        "instance": null,
+        "key": null,
+        "nodeType": "host",
+        "props": Object {
+          "children": "We've taken a stab at mapping your import file to the Standard Fields we use in the system. However, it's unlikely we got this completely right. This is a very important step, so please check this over and make corrections where needed.",
+        },
+        "ref": null,
+        "rendered": "We've taken a stab at mapping your import file to the Standard Fields we use in the system. However, it's unlikely we got this completely right. This is a very important step, so please check this over and make corrections where needed.",
+        "type": "p",
+      },
+      Object {
+        "instance": null,
+        "key": null,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <div>
+              Import Field
+            </div>,
+            <div>
+              Standard Field
+            </div>,
+            <div>
+              Description
+            </div>,
+          ],
+          "className": "list-header",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": null,
+            "nodeType": "host",
+            "props": Object {
+              "children": "Import Field",
+            },
+            "ref": null,
+            "rendered": "Import Field",
+            "type": "div",
+          },
+          Object {
+            "instance": null,
+            "key": null,
+            "nodeType": "host",
+            "props": Object {
+              "children": "Standard Field",
+            },
+            "ref": null,
+            "rendered": "Standard Field",
+            "type": "div",
+          },
+          Object {
+            "instance": null,
+            "key": null,
+            "nodeType": "host",
+            "props": Object {
+              "children": "Description",
+            },
+            "ref": null,
+            "rendered": "Description",
+            "type": "div",
+          },
+        ],
+        "type": "div",
+      },
+      Object {
+        "instance": null,
+        "key": null,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <ImportMappingLineItem
+              handleOnChange={[Function]}
+              importedFieldName="IDX Address Mapg"
+              standardFieldDescription="A field for mapping."
+              standardFieldId="1"
+              standardFieldName="Mapping Field (IDX)"
+            />,
+            <ImportMappingLineItem
+              handleOnChange={[Function]}
+              importedFieldName="Property Type"
+              standardFieldDescription="The type of building or structure the property is."
+              standardFieldId="2"
+              standardFieldName="Type of Property"
+            />,
+            <ImportMappingLineItem
+              handleOnChange={[Function]}
+              importedFieldName="Street Address"
+              standardFieldDescription="Address of property."
+              standardFieldId="3"
+              standardFieldName="Address"
+            />,
+          ],
+          "className": "list-body",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": "1",
+            "nodeType": "function",
+            "props": Object {
+              "handleOnChange": [Function],
+              "importedFieldName": "IDX Address Mapg",
+              "standardFieldDescription": "A field for mapping.",
+              "standardFieldId": "1",
+              "standardFieldName": "Mapping Field (IDX)",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": "2",
+            "nodeType": "function",
+            "props": Object {
+              "handleOnChange": [Function],
+              "importedFieldName": "Property Type",
+              "standardFieldDescription": "The type of building or structure the property is.",
+              "standardFieldId": "2",
+              "standardFieldName": "Type of Property",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": "3",
+            "nodeType": "function",
+            "props": Object {
+              "handleOnChange": [Function],
+              "importedFieldName": "Street Address",
+              "standardFieldDescription": "Address of property.",
+              "standardFieldId": "3",
+              "standardFieldName": "Address",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
+        "type": "div",
+      },
+      undefined,
+      Object {
+        "instance": null,
+        "key": null,
+        "nodeType": "host",
+        "props": Object {
+          "children": "Next",
+          "onClick": [Function],
+        },
+        "ref": null,
+        "rendered": "Next",
+        "type": "button",
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": null,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <p>
+            Your file was uploaded successfully, nice work!
+          </p>,
+          <p>
+            We've taken a stab at mapping your import file to the Standard Fields we use in the system. However, it's unlikely we got this completely right. This is a very important step, so please check this over and make corrections where needed.
+          </p>,
+          <div
+            className="list-header"
+          >
+            <div>
+              Import Field
+            </div>
+            <div>
+              Standard Field
+            </div>
+            <div>
+              Description
+            </div>
+          </div>,
+          <div
+            className="list-body"
+          >
+            <ImportMappingLineItem
+              handleOnChange={[Function]}
+              importedFieldName="IDX Address Mapg"
+              standardFieldDescription="A field for mapping."
+              standardFieldId="1"
+              standardFieldName="Mapping Field (IDX)"
+            />
+            <ImportMappingLineItem
+              handleOnChange={[Function]}
+              importedFieldName="Property Type"
+              standardFieldDescription="The type of building or structure the property is."
+              standardFieldId="2"
+              standardFieldName="Type of Property"
+            />
+            <ImportMappingLineItem
+              handleOnChange={[Function]}
+              importedFieldName="Street Address"
+              standardFieldDescription="Address of property."
+              standardFieldId="3"
+              standardFieldName="Address"
+            />
+          </div>,
+          undefined,
+          <button
+            onClick={[Function]}
+          >
+            Next
+          </button>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": null,
+          "nodeType": "host",
+          "props": Object {
+            "children": "Your file was uploaded successfully, nice work!",
+          },
+          "ref": null,
+          "rendered": "Your file was uploaded successfully, nice work!",
+          "type": "p",
+        },
+        Object {
+          "instance": null,
+          "key": null,
+          "nodeType": "host",
+          "props": Object {
+            "children": "We've taken a stab at mapping your import file to the Standard Fields we use in the system. However, it's unlikely we got this completely right. This is a very important step, so please check this over and make corrections where needed.",
+          },
+          "ref": null,
+          "rendered": "We've taken a stab at mapping your import file to the Standard Fields we use in the system. However, it's unlikely we got this completely right. This is a very important step, so please check this over and make corrections where needed.",
+          "type": "p",
+        },
+        Object {
+          "instance": null,
+          "key": null,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <div>
+                Import Field
+              </div>,
+              <div>
+                Standard Field
+              </div>,
+              <div>
+                Description
+              </div>,
+            ],
+            "className": "list-header",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": null,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Import Field",
+              },
+              "ref": null,
+              "rendered": "Import Field",
+              "type": "div",
+            },
+            Object {
+              "instance": null,
+              "key": null,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Standard Field",
+              },
+              "ref": null,
+              "rendered": "Standard Field",
+              "type": "div",
+            },
+            Object {
+              "instance": null,
+              "key": null,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Description",
+              },
+              "ref": null,
+              "rendered": "Description",
+              "type": "div",
+            },
+          ],
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": null,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <ImportMappingLineItem
+                handleOnChange={[Function]}
+                importedFieldName="IDX Address Mapg"
+                standardFieldDescription="A field for mapping."
+                standardFieldId="1"
+                standardFieldName="Mapping Field (IDX)"
+              />,
+              <ImportMappingLineItem
+                handleOnChange={[Function]}
+                importedFieldName="Property Type"
+                standardFieldDescription="The type of building or structure the property is."
+                standardFieldId="2"
+                standardFieldName="Type of Property"
+              />,
+              <ImportMappingLineItem
+                handleOnChange={[Function]}
+                importedFieldName="Street Address"
+                standardFieldDescription="Address of property."
+                standardFieldId="3"
+                standardFieldName="Address"
+              />,
+            ],
+            "className": "list-body",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": "1",
+              "nodeType": "function",
+              "props": Object {
+                "handleOnChange": [Function],
+                "importedFieldName": "IDX Address Mapg",
+                "standardFieldDescription": "A field for mapping.",
+                "standardFieldId": "1",
+                "standardFieldName": "Mapping Field (IDX)",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": "2",
+              "nodeType": "function",
+              "props": Object {
+                "handleOnChange": [Function],
+                "importedFieldName": "Property Type",
+                "standardFieldDescription": "The type of building or structure the property is.",
+                "standardFieldId": "2",
+                "standardFieldName": "Type of Property",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": "3",
+              "nodeType": "function",
+              "props": Object {
+                "handleOnChange": [Function],
+                "importedFieldName": "Street Address",
+                "standardFieldDescription": "Address of property.",
+                "standardFieldId": "3",
+                "standardFieldName": "Address",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
+          "type": "div",
+        },
+        undefined,
+        Object {
+          "instance": null,
+          "key": null,
+          "nodeType": "host",
+          "props": Object {
+            "children": "Next",
+            "onClick": [Function],
+          },
+          "ref": null,
+          "rendered": "Next",
+          "type": "button",
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;

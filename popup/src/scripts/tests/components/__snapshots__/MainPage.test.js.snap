@@ -1,0 +1,381 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MainPage renders ImportFileName component when props.importConfirmed && !props.importFileNameConfirmed 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <MainPage
+    firstName={true}
+    importConfirmed={true}
+    importFileNameConfirmed={true}
+    isImportedData={true}
+    standardFields={true}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": null,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        false,
+        false,
+        false,
+        <Connect(RowIdentifierMappings) />,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      false,
+      false,
+      false,
+      Object {
+        "instance": null,
+        "key": null,
+        "nodeType": "class",
+        "props": Object {},
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": null,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          false,
+          false,
+          false,
+          <Connect(RowIdentifierMappings) />,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        false,
+        false,
+        false,
+        Object {
+          "instance": null,
+          "key": null,
+          "nodeType": "class",
+          "props": Object {},
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
+
+exports[`MainPage renders MapImportToStandardFields component when props.isImportedData && !props.importConfirmed 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <MainPage
+    firstName={true}
+    importConfirmed={true}
+    importFileNameConfirmed={true}
+    isImportedData2={true}
+    standardFields={true}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": null,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <SelectImportFile
+          handleOnChange={[Function]}
+          message="Hi true, lets get started by uploading your import file using the button below."
+        />,
+        undefined,
+        false,
+        <Connect(RowIdentifierMappings) />,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": null,
+        "nodeType": "class",
+        "props": Object {
+          "handleOnChange": [Function],
+          "message": "Hi true, lets get started by uploading your import file using the button below.",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      undefined,
+      false,
+      Object {
+        "instance": null,
+        "key": null,
+        "nodeType": "class",
+        "props": Object {},
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": null,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <SelectImportFile
+            handleOnChange={[Function]}
+            message="Hi true, lets get started by uploading your import file using the button below."
+          />,
+          undefined,
+          false,
+          <Connect(RowIdentifierMappings) />,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": null,
+          "nodeType": "class",
+          "props": Object {
+            "handleOnChange": [Function],
+            "message": "Hi true, lets get started by uploading your import file using the button below.",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        undefined,
+        false,
+        Object {
+          "instance": null,
+          "key": null,
+          "nodeType": "class",
+          "props": Object {},
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
+
+exports[`MainPage renders RowIdentifierMappings when props.importFileNameConfirmed 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <MainPage
+    firstName={true}
+    importConfirmed={true}
+    importFileNameConfirmed={true}
+    isImportedData={true}
+    standardFields={true}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": null,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        false,
+        false,
+        false,
+        <Connect(RowIdentifierMappings) />,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      false,
+      false,
+      false,
+      Object {
+        "instance": null,
+        "key": null,
+        "nodeType": "class",
+        "props": Object {},
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": null,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          false,
+          false,
+          false,
+          <Connect(RowIdentifierMappings) />,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        false,
+        false,
+        false,
+        Object {
+          "instance": null,
+          "key": null,
+          "nodeType": "class",
+          "props": Object {},
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
+
+exports[`MainPage renders SelectImportFile component when props.isImportedData=false 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <MainPage
+    firstName={true}
+    importConfirmed={true}
+    importFileNameConfirmed={true}
+    isImportedData={true}
+    standardFields={true}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": null,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        false,
+        false,
+        false,
+        <Connect(RowIdentifierMappings) />,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      false,
+      false,
+      false,
+      Object {
+        "instance": null,
+        "key": null,
+        "nodeType": "class",
+        "props": Object {},
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": null,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          false,
+          false,
+          false,
+          <Connect(RowIdentifierMappings) />,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        false,
+        false,
+        false,
+        Object {
+          "instance": null,
+          "key": null,
+          "nodeType": "class",
+          "props": Object {},
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;

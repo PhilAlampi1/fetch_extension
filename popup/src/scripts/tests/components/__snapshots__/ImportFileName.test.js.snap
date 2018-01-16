@@ -1,0 +1,479 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ImportFileName should render correctly 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <ImportFileName />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": null,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <p>
+          Great job, it's all downhill from here!
+        </p>,
+        <p>
+          Now, what name should we give your import file so you can reuse these mappings in future imports?
+        </p>,
+        <div>
+          <input
+            defaultValue={undefined}
+            name="importFileName"
+            onBlur={undefined}
+            placeholder="import file name"
+            type="text"
+          />
+          <button
+            onClick={undefined}
+          >
+            Next
+          </button>
+        </div>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": null,
+        "nodeType": "host",
+        "props": Object {
+          "children": "Great job, it's all downhill from here!",
+        },
+        "ref": null,
+        "rendered": "Great job, it's all downhill from here!",
+        "type": "p",
+      },
+      Object {
+        "instance": null,
+        "key": null,
+        "nodeType": "host",
+        "props": Object {
+          "children": "Now, what name should we give your import file so you can reuse these mappings in future imports?",
+        },
+        "ref": null,
+        "rendered": "Now, what name should we give your import file so you can reuse these mappings in future imports?",
+        "type": "p",
+      },
+      Object {
+        "instance": null,
+        "key": null,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <input
+              defaultValue={undefined}
+              name="importFileName"
+              onBlur={undefined}
+              placeholder="import file name"
+              type="text"
+            />,
+            <button
+              onClick={undefined}
+            >
+              Next
+            </button>,
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": null,
+            "nodeType": "host",
+            "props": Object {
+              "defaultValue": undefined,
+              "name": "importFileName",
+              "onBlur": undefined,
+              "placeholder": "import file name",
+              "type": "text",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": "input",
+          },
+          Object {
+            "instance": null,
+            "key": null,
+            "nodeType": "host",
+            "props": Object {
+              "children": "Next",
+              "onClick": undefined,
+            },
+            "ref": null,
+            "rendered": "Next",
+            "type": "button",
+          },
+        ],
+        "type": "div",
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": null,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <p>
+            Great job, it's all downhill from here!
+          </p>,
+          <p>
+            Now, what name should we give your import file so you can reuse these mappings in future imports?
+          </p>,
+          <div>
+            <input
+              defaultValue={undefined}
+              name="importFileName"
+              onBlur={undefined}
+              placeholder="import file name"
+              type="text"
+            />
+            <button
+              onClick={undefined}
+            >
+              Next
+            </button>
+          </div>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": null,
+          "nodeType": "host",
+          "props": Object {
+            "children": "Great job, it's all downhill from here!",
+          },
+          "ref": null,
+          "rendered": "Great job, it's all downhill from here!",
+          "type": "p",
+        },
+        Object {
+          "instance": null,
+          "key": null,
+          "nodeType": "host",
+          "props": Object {
+            "children": "Now, what name should we give your import file so you can reuse these mappings in future imports?",
+          },
+          "ref": null,
+          "rendered": "Now, what name should we give your import file so you can reuse these mappings in future imports?",
+          "type": "p",
+        },
+        Object {
+          "instance": null,
+          "key": null,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <input
+                defaultValue={undefined}
+                name="importFileName"
+                onBlur={undefined}
+                placeholder="import file name"
+                type="text"
+              />,
+              <button
+                onClick={undefined}
+              >
+                Next
+              </button>,
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": null,
+              "nodeType": "host",
+              "props": Object {
+                "defaultValue": undefined,
+                "name": "importFileName",
+                "onBlur": undefined,
+                "placeholder": "import file name",
+                "type": "text",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": "input",
+            },
+            Object {
+              "instance": null,
+              "key": null,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Next",
+                "onClick": undefined,
+              },
+              "ref": null,
+              "rendered": "Next",
+              "type": "button",
+            },
+          ],
+          "type": "div",
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
+
+exports[`ImportFileName should render correctly with correct prop input value 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <ImportFileName
+    importFileName="Test File Name"
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": null,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <p>
+          Great job, it's all downhill from here!
+        </p>,
+        <p>
+          Now, what name should we give your import file so you can reuse these mappings in future imports?
+        </p>,
+        <div>
+          <input
+            defaultValue="Test File Name"
+            name="importFileName"
+            onBlur={undefined}
+            placeholder="import file name"
+            type="text"
+          />
+          <button
+            onClick={undefined}
+          >
+            Next
+          </button>
+        </div>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": null,
+        "nodeType": "host",
+        "props": Object {
+          "children": "Great job, it's all downhill from here!",
+        },
+        "ref": null,
+        "rendered": "Great job, it's all downhill from here!",
+        "type": "p",
+      },
+      Object {
+        "instance": null,
+        "key": null,
+        "nodeType": "host",
+        "props": Object {
+          "children": "Now, what name should we give your import file so you can reuse these mappings in future imports?",
+        },
+        "ref": null,
+        "rendered": "Now, what name should we give your import file so you can reuse these mappings in future imports?",
+        "type": "p",
+      },
+      Object {
+        "instance": null,
+        "key": null,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <input
+              defaultValue="Test File Name"
+              name="importFileName"
+              onBlur={undefined}
+              placeholder="import file name"
+              type="text"
+            />,
+            <button
+              onClick={undefined}
+            >
+              Next
+            </button>,
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": null,
+            "nodeType": "host",
+            "props": Object {
+              "defaultValue": "Test File Name",
+              "name": "importFileName",
+              "onBlur": undefined,
+              "placeholder": "import file name",
+              "type": "text",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": "input",
+          },
+          Object {
+            "instance": null,
+            "key": null,
+            "nodeType": "host",
+            "props": Object {
+              "children": "Next",
+              "onClick": undefined,
+            },
+            "ref": null,
+            "rendered": "Next",
+            "type": "button",
+          },
+        ],
+        "type": "div",
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": null,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <p>
+            Great job, it's all downhill from here!
+          </p>,
+          <p>
+            Now, what name should we give your import file so you can reuse these mappings in future imports?
+          </p>,
+          <div>
+            <input
+              defaultValue="Test File Name"
+              name="importFileName"
+              onBlur={undefined}
+              placeholder="import file name"
+              type="text"
+            />
+            <button
+              onClick={undefined}
+            >
+              Next
+            </button>
+          </div>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": null,
+          "nodeType": "host",
+          "props": Object {
+            "children": "Great job, it's all downhill from here!",
+          },
+          "ref": null,
+          "rendered": "Great job, it's all downhill from here!",
+          "type": "p",
+        },
+        Object {
+          "instance": null,
+          "key": null,
+          "nodeType": "host",
+          "props": Object {
+            "children": "Now, what name should we give your import file so you can reuse these mappings in future imports?",
+          },
+          "ref": null,
+          "rendered": "Now, what name should we give your import file so you can reuse these mappings in future imports?",
+          "type": "p",
+        },
+        Object {
+          "instance": null,
+          "key": null,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <input
+                defaultValue="Test File Name"
+                name="importFileName"
+                onBlur={undefined}
+                placeholder="import file name"
+                type="text"
+              />,
+              <button
+                onClick={undefined}
+              >
+                Next
+              </button>,
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": null,
+              "nodeType": "host",
+              "props": Object {
+                "defaultValue": "Test File Name",
+                "name": "importFileName",
+                "onBlur": undefined,
+                "placeholder": "import file name",
+                "type": "text",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": "input",
+            },
+            Object {
+              "instance": null,
+              "key": null,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Next",
+                "onClick": undefined,
+              },
+              "ref": null,
+              "rendered": "Next",
+              "type": "button",
+            },
+          ],
+          "type": "div",
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;

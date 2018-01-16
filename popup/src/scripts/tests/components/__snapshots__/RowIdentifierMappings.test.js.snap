@@ -1,0 +1,673 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RowIdentifierMappings should render correctly 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <RowIdentifierMappings
+    importRowIdentifierValues={true}
+    importedData={true}
+    importedRowIdentifierField={true}
+    rowIdentifiers={
+      Array [
+        Object {
+          "rowIdentifierId": "1",
+          "rowIdentifierName": "Listing Comp 1",
+          "rowIdentifierPrefix": "L1",
+        },
+        Object {
+          "rowIdentifierId": "2",
+          "rowIdentifierName": "Listing Comp 2",
+          "rowIdentifierPrefix": "L2",
+        },
+        Object {
+          "rowIdentifierId": "3",
+          "rowIdentifierName": "Listing Comp 3",
+          "rowIdentifierPrefix": "L3",
+        },
+      ]
+    }
+    setImportedRowIdentifierValue={true}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": null,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <p>
+          Which rows would you like to import?
+        </p>,
+        <div>
+          <div />
+          <div>
+            Type
+          </div>
+          <div>
+            Prefix
+          </div>
+        </div>,
+        Array [
+          <RowIdentifierLineItem
+            importRowIdentifierValues={true}
+            importedRowIdentifierValue={undefined}
+            rowIdentifier={
+              Object {
+                "rowIdentifierId": "1",
+                "rowIdentifierName": "Listing Comp 1",
+                "rowIdentifierPrefix": "L1",
+              }
+            }
+            rowIdentifierId="1"
+            rowIdentifiers={
+              Array [
+                Object {
+                  "rowIdentifierId": "1",
+                  "rowIdentifierName": "Listing Comp 1",
+                  "rowIdentifierPrefix": "L1",
+                },
+                Object {
+                  "rowIdentifierId": "2",
+                  "rowIdentifierName": "Listing Comp 2",
+                  "rowIdentifierPrefix": "L2",
+                },
+                Object {
+                  "rowIdentifierId": "3",
+                  "rowIdentifierName": "Listing Comp 3",
+                  "rowIdentifierPrefix": "L3",
+                },
+              ]
+            }
+            setImportedRowIdentifierValue={true}
+          />,
+          <RowIdentifierLineItem
+            importRowIdentifierValues={true}
+            importedRowIdentifierValue={undefined}
+            rowIdentifier={
+              Object {
+                "rowIdentifierId": "2",
+                "rowIdentifierName": "Listing Comp 2",
+                "rowIdentifierPrefix": "L2",
+              }
+            }
+            rowIdentifierId="2"
+            rowIdentifiers={
+              Array [
+                Object {
+                  "rowIdentifierId": "1",
+                  "rowIdentifierName": "Listing Comp 1",
+                  "rowIdentifierPrefix": "L1",
+                },
+                Object {
+                  "rowIdentifierId": "2",
+                  "rowIdentifierName": "Listing Comp 2",
+                  "rowIdentifierPrefix": "L2",
+                },
+                Object {
+                  "rowIdentifierId": "3",
+                  "rowIdentifierName": "Listing Comp 3",
+                  "rowIdentifierPrefix": "L3",
+                },
+              ]
+            }
+            setImportedRowIdentifierValue={true}
+          />,
+          <RowIdentifierLineItem
+            importRowIdentifierValues={true}
+            importedRowIdentifierValue={undefined}
+            rowIdentifier={
+              Object {
+                "rowIdentifierId": "3",
+                "rowIdentifierName": "Listing Comp 3",
+                "rowIdentifierPrefix": "L3",
+              }
+            }
+            rowIdentifierId="3"
+            rowIdentifiers={
+              Array [
+                Object {
+                  "rowIdentifierId": "1",
+                  "rowIdentifierName": "Listing Comp 1",
+                  "rowIdentifierPrefix": "L1",
+                },
+                Object {
+                  "rowIdentifierId": "2",
+                  "rowIdentifierName": "Listing Comp 2",
+                  "rowIdentifierPrefix": "L2",
+                },
+                Object {
+                  "rowIdentifierId": "3",
+                  "rowIdentifierName": "Listing Comp 3",
+                  "rowIdentifierPrefix": "L3",
+                },
+              ]
+            }
+            setImportedRowIdentifierValue={true}
+          />,
+        ],
+        <button
+          onClick={[Function]}
+        >
+          Next
+        </button>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": null,
+        "nodeType": "host",
+        "props": Object {
+          "children": "Which rows would you like to import?",
+        },
+        "ref": null,
+        "rendered": "Which rows would you like to import?",
+        "type": "p",
+      },
+      Object {
+        "instance": null,
+        "key": null,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <div />,
+            <div>
+              Type
+            </div>,
+            <div>
+              Prefix
+            </div>,
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": null,
+            "nodeType": "host",
+            "props": Object {
+              "children": undefined,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": "div",
+          },
+          Object {
+            "instance": null,
+            "key": null,
+            "nodeType": "host",
+            "props": Object {
+              "children": "Type",
+            },
+            "ref": null,
+            "rendered": "Type",
+            "type": "div",
+          },
+          Object {
+            "instance": null,
+            "key": null,
+            "nodeType": "host",
+            "props": Object {
+              "children": "Prefix",
+            },
+            "ref": null,
+            "rendered": "Prefix",
+            "type": "div",
+          },
+        ],
+        "type": "div",
+      },
+      Object {
+        "instance": null,
+        "key": "1",
+        "nodeType": "function",
+        "props": Object {
+          "importRowIdentifierValues": true,
+          "importedRowIdentifierValue": undefined,
+          "rowIdentifier": Object {
+            "rowIdentifierId": "1",
+            "rowIdentifierName": "Listing Comp 1",
+            "rowIdentifierPrefix": "L1",
+          },
+          "rowIdentifierId": "1",
+          "rowIdentifiers": Array [
+            Object {
+              "rowIdentifierId": "1",
+              "rowIdentifierName": "Listing Comp 1",
+              "rowIdentifierPrefix": "L1",
+            },
+            Object {
+              "rowIdentifierId": "2",
+              "rowIdentifierName": "Listing Comp 2",
+              "rowIdentifierPrefix": "L2",
+            },
+            Object {
+              "rowIdentifierId": "3",
+              "rowIdentifierName": "Listing Comp 3",
+              "rowIdentifierPrefix": "L3",
+            },
+          ],
+          "setImportedRowIdentifierValue": true,
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": "2",
+        "nodeType": "function",
+        "props": Object {
+          "importRowIdentifierValues": true,
+          "importedRowIdentifierValue": undefined,
+          "rowIdentifier": Object {
+            "rowIdentifierId": "2",
+            "rowIdentifierName": "Listing Comp 2",
+            "rowIdentifierPrefix": "L2",
+          },
+          "rowIdentifierId": "2",
+          "rowIdentifiers": Array [
+            Object {
+              "rowIdentifierId": "1",
+              "rowIdentifierName": "Listing Comp 1",
+              "rowIdentifierPrefix": "L1",
+            },
+            Object {
+              "rowIdentifierId": "2",
+              "rowIdentifierName": "Listing Comp 2",
+              "rowIdentifierPrefix": "L2",
+            },
+            Object {
+              "rowIdentifierId": "3",
+              "rowIdentifierName": "Listing Comp 3",
+              "rowIdentifierPrefix": "L3",
+            },
+          ],
+          "setImportedRowIdentifierValue": true,
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": "3",
+        "nodeType": "function",
+        "props": Object {
+          "importRowIdentifierValues": true,
+          "importedRowIdentifierValue": undefined,
+          "rowIdentifier": Object {
+            "rowIdentifierId": "3",
+            "rowIdentifierName": "Listing Comp 3",
+            "rowIdentifierPrefix": "L3",
+          },
+          "rowIdentifierId": "3",
+          "rowIdentifiers": Array [
+            Object {
+              "rowIdentifierId": "1",
+              "rowIdentifierName": "Listing Comp 1",
+              "rowIdentifierPrefix": "L1",
+            },
+            Object {
+              "rowIdentifierId": "2",
+              "rowIdentifierName": "Listing Comp 2",
+              "rowIdentifierPrefix": "L2",
+            },
+            Object {
+              "rowIdentifierId": "3",
+              "rowIdentifierName": "Listing Comp 3",
+              "rowIdentifierPrefix": "L3",
+            },
+          ],
+          "setImportedRowIdentifierValue": true,
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": null,
+        "nodeType": "host",
+        "props": Object {
+          "children": "Next",
+          "onClick": [Function],
+        },
+        "ref": null,
+        "rendered": "Next",
+        "type": "button",
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": null,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <p>
+            Which rows would you like to import?
+          </p>,
+          <div>
+            <div />
+            <div>
+              Type
+            </div>
+            <div>
+              Prefix
+            </div>
+          </div>,
+          Array [
+            <RowIdentifierLineItem
+              importRowIdentifierValues={true}
+              importedRowIdentifierValue={undefined}
+              rowIdentifier={
+                Object {
+                  "rowIdentifierId": "1",
+                  "rowIdentifierName": "Listing Comp 1",
+                  "rowIdentifierPrefix": "L1",
+                }
+              }
+              rowIdentifierId="1"
+              rowIdentifiers={
+                Array [
+                  Object {
+                    "rowIdentifierId": "1",
+                    "rowIdentifierName": "Listing Comp 1",
+                    "rowIdentifierPrefix": "L1",
+                  },
+                  Object {
+                    "rowIdentifierId": "2",
+                    "rowIdentifierName": "Listing Comp 2",
+                    "rowIdentifierPrefix": "L2",
+                  },
+                  Object {
+                    "rowIdentifierId": "3",
+                    "rowIdentifierName": "Listing Comp 3",
+                    "rowIdentifierPrefix": "L3",
+                  },
+                ]
+              }
+              setImportedRowIdentifierValue={true}
+            />,
+            <RowIdentifierLineItem
+              importRowIdentifierValues={true}
+              importedRowIdentifierValue={undefined}
+              rowIdentifier={
+                Object {
+                  "rowIdentifierId": "2",
+                  "rowIdentifierName": "Listing Comp 2",
+                  "rowIdentifierPrefix": "L2",
+                }
+              }
+              rowIdentifierId="2"
+              rowIdentifiers={
+                Array [
+                  Object {
+                    "rowIdentifierId": "1",
+                    "rowIdentifierName": "Listing Comp 1",
+                    "rowIdentifierPrefix": "L1",
+                  },
+                  Object {
+                    "rowIdentifierId": "2",
+                    "rowIdentifierName": "Listing Comp 2",
+                    "rowIdentifierPrefix": "L2",
+                  },
+                  Object {
+                    "rowIdentifierId": "3",
+                    "rowIdentifierName": "Listing Comp 3",
+                    "rowIdentifierPrefix": "L3",
+                  },
+                ]
+              }
+              setImportedRowIdentifierValue={true}
+            />,
+            <RowIdentifierLineItem
+              importRowIdentifierValues={true}
+              importedRowIdentifierValue={undefined}
+              rowIdentifier={
+                Object {
+                  "rowIdentifierId": "3",
+                  "rowIdentifierName": "Listing Comp 3",
+                  "rowIdentifierPrefix": "L3",
+                }
+              }
+              rowIdentifierId="3"
+              rowIdentifiers={
+                Array [
+                  Object {
+                    "rowIdentifierId": "1",
+                    "rowIdentifierName": "Listing Comp 1",
+                    "rowIdentifierPrefix": "L1",
+                  },
+                  Object {
+                    "rowIdentifierId": "2",
+                    "rowIdentifierName": "Listing Comp 2",
+                    "rowIdentifierPrefix": "L2",
+                  },
+                  Object {
+                    "rowIdentifierId": "3",
+                    "rowIdentifierName": "Listing Comp 3",
+                    "rowIdentifierPrefix": "L3",
+                  },
+                ]
+              }
+              setImportedRowIdentifierValue={true}
+            />,
+          ],
+          <button
+            onClick={[Function]}
+          >
+            Next
+          </button>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": null,
+          "nodeType": "host",
+          "props": Object {
+            "children": "Which rows would you like to import?",
+          },
+          "ref": null,
+          "rendered": "Which rows would you like to import?",
+          "type": "p",
+        },
+        Object {
+          "instance": null,
+          "key": null,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <div />,
+              <div>
+                Type
+              </div>,
+              <div>
+                Prefix
+              </div>,
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": null,
+              "nodeType": "host",
+              "props": Object {
+                "children": undefined,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": "div",
+            },
+            Object {
+              "instance": null,
+              "key": null,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Type",
+              },
+              "ref": null,
+              "rendered": "Type",
+              "type": "div",
+            },
+            Object {
+              "instance": null,
+              "key": null,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Prefix",
+              },
+              "ref": null,
+              "rendered": "Prefix",
+              "type": "div",
+            },
+          ],
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": "1",
+          "nodeType": "function",
+          "props": Object {
+            "importRowIdentifierValues": true,
+            "importedRowIdentifierValue": undefined,
+            "rowIdentifier": Object {
+              "rowIdentifierId": "1",
+              "rowIdentifierName": "Listing Comp 1",
+              "rowIdentifierPrefix": "L1",
+            },
+            "rowIdentifierId": "1",
+            "rowIdentifiers": Array [
+              Object {
+                "rowIdentifierId": "1",
+                "rowIdentifierName": "Listing Comp 1",
+                "rowIdentifierPrefix": "L1",
+              },
+              Object {
+                "rowIdentifierId": "2",
+                "rowIdentifierName": "Listing Comp 2",
+                "rowIdentifierPrefix": "L2",
+              },
+              Object {
+                "rowIdentifierId": "3",
+                "rowIdentifierName": "Listing Comp 3",
+                "rowIdentifierPrefix": "L3",
+              },
+            ],
+            "setImportedRowIdentifierValue": true,
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": "2",
+          "nodeType": "function",
+          "props": Object {
+            "importRowIdentifierValues": true,
+            "importedRowIdentifierValue": undefined,
+            "rowIdentifier": Object {
+              "rowIdentifierId": "2",
+              "rowIdentifierName": "Listing Comp 2",
+              "rowIdentifierPrefix": "L2",
+            },
+            "rowIdentifierId": "2",
+            "rowIdentifiers": Array [
+              Object {
+                "rowIdentifierId": "1",
+                "rowIdentifierName": "Listing Comp 1",
+                "rowIdentifierPrefix": "L1",
+              },
+              Object {
+                "rowIdentifierId": "2",
+                "rowIdentifierName": "Listing Comp 2",
+                "rowIdentifierPrefix": "L2",
+              },
+              Object {
+                "rowIdentifierId": "3",
+                "rowIdentifierName": "Listing Comp 3",
+                "rowIdentifierPrefix": "L3",
+              },
+            ],
+            "setImportedRowIdentifierValue": true,
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": "3",
+          "nodeType": "function",
+          "props": Object {
+            "importRowIdentifierValues": true,
+            "importedRowIdentifierValue": undefined,
+            "rowIdentifier": Object {
+              "rowIdentifierId": "3",
+              "rowIdentifierName": "Listing Comp 3",
+              "rowIdentifierPrefix": "L3",
+            },
+            "rowIdentifierId": "3",
+            "rowIdentifiers": Array [
+              Object {
+                "rowIdentifierId": "1",
+                "rowIdentifierName": "Listing Comp 1",
+                "rowIdentifierPrefix": "L1",
+              },
+              Object {
+                "rowIdentifierId": "2",
+                "rowIdentifierName": "Listing Comp 2",
+                "rowIdentifierPrefix": "L2",
+              },
+              Object {
+                "rowIdentifierId": "3",
+                "rowIdentifierName": "Listing Comp 3",
+                "rowIdentifierPrefix": "L3",
+              },
+            ],
+            "setImportedRowIdentifierValue": true,
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": null,
+          "nodeType": "host",
+          "props": Object {
+            "children": "Next",
+            "onClick": [Function],
+          },
+          "ref": null,
+          "rendered": "Next",
+          "type": "button",
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
