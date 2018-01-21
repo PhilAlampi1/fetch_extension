@@ -16,27 +16,34 @@ export class SelectImportFileSetup extends React.Component {
         const newOptionName = e.target.options[e.target.selectedIndex].text
         this.setState((prevState) => ({
             ...prevState,
+            showError: !newOptionId ? true : false,
             selectedOptionId: newOptionId,
             selectedOptionName: newOptionName
         }))
     }
     setSelectedImportFileSetup = () => {
-        !this.state.selectedOptionId
-            ? this.setState((prevState) => ({
+        const selectedOptionName = (
+            (!this.state.selectedOptionName || this.state.selectedOptionName === 'Create new')
+                ? ''
+                : this.state.selectedOptionName
+        )
+        this.props.setSelectedImportFileSetup(this.state.selectedOptionId, selectedOptionName)
+        if (!this.state.selectedOptionId) {
+            this.setState((prevState) => ({
                 ...prevState,
                 showError: true
             }))
-            : this.setState((prevState) => ({
+        } else {
+            this.setState((prevState) => ({
                 ...prevState,
                 showError: false
             }))
-        this.props.setSelectedImportFileSetup(this.state.selectedOptionId, this.state.selectedOptionName)
-        this.state.selectedOptionId !== 'create' && this.props.getAndStoreImportFieldMappings()
+            this.state.selectedOptionId !== 'create' && this.props.getAndStoreImportFieldMappings()
+        }
     }
     render() {
         return (
             <div>
-                <p>selectedOptionId: {this.state.selectedOptionId}</p>
                 <p>Hi {this.props.firstName}, what kind of file are we importing today?</p>
                 <form>
                     <select className="selectImportFileSetup" onChange={this.setOptionOnChange}>
@@ -47,9 +54,10 @@ export class SelectImportFileSetup extends React.Component {
                         <option value="create">Create new</option>
                     </select>
                 </form>
-                {this.state.showError &&
-                    <p>Please select an option.</p>}
-                <button onClick={this.setSelectedImportFileSetup}>Next</button>
+                {this.state.showError
+                    ? <p>Please select an option.</p>
+                    : <button onClick={this.setSelectedImportFileSetup}>Next</button>
+                }
             </div>
         )
     }

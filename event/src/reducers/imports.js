@@ -1,26 +1,43 @@
 const imports = {
-  confirmRowIdentifiers: false,
-  importConfirmed: false,
-  importFileNameConfirmed: false,
-  importRowIdentifierValues: [],
-  importSetupArray: [], // holds import setup values to be matched with formMappingArray from DB
-  formMappingArray: [], // holds a dump of that form's mappings from DB
-  importDataArray: [] // holds the final cut of data to be imported to the form
+  // confirmRowIdentifiers: false,
+  // importConfirmed: false,
+  // importFileNameConfirmed: false,
+  // importRowIdentifierValues: [],
+  // importSetupArray: [], // holds import setup values to be matched with formMappingArray from DB
+  // formMappingArray: [], // holds a dump of that form's mappings from DB
+  // importDataArray: [] // holds the final cut of data to be imported to the form
 }
 
 export default (state = imports, action) => {
   switch (action.type) {
     case 'SET_ROW_IDENTIFIERS_AND_STANDARD_FIELDS':
       return {
-        ...state,
+        // ...state,
+        importFileSetups: state.importFileSetups,
+        usersCurrentPage: 'main',
+        confirmRowIdentifiers: false,
+        importConfirmed: false,
+        importFileNameConfirmed: false,
+        importRowIdentifierValues: [],
+        importSetupArray: [], // holds import setup values to be matched with formMappingArray from DB
+        formMappingArray: [], // holds a dump of that form's mappings from DB
+        importDataArray: [], // holds the final cut of data to be imported to the form
         standardFields: action.standardFields,
         rowIdentifiers: action.rowIdentifiers,
         importRowIdentifierStandardFieldName: 'Address',
         mapImportToStandardFieldsERROR: false,
-        userCreatingNewImportFileSetup: false,
+        promptUserOnStartOver: false,
+        // userCreatingNewImportFileSetup: false,
         selectedImportFileSetupId: null,
         selectedImportFileSetupText: null,
-        importFieldMappingDbUpdates: []
+        selectedFormId: null,
+        selectedFormName: null,
+        selectedFormDescription: null,
+        selectedFormPublic: null,
+        formConfirmed: false,
+        importFieldMappingDbUpdates: [],
+        preMapConfirmed: false,
+        userIsMappingForm: false
       }
     case 'STORE_IMPORT_FILE_SETUPS':
       return {
@@ -104,6 +121,63 @@ export default (state = imports, action) => {
       return {
         ...state,
         standardFields: action.standardFields
+      }
+    case 'TOGGLE_PROMPT_USER_ON_START_OVER':
+      return {
+        ...state,
+        promptUserOnStartOver: action.promptUserOnStartOver
+      }
+    case 'UPDATE_USERS_CURRENT_PAGE':
+      return {
+        ...state,
+        usersCurrentPage: action.usersCurrentPage
+      }
+    case 'SET_SELECTED_FORM':
+      return {
+        ...state,
+        selectedFormId: action.selectedFormId,
+        selectedFormName: action.selectedFormName,
+        selectedFormDescription: action.selectedFormDescription
+      }
+    case 'NAME_FORM':
+      return {
+        ...state,
+        selectedFormName: action.selectedFormName
+      }
+    case 'DESCRIBE_FORM':
+      return {
+        ...state,
+        selectedFormDescription: action.selectedFormDescription
+      }
+    case 'SET_SELECTED_FORM_ID':
+      return {
+        ...state,
+        selectedFormId: action.selectedFormId
+      }
+    case 'STORE_USER_FORMS':
+      return {
+        ...state,
+        userForms: action.userForms
+      }
+    case 'CONFIRM_EXISTING_FORM':
+      return {
+        ...state,
+        formConfirmed: action.formConfirmed
+      }
+    case 'CONFIRM_UPDATE_FORM':
+      return {
+        ...state,
+        formConfirmed: action.formConfirmed
+      }
+    case 'CONFIRM_PRE_MAP':
+      return {
+        ...state,
+        preMapConfirmed: action.preMapConfirmed
+      }
+    case 'SET_USER_IS_MAPPING_FORM':
+      return {
+        ...state,
+        userIsMappingForm: action.userIsMappingForm
       }
     default:
       return state

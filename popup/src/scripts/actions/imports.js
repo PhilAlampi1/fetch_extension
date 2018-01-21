@@ -1,6 +1,6 @@
 import fuzz from 'fuzzball'
 
-export const storeRawImportData = (importedData, standardFields, selectedImportFileSetup) => {
+export const storeRawImportData = (importedData, standardFields, selectedImportFileSetupId) => {
     // Get all field names from import file
     const importedFieldNames = []
     Object.keys(importedData[0]).map((fieldName) => {
@@ -9,7 +9,7 @@ export const storeRawImportData = (importedData, standardFields, selectedImportF
     let importRowIdentifierField = ''
     let query, choices, options, results
     for (let j = 0; j < standardFields.length; j++) {
-        if (selectedImportFileSetup === 'create') {
+        if (selectedImportFileSetupId === 'create') {
             // If creating new Import File Setup...
             // Compare imported file field names to standard field names and recommend or display saved mappings
             // Save importRowIdentifierField if standard field has importRowIdentifier = true 
@@ -133,6 +133,32 @@ export const confirmExistingImportFileName = () => ({
     importFileNameConfirmed: true
 })
 
+////HERE
+export const nameForm = (formName) => ({
+    type: 'NAME_FORM',
+    selectedFormName: formName
+})
+
+export const describeForm = (formDescription) => ({
+    type: 'DESCRIBE_FORM',
+    selectedFormDescription: formDescription
+})
+
+export const confirmNewForm = () => ({
+    type: 'CONFIRM_NEW_FORM'
+})
+
+// export const updateExistingImportFileNameInDb = () => ({
+//     type: 'UPDATE_EXISTING_IMPORT_FILE_NAME_IN_DB'
+// })
+
+// export const confirmExistingImportFileName = () => ({
+//     type: 'CONFIRM_EXISTING_IMPORT_FILE_NAME',
+//     importFileNameConfirmed: true
+// })
+
+///HERE
+
 export const setImportedRowIdentifierValue = (importedRowIdentifierValue, rowIdentifierId, rowIdentifiers) => {
     const match = (item) => item.rowIdentifierId === rowIdentifierId
     const updateIndex = rowIdentifiers.findIndex(match)
@@ -182,4 +208,49 @@ export const setSelectedImportFileSetup = (selectedOptionId, selectedOptionName)
 
 export const getAndStoreImportFieldMappings = () => ({
     type: 'GET_AND_STORE_IMPORT_FIELD_MAPPINGS'
+})
+
+export const fetchStubValuesViaAlias = () => ({
+    type: 'FETCH_STUB_VALUES_VIA_ALIAS'
+})
+
+export const togglePromptUserOnStartOver = (newValue) => ({
+    type: 'TOGGLE_PROMPT_USER_ON_START_OVER',
+    promptUserOnStartOver: newValue
+})
+
+export const setUsersCurrentPageToFormPage = () => ({
+    type: 'UPDATE_USERS_CURRENT_PAGE',
+    usersCurrentPage: 'form'
+})
+
+export const setUsersCurrentPageToMainPage = () => ({
+    type: 'UPDATE_USERS_CURRENT_PAGE',
+    usersCurrentPage: 'main'
+})
+
+export const setSelectedForm = (selectedOptionId, selectedOptionName, selectedFormDescription) => ({
+    type: 'SET_SELECTED_FORM',
+    selectedFormId: selectedOptionId,
+    selectedFormName: selectedOptionName,
+    selectedFormDescription: selectedFormDescription 
+})
+
+export const updateExistingFormInDb = () => ({
+    type: 'UPDATE_EXISTING_FORM_IN_DB'
+})
+
+export const confirmExistingForm = () => ({
+    type: 'CONFIRM_EXISTING_FORM',
+    formConfirmed: true
+})
+
+export const confirmPreMap = () => ({
+    type: 'CONFIRM_PRE_MAP',
+    preMapConfirmed: true
+})
+
+export const setUserIsMappingForm = (setting) => ({
+    type: 'SET_USER_IS_MAPPING_FORM',
+    userIsMappingForm: setting
 })

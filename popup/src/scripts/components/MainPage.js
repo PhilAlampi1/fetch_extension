@@ -6,11 +6,15 @@ import RowIdentifierMappings from './rowidentifiermappings'
 import MapImportToStandardFields from './mapimporttostandardfields'
 import ImportFileName from './importfilename'
 import SelectImportFileSetup from './SelectImportFileSetup'
+import FormMappings from './FormMappings'
+import CreateEditFormMapping from './CreateEditFormMapping'
+import PreMapConfirmForm from './PreMapConfirmForm'
+import PreMapInstructions from './PreMapInstructions'
 import { storeRawImportData } from '../actions/imports'
 
 export const MainPage = (props) => {
     const storeRawImportData = (importedData) => {
-        props.storeRawImportData(importedData, props.standardFields, props.selectedImportFileSetup)
+        props.storeRawImportData(importedData, props.standardFields, props.selectedImportFileSetupId)
     }
     const loadFileToStore = (e) => {
         Papa.parse(e.target.files[0], {
@@ -22,20 +26,35 @@ export const MainPage = (props) => {
     }
     return (
         <div>
+            {props.usersCurrentPage === 'main' &&
+                <div>
+                    {!props.selectedImportFileSetupId && <SelectImportFileSetup />}
 
-            {!props.selectedImportFileSetupId && <SelectImportFileSetup />}
+                    {(props.selectedImportFileSetupId && !props.isImportedData) && <SelectImportFile
+                        message={`Ok, lets get started by uploading your import file.`}
+                        handleOnChange={loadFileToStore}
+                    />}
 
-            {(props.selectedImportFileSetupId && !props.isImportedData) && <SelectImportFile
-                message={`Ok, lets get started by uploading your import file.`}
-                handleOnChange={loadFileToStore}
-            />}
+                    {(props.isImportedData && !props.importConfirmed) && <MapImportToStandardFields />}
 
-            {(props.isImportedData && !props.importConfirmed) && <MapImportToStandardFields />}
+                    {(props.importConfirmed && !props.importFileNameConfirmed) && <ImportFileName />}
 
-            {(props.importConfirmed && !props.importFileNameConfirmed) && <ImportFileName />}
+                    {props.importFileNameConfirmed && <RowIdentifierMappings />}
+                </div>
+            }
+            {props.usersCurrentPage === 'form' &&
+                <div>
+                    
+                    {!props.selectedFormId && <FormMappings />}
 
-            {props.importFileNameConfirmed && <RowIdentifierMappings />}
+                    {(props.selectedFormId && !props.formConfirmed) && <CreateEditFormMapping />}
 
+                    {(props.formConfirmed && !props.preMapConfirmed) && <PreMapConfirmForm />}
+
+                    {props.preMapConfirmed && <PreMapInstructions />}
+
+                </div>
+            }
         </div>
     )
 
@@ -68,14 +87,16 @@ const mapStateToProps = (state) => ({
     importConfirmed: !!state.imports.importConfirmed,
     importFileNameConfirmed: !!state.imports.importFileNameConfirmed,
     standardFields: state.imports.standardFields,
-    // userHasImportFileSetups: !!state.imports.importFileSetups,
-    // userCreatingNewImportFileSetup: state.imports.userCreatingNewImportFileSetup,
-    selectedImportFileSetupId: state.imports.selectedImportFileSetupId
+    usersCurrentPage: state.imports.usersCurrentPage,
+    selectedImportFileSetupId: state.imports.selectedImportFileSetupId,
+    selectedFormId: state.imports.selectedFormId,
+    formConfirmed: state.imports.formConfirmed,
+    preMapConfirmed: state.imports.preMapConfirmed
 })
 
 const mapDispatchToProps = (dispatch, props) => ({
-    storeRawImportData: (importedData, standardFields, selectedImportFileSetup) => {
-        dispatch(storeRawImportData(importedData, standardFields, selectedImportFileSetup))
+    storeRawImportData: (importedData, standardFields, selectedImportFileSetupId) => {
+        dispatch(storeRawImportData(importedData, standardFields, selectedImportFileSetupId))
     }
 })
 

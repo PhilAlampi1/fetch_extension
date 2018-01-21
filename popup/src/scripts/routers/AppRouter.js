@@ -5,7 +5,7 @@ import PrivateRoute from './PrivateRoute'
 import PublicRoute from './PublicRoute'
 import LoginPage from '../components/LoginPage'
 import MainPage from '../components/MainPage'
-import ResultsPage from '../components/ResultsPage'
+// import FormPage from '../components/FormPage'
 
 export const history = createHistory()
 
@@ -15,6 +15,7 @@ const AppRouter = () => (
             <Switch>
                 {/* <PublicRoute path='/main' exact={true} component={MainPage} /> */}
                 <PrivateRoute path='/main' exact={true} component={MainPage} />
+                {/* <PrivateRoute path='/formpage' exact={true} component={FormPage} /> */}
                 <PublicRoute component={LoginPage} />
             </Switch>
         </div>

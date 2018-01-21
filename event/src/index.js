@@ -4,8 +4,8 @@ import { wrapStore, alias } from 'react-chrome-redux'
 import { composeWithDevTools } from 'remote-redux-devtools'
 import rootReducer from './reducers'
 import aliases from './aliases/index'
-import { json, serverPath } from './utilities/utilities'
-import { setRowIdentifiersAndStandardFields } from './actions/init'
+import { fetchStubValues } from './utilities/utilities' //json, serverPath, 
+// import { setRowIdentifiersAndStandardFields } from './actions/init'
 
 const middleware = [
   alias(aliases),
@@ -18,7 +18,7 @@ const composeEnhancers = composeWithDevTools({
   port: 8000
 })
 
-const store = createStore(
+export const store = createStore(
   rootReducer,
   {},
   composeEnhancers(applyMiddleware(...middleware))
@@ -28,13 +28,14 @@ wrapStore(store, {
   portName: 'lightning0328200804082010'
 })
 
-// Fetch user's importFileSetups, initial standardFields and rowIdentifiers values from DB, update store
-const rowIdentifiersPromise = fetch(serverPath + 'rowidentifiersstub').then(json)
-const standardFieldsPromise = fetch(serverPath + 'standardfieldsstub').then(json)
-// const importFileSetups = fetch(serverPath + 'importFileSetups')
-Promise.all([standardFieldsPromise, rowIdentifiersPromise])
-  .then(values => {
-    const standardFields = values[0].data
-    const rowIdentifiers = values[1].data
-    store.dispatch(setRowIdentifiersAndStandardFields(rowIdentifiers, standardFields))
-  })
+// Fetch initial standardFields and rowIdentifiers stub values from DB, update store
+fetchStubValues()
+
+// const rowIdentifiersPromise = fetch(serverPath + 'rowidentifiersstub').then(json)
+// const standardFieldsPromise = fetch(serverPath + 'standardfieldsstub').then(json)
+// Promise.all([standardFieldsPromise, rowIdentifiersPromise])
+//   .then(values => {
+//     const standardFields = values[0].data
+//     const rowIdentifiers = values[1].data
+//     store.dispatch(setRowIdentifiersAndStandardFields(rowIdentifiers, standardFields))
+//   })

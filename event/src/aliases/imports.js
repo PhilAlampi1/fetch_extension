@@ -1,4 +1,12 @@
-import { status, json, serverPath, formatForXhr, findAndStoreImportFileSetups } from '../utilities/utilities'
+import {
+    status,
+    json,
+    serverPath,
+    formatForXhr,
+    findAndStoreImportFileSetups,
+    fetchStubValues,
+    findAndStoreUserForms
+} from '../utilities/utilities'
 
 export const updateExistingImportFileNameInDb = () => {
     return (dispatch, getState) => {
@@ -9,7 +17,7 @@ export const updateExistingImportFileNameInDb = () => {
             state.imports.selectedImportFileSetupName
         )
             .then(json)
-            .then(result => {         
+            .then(result => {
                 return dispatch({
                     type: 'CONFIRM_EXISTING_IMPORT_FILE_NAME',
                     importFileNameConfirmed: true
@@ -57,7 +65,7 @@ export const createImportFileSetup = () => {
     return (dispatch, getState) => {
         const state = getState() // had to use state here because alias wasn't picking up arguements passed in from popup
         fetch(serverPath + 'createimportfilesetup/' +
-            state.imports.importFileName + '/' +
+            state.imports.selectedImportFileSetupName + '/' +
             state.auth.userId + '/' +
             state.auth.userToken
         )
@@ -111,6 +119,24 @@ export const createImportFileSetup = () => {
     }
 }
 
+export const createNewForm = () => {
+    return (dispatch, getState) => {
+        const state = getState() // had to use state here because alias wasn't picking up arguements passed in from popup
+        fetch(serverPath + 'createform/' +
+            state.imports.selectedFormName + '/' +
+            state.imports.selectedFormDescription + '/' +
+            state.auth.userToken
+        )
+            .then(json)
+            .then(result => {
+                return dispatch({
+                    type: 'SET_SELECTED_FORM_ID',
+                    selectedFormId: result.data.formId
+                })
+            })
+    }
+}
+
 export const getAndStoreImportFieldMappings = () => {
     return (dispatch, getState) => {
         const state = getState() // had to use state here because alias wasn't picking up arguements passed in from popup
@@ -129,3 +155,41 @@ export const getAndStoreImportFieldMappings = () => {
             })
     }
 }
+
+export const fetchStubValuesFromAlias = () => {
+    return (dispatch, getState) => {
+        const state = getState() // had to use state here because alias wasn't picking up arguements passed in from popup
+        const currentPage = state.imports.usersCurrentPage
+        fetchStubValues()
+            .then(() => {
+                findAndStoreImportFileSetups(state.auth.userId, state.auth.userToken, dispatch)
+                findAndStoreUserForms(state.auth.userToken, dispatch)
+                if (currentPage !== 'main') {
+                    return dispatch({
+                        type: 'UPDATE_USERS_CURRENT_PAGE',
+                        usersCurrentPage: 'main'
+                    })
+                }
+            })
+    }
+}
+
+export const updateFormInDb = () => {
+    return (dispatch, getState) => {
+        const state = getState() // had to use state here because alias wasn't picking up arguements passed in from popup
+        fetch(serverPath + 'updateform/' +
+            state.imports.selectedFormId + '/' +
+            state.imports.selectedFormName + '/' +
+            state.imports.selectedFormDescription + '/' +
+            state.auth.userToken
+        )
+            .then(json)
+            .then(result => {
+                return dispatch({
+                    type: 'CONFIRM_UPDATE_FORM',
+                    formConfirmed: true
+                })
+            })
+    }
+}
+

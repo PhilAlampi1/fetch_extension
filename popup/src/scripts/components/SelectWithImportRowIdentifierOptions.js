@@ -7,7 +7,7 @@ const SelectWithImportRowIdentifierOptions = (props) => {
     return (
         <form>
             <select onChange={handleOnChange} value={props.importedRowIdentifierValue}>
-                <option value="" >Not importing</option>
+                <option value="">Not importing</option>
                 {props.importRowIdentifierValues.map((option) => (
                     <option key={option} value={option}>{option}</option>
                 ))}

@@ -1,3 +1,6 @@
+import { setRowIdentifiersAndStandardFields } from '../actions/init'
+import { store } from '../index'
+
 export const status = (response) => {
     const status = response.status
     if (status >= 200 && status < 300) {
@@ -36,5 +39,28 @@ export const findAndStoreImportFileSetups = (userId, userToken, dispatch) => {
                 type: 'STORE_IMPORT_FILE_SETUPS',
                 importFileSetups: result.data
             })
+        })
+}
+
+export const findAndStoreUserForms = (userToken, dispatch) => {
+    return fetch(serverPath + 'finduserforms/' + userToken)
+        .then(json)
+        .then(result => {
+            dispatch({
+                type: 'STORE_USER_FORMS',
+                userForms: result.data
+            })
+        })
+}
+
+export const fetchStubValues = () => {
+    // Fetch initial standardFields and rowIdentifiers stub values from DB, update store
+    const rowIdentifiersPromise = fetch(serverPath + 'rowidentifiersstub').then(json)
+    const standardFieldsPromise = fetch(serverPath + 'standardfieldsstub').then(json)
+    return Promise.all([standardFieldsPromise, rowIdentifiersPromise])
+        .then(values => {
+            const standardFields = values[0].data
+            const rowIdentifiers = values[1].data
+            store.dispatch(setRowIdentifiersAndStandardFields(rowIdentifiers, standardFields))
         })
 }

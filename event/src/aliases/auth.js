@@ -1,4 +1,10 @@
-import { status, json, serverPath, findAndStoreImportFileSetups } from '../utilities/utilities'
+import {
+    status,
+    json,
+    serverPath,
+    findAndStoreImportFileSetups,
+    findAndStoreUserForms
+} from '../utilities/utilities'
 
 // COMPLETE_SIGN_IN
 export const completeLogin = () => {
@@ -21,6 +27,7 @@ export const completeLogin = () => {
                         .then(json)
                         .then(dbValues => {
                             findAndStoreImportFileSetups(dbValues.data.userId, dbValues.data.userToken, dispatch)
+                            findAndStoreUserForms(dbValues.data.userToken, dispatch)
                             return dispatch({
                                 type: 'COMPLETE_SIGN_IN',
                                 googleId: data.id,

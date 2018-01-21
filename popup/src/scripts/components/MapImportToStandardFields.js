@@ -34,7 +34,7 @@ export const MapImportToStandardFields = (props) => {
     return (
         <div>
             <p>Your file was uploaded successfully, nice work!</p>
-            {props.selectedImportFileSetup !== 'create'
+            {props.selectedImportFileSetupId !== 'create'
                 ? <p>Below are the current mappings you have saved for this import file. Look it over and make any changes as necessary before clicking Next below.</p>
                 : <p>We've taken a stab at mapping your import file to the Standard Fields we use in the system. However, it's unlikely we got this completely right. This is a very important step, so please check this over and make corrections where needed.</p>
             }
@@ -70,7 +70,7 @@ const mapStateToProps = (state) => ({
     importRowIdentifierStandardFieldName: state.imports.importRowIdentifierStandardFieldName,
     mapImportToStandardFieldsERROR: state.imports.mapImportToStandardFieldsERROR,
     importFieldMappingDbUpdates: state.imports.importFieldMappingDbUpdates,
-    selectedImportFileSetup: state.imports.selectedImportFileSetup
+    selectedImportFileSetupId: state.imports.selectedImportFileSetupId
 })
 
 const mapDispatchToProps = (dispatch) => ({

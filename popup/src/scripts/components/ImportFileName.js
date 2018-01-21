@@ -11,51 +11,69 @@ export class ImportFileName extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            dbUpdateNeeded: false
+            dbUpdateNeeded: false,
+            showError: false,
+            enteredName: ''
         }
     }
     nameImportFile = (e) => {
-        if ((this.props.selectedImportFileSetup !== 'create')
-            && (this.props.importFileName && e.target.value !== this.props.importFileName)) {
+        e.persist()
+       this.setState((prevState) => ({
+            ...prevState,
+            enteredName: !e.target.value ? null : e.target.value,
+            showError: !e.target.value ? true : false
+        }))
+        if ((this.props.selectedImportFileSetupId !== 'create')
+            && (this.props.selectedImportFileSetupName && e.target.value !== this.props.selectedImportFileSetupName)) {
             this.setState((prevState) => ({
                 ...prevState,
-                dbUpdateNeeded: true
+                dbUpdateNeeded: true,
             }))
         }
         this.props.nameImportFile(e)
     }
     createOrModifyImportFileName = () => {
-        console.log('dbUpdate: ', this.state.dbUpdateNeeded)
-        if (this.props.selectedImportFileSetup === 'create') {
-            console.log('confirmNewImportFileName')
-            this.props.confirmNewImportFileName()
-        } else if (this.state.dbUpdateNeeded) {
-            console.log('updateExistingImportFileName')
-            this.props.updateExistingImportFileName()
+        if (!this.props.selectedImportFileSetupName) {
             this.setState((prevState) => ({
                 ...prevState,
-                dbUpdateNeeded: false
+                showError: true
             }))
-        } else { // no change made to existing Import File Name
-            console.log('confirmExistingImportFileName')
-            this.props.confirmExistingImportFileName()
+        } else {
+            if (this.props.selectedImportFileSetupId === 'create') {
+                this.props.confirmNewImportFileName()
+            } else if (this.state.dbUpdateNeeded) {
+                this.props.updateExistingImportFileName()
+                this.setState((prevState) => ({
+                    ...prevState,
+                    dbUpdateNeeded: false
+                }))
+            } else { // no change made to existing Import File Name
+                this.props.confirmExistingImportFileName()
+            }
         }
     }
     render() {
         return (
             <div>
                 <p>Great job, it's all downhill from here!</p>
-                {this.props.selectedImportFileSetup === 'create'
+                {this.props.selectedImportFileSetupId === 'create'
                     ? <p>Now, what name should we give your import file so you can reuse these mappings in future imports?</p>
                     : <p>Here's the name we have for your import file. Feel free to change or just click Next to continue.</p>
                 }
                 <div>
                     <input onBlur={this.nameImportFile}
-                        defaultValue={this.props.importFileName}
+                        defaultValue={
+                            this.props.selectedImportFileSetupId !== 'create' 
+                            ? this.props.selectedImportFileSetupName
+                            : ''
+                        }
                         name="importFileName"
                         type="text"
-                        placeholder="import file name"></input>
-                    <button onClick={this.createOrModifyImportFileName}>Next</button>
+                        placeholder="Enter your file name"></input>
+                    {this.state.showError
+                        ? <p>Please enter an import file name.</p>
+                        : <button onClick={this.createOrModifyImportFileName}>Next</button>
+                    }
                 </div>
             </div>
         )
@@ -63,9 +81,9 @@ export class ImportFileName extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    importFileName: state.imports.selectedImportFileSetupName,
-    importFileSetups: state.imports.importFileSetups,
-    selectedImportFileSetup: state.imports.selectedImportFileSetup
+    selectedImportFileSetupName: state.imports.selectedImportFileSetupName,
+    // importFileSetups: state.imports.importFileSetups,
+    selectedImportFileSetupId: state.imports.selectedImportFileSetupId
 })
 
 const mapDispatchToProps = (dispatch, props) => ({
