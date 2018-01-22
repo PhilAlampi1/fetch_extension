@@ -22,6 +22,7 @@ export class FormMappings extends React.Component {
     }
     setSelectedForm = () => {
         let description = null
+        let formPublic = 'F'
         !this.state.selectedOptionId
             ? this.setState((prevState) => ({
                 ...prevState,
@@ -34,8 +35,11 @@ export class FormMappings extends React.Component {
         const foundIndex = parseInt(this.props.userForms.findIndex((item) => {
             return item.formId === this.state.selectedOptionId
         }), 10)
-        foundIndex !== -1 && (description = this.props.userForms[foundIndex].formDescription)
-        this.props.setSelectedForm(this.state.selectedOptionId, this.state.selectedOptionName, description)
+        if(foundIndex !== -1) {
+            description = this.props.userForms[foundIndex].formDescription
+            formPublic = this.props.userForms[foundIndex].public ? 'T' : 'F'
+        } 
+        this.props.setSelectedForm(this.state.selectedOptionId, this.state.selectedOptionName, description, formPublic)
     }
     render() {
         return (
@@ -63,7 +67,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    setSelectedForm: (id, name, description) => dispatch(setSelectedForm(id, name, description))
+    setSelectedForm: (id, name, description, formPublic) => dispatch(setSelectedForm(id, name, description, formPublic))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(FormMappings)

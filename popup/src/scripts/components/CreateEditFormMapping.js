@@ -5,7 +5,8 @@ import {
     describeForm,
     confirmNewForm,
     updateExistingFormInDb,
-    confirmExistingForm
+    confirmExistingForm,
+    setSelectedFormPublic
 } from '../actions/imports'
 
 export class CreateEditFormMapping extends React.Component {
@@ -15,7 +16,8 @@ export class CreateEditFormMapping extends React.Component {
             dbUpdateNeeded: false,
             showError: false,
             enteredName: this.props.selectedFormName || '',
-            enteredDescription: this.props.selectedFormDescription || ''
+            enteredDescription: this.props.selectedFormDescription || '',
+            enteredPublic: this.props.selectedFormPublic || 'F'
         }
     }
     nameForm = (e) => {
@@ -57,6 +59,17 @@ export class CreateEditFormMapping extends React.Component {
             }))
         }
         this.props.describeForm(enteredDescription)
+    }
+    setSelectedFormPublic = (e) => {
+        e.persist()
+        if ((this.props.selectedFormId !== 'create')
+            && (this.props.selectedFormPublic && e.target.value !== this.props.selectedFormPublic)) {
+            this.setState((prevState) => ({
+                ...prevState,
+                dbUpdateNeeded: true,
+            }))
+        }
+        this.props.setSelectedFormPublic(e.target.value)
     }
     createOrModifyForm = () => {
         if (!this.props.selectedFormName || (this.props.selectedFormName === 'Create new')) {
@@ -106,6 +119,12 @@ export class CreateEditFormMapping extends React.Component {
                         type="text"
                         placeholder="enter your form description">
                     </input>
+                    {this.props.userRole === 'ADMIN' &&
+                        <select onChange={this.setSelectedFormPublic} defaultValue={this.props.selectedFormPublic}>
+                            <option value="T">Public Form</option>
+                            <option value="F">Private Form</option>
+                        </select>
+                    }
                     {this.state.showError
                         ? <p>Please enter a form name and description.</p>
                         : <button onClick={this.createOrModifyForm}>Next</button>
@@ -119,7 +138,9 @@ export class CreateEditFormMapping extends React.Component {
 const mapStateToProps = (state) => ({
     selectedFormName: state.imports.selectedFormName,
     selectedFormDescription: state.imports.selectedFormDescription,
-    selectedFormId: state.imports.selectedFormId
+    selectedFormId: state.imports.selectedFormId,
+    selectedFormPublic: state.imports.selectedFormPublic,
+    userRole: state.auth.userRole
 })
 
 const mapDispatchToProps = (dispatch, props) => ({
@@ -127,7 +148,8 @@ const mapDispatchToProps = (dispatch, props) => ({
     describeForm: (value) => dispatch(describeForm(value)),
     confirmNewForm: () => dispatch(confirmNewForm()),
     updateExistingForm: () => dispatch(updateExistingFormInDb()),
-    confirmExistingForm: () => dispatch(confirmExistingForm())
+    confirmExistingForm: () => dispatch(confirmExistingForm()),
+    setSelectedFormPublic: (setting) => dispatch(setSelectedFormPublic(setting))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateEditFormMapping)

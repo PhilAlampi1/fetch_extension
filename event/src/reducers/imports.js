@@ -33,7 +33,7 @@ export default (state = imports, action) => {
         selectedFormId: null,
         selectedFormName: null,
         selectedFormDescription: null,
-        selectedFormPublic: null,
+        selectedFormPublic: 'F',
         formConfirmed: false,
         importFieldMappingDbUpdates: [],
         preMapConfirmed: false,
@@ -137,7 +137,8 @@ export default (state = imports, action) => {
         ...state,
         selectedFormId: action.selectedFormId,
         selectedFormName: action.selectedFormName,
-        selectedFormDescription: action.selectedFormDescription
+        selectedFormDescription: action.selectedFormDescription,
+        selectedFormPublic: action.selectedFormPublic
       }
     case 'NAME_FORM':
       return {
@@ -178,6 +179,11 @@ export default (state = imports, action) => {
       return {
         ...state,
         userIsMappingForm: action.userIsMappingForm
+      }
+    case 'SET_SELECTED_FORM_PUBLIC':
+      return {
+        ...state,
+        selectedFormPublic: action.selectedFormPublic
       }
     default:
       return state

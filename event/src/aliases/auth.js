@@ -35,7 +35,8 @@ export const completeLogin = () => {
                                 firstName: data.given_name,
                                 email: data.email,
                                 userToken: dbValues.data.userToken,
-                                userId: dbValues.data.userId
+                                userId: dbValues.data.userId,
+                                userRole: dbValues.data.userRole
                             })
                         })
                 }).catch((error) => {

@@ -181,6 +181,7 @@ export const updateFormInDb = () => {
             state.imports.selectedFormId + '/' +
             state.imports.selectedFormName + '/' +
             state.imports.selectedFormDescription + '/' +
+            state.imports.selectedFormPublic + '/' +
             state.auth.userToken
         )
             .then(json)

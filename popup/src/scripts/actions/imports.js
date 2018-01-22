@@ -229,12 +229,17 @@ export const setUsersCurrentPageToMainPage = () => ({
     usersCurrentPage: 'main'
 })
 
-export const setSelectedForm = (selectedOptionId, selectedOptionName, selectedFormDescription) => ({
-    type: 'SET_SELECTED_FORM',
-    selectedFormId: selectedOptionId,
-    selectedFormName: selectedOptionName,
-    selectedFormDescription: selectedFormDescription 
-})
+export const setSelectedForm = (
+    selectedFormId,
+    selectedFormName,
+    selectedFormDescription,
+    selectedFormPublic) => ({
+        type: 'SET_SELECTED_FORM',
+        selectedFormId,
+        selectedFormName,
+        selectedFormDescription,
+        selectedFormPublic
+    })
 
 export const updateExistingFormInDb = () => ({
     type: 'UPDATE_EXISTING_FORM_IN_DB'
@@ -253,4 +258,9 @@ export const confirmPreMap = () => ({
 export const setUserIsMappingForm = (setting) => ({
     type: 'SET_USER_IS_MAPPING_FORM',
     userIsMappingForm: setting
+})
+
+export const setSelectedFormPublic = (setting) => ({
+    type: 'SET_SELECTED_FORM_PUBLIC',
+    selectedFormPublic: setting
 })
