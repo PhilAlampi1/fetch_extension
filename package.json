@@ -11,6 +11,7 @@
   "dependencies": {
     "fuzzball": "^0.13.5",
     "history": "^4.7.2",
+    "optimal-select": "^4.0.1",
     "papaparse": "^4.3.6",
     "react": "^16.0.0",
     "react-chrome-redux": "^1.4.0",
@@ -29,6 +30,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "dotenv": "^4.0.0",
+    "electron": "^1.7.11",
     "enzyme": "^3.1.0",
     "enzyme-adapter-react-16": "^1.0.2",
     "enzyme-to-json": "^3.1.4",

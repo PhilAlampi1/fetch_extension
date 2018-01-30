@@ -27,7 +27,7 @@ export const completeLogin = () => {
                         .then(json)
                         .then(dbValues => {
                             findAndStoreImportFileSetups(dbValues.data.userId, dbValues.data.userToken, dispatch)
-                            findAndStoreUserForms(dbValues.data.userToken, dispatch)
+                            findAndStoreUserForms(dbValues.data.userToken, dispatch)                 
                             return dispatch({
                                 type: 'COMPLETE_SIGN_IN',
                                 googleId: data.id,

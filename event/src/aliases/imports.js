@@ -5,7 +5,8 @@ import {
     formatForXhr,
     findAndStoreImportFileSetups,
     fetchStubValues,
-    findAndStoreUserForms
+    findAndStoreUserForms,
+    setupContextMenu
 } from '../utilities/utilities'
 
 export const updateExistingImportFileNameInDb = () => {
@@ -192,5 +193,13 @@ export const updateFormInDb = () => {
                 })
             })
     }
+}
+
+export const activateContextMenus = () => {
+    return () => setupContextMenu()
+}
+
+export const removeContextMenus = () => {
+    return () => chrome.contextMenus.removeAll()
 }
 

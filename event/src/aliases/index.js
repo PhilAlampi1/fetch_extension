@@ -6,7 +6,9 @@ import {
     updateImportFieldMappingsInDb,
     updateExistingImportFileNameInDb,
     fetchStubValuesFromAlias,
-    updateFormInDb
+    updateFormInDb,
+    activateContextMenus,
+    removeContextMenus
 } from './imports'
 
 export default {
@@ -17,5 +19,7 @@ export default {
     'SIGN_IN': completeLogin,
     'GET_AND_STORE_IMPORT_FIELD_MAPPINGS': getAndStoreImportFieldMappings,
     'FETCH_STUB_VALUES_VIA_ALIAS': fetchStubValuesFromAlias,
-    'UPDATE_EXISTING_FORM_IN_DB': updateFormInDb
+    'UPDATE_EXISTING_FORM_IN_DB': updateFormInDb,
+    'SET_UP_CONTEXT_MENUS': activateContextMenus,
+    'REMOVE_CONTEXT_MENUS': removeContextMenus
 }

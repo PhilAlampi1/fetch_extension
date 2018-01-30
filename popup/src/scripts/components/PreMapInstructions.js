@@ -1,10 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { setUserIsMappingForm } from '../actions/imports'
+import { setUserIsMappingForm, setUpContextMenus } from '../actions/imports'
 
 export const PreMapInstructions = (props) => {
     const closeWindow = () => {
         props.setUserIsMappingForm(true)
+        props.setUpContextMenus()
         window.close()
     }
     return (
@@ -23,7 +24,8 @@ export const PreMapInstructions = (props) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    setUserIsMappingForm: (setting) => dispatch(setUserIsMappingForm(setting))
+    setUserIsMappingForm: (setting) => dispatch(setUserIsMappingForm(setting)),
+    setUpContextMenus: () => dispatch(setUpContextMenus())
 })
 
 export default connect(undefined, mapDispatchToProps)(PreMapInstructions)

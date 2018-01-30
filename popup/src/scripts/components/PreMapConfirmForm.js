@@ -4,7 +4,6 @@ import { confirmPreMap } from '../actions/imports'
 
 export const PreMapConfirmForm = (props) => {
     const confirmPreMap = () => {
-        console.log('HERE')
         props.confirmPreMap()
     }
     return (

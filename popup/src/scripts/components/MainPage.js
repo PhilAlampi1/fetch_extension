@@ -10,6 +10,7 @@ import FormMappings from './FormMappings'
 import CreateEditFormMapping from './CreateEditFormMapping'
 import PreMapConfirmForm from './PreMapConfirmForm'
 import PreMapInstructions from './PreMapInstructions'
+import PromptIfUserIsMappingForm from './PromptIfUserIsMappingForm'
 import { storeRawImportData } from '../actions/imports'
 
 export const MainPage = (props) => {
@@ -26,7 +27,9 @@ export const MainPage = (props) => {
     }
     return (
         <div>
-            {props.usersCurrentPage === 'main' &&
+            {props.userIsMappingForm && <PromptIfUserIsMappingForm />}
+             
+            {(props.usersCurrentPage === 'main' && !props.userIsMappingForm) &&
                 <div>
                     {!props.selectedImportFileSetupId && <SelectImportFileSetup />}
 
@@ -42,7 +45,8 @@ export const MainPage = (props) => {
                     {props.importFileNameConfirmed && <RowIdentifierMappings />}
                 </div>
             }
-            {props.usersCurrentPage === 'form' &&
+            
+            {(props.usersCurrentPage === 'form' && !props.userIsMappingForm) &&
                 <div>
                     
                     {!props.selectedFormId && <FormMappings />}
@@ -55,6 +59,7 @@ export const MainPage = (props) => {
 
                 </div>
             }
+            
         </div>
     )
 
@@ -91,7 +96,8 @@ const mapStateToProps = (state) => ({
     selectedImportFileSetupId: state.imports.selectedImportFileSetupId,
     selectedFormId: state.imports.selectedFormId,
     formConfirmed: state.imports.formConfirmed,
-    preMapConfirmed: state.imports.preMapConfirmed
+    preMapConfirmed: state.imports.preMapConfirmed,
+    userIsMappingForm: state.imports.userIsMappingForm
 })
 
 const mapDispatchToProps = (dispatch, props) => ({

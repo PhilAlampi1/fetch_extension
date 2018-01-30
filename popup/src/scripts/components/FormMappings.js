@@ -46,7 +46,6 @@ export class FormMappings extends React.Component {
             <div>
                 <p>Heads up, Form Mappings enable us to map Standard Fields to any web form, so they are kind of important. Select from the dropdown below to map a new form or edit an existing one.</p>
                 <form>
-                    <p>Selected Form ID: {this.state.selectedOptionId}</p>
                     <select onChange={this.setOptionOnChange}>
                         <option value="">Select one</option>
                         {this.props.userForms && this.props.userForms.map((option, index) => (

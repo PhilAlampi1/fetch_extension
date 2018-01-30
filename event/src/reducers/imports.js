@@ -37,7 +37,8 @@ export default (state = imports, action) => {
         formConfirmed: false,
         importFieldMappingDbUpdates: [],
         preMapConfirmed: false,
-        userIsMappingForm: false
+        userIsMappingForm: false,
+        formFieldSelector: null
       }
     case 'STORE_IMPORT_FILE_SETUPS':
       return {
@@ -184,6 +185,11 @@ export default (state = imports, action) => {
       return {
         ...state,
         selectedFormPublic: action.selectedFormPublic
+      }
+    case 'SET_FORM_FIELD_SELECTOR':
+      return {
+        ...state,
+        formFieldSelector: action.formFieldSelector
       }
     default:
       return state

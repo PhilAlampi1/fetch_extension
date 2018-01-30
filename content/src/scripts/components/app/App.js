@@ -1,34 +1,34 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { select } from 'optimal-select'
+import { setFormFieldSelector } from './actions'
 
 class App extends Component {
   constructor(props) {
-    super(props);
+    super(props)
   }
 
-  // componentDidMount() {
-  //   document.addEventListener('click', () => {
-  //     this.props.dispatch({
-  //       type: 'ADD_COUNT'
-  //     });
-  //   });
-  // }
-
+  componentDidMount() {
+    document.addEventListener('contextmenu', (e) => {
+      // if (this.props.userIsMappingForm) { // NOTE - COULDN'T GET THIS TO WORK, LOOKS LIKE PROPERTY IS NOT AVAILABLE AT THIS POINT IN LIFECYCLE?
+        const clickedEl = select(e.target)
+        this.props.setFormFieldSelector(clickedEl)
+      // }
+    }, true)
+  }
   render() {
     return (
-      <div>
-        {/* Count: {this.props.count} */}
-      </div>
-    );
+      <div></div>
+    )
   }
 }
 
-// const mapStateToProps = (state) => {
-//   return {
-//     count: state.count
-//   };
-// };
+const mapStateToProps = (state) => ({
+  // userIsMappingForm: state.imports.userIsMappingForm
+})
 
-// export default connect(mapStateToProps)(App);
+const mapDispatchToProps = (dispatch) => ({
+  setFormFieldSelector: (newSelector) => dispatch(setFormFieldSelector(newSelector))
+})
 
-export default App
+export default connect(mapStateToProps, mapDispatchToProps)(App)

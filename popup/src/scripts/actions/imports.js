@@ -260,7 +260,15 @@ export const setUserIsMappingForm = (setting) => ({
     userIsMappingForm: setting
 })
 
+export const setUpContextMenus = () => ({
+    type: 'SET_UP_CONTEXT_MENUS'
+})
+
 export const setSelectedFormPublic = (setting) => ({
     type: 'SET_SELECTED_FORM_PUBLIC',
     selectedFormPublic: setting
+})
+
+export const removeContextMenus = () => ({
+    type: 'REMOVE_CONTEXT_MENUS'
 })

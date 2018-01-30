@@ -15,21 +15,25 @@ export const Header = (props) => {
     return (
         <div>
             <span><h1>Fetch</h1></span>
-            {!props.promptUserOnStartOver
-                ?
-                <span>
-                    {props.usersCurrentPage === 'main'
-                        ? <Link to='/main' onClick={togglePromptUserOnStartOver}>Start Over</Link>
-                        : <Link to='/main' onClick={props.setUsersCurrentPageToMainPage}>Continue Import</Link>
-                    }
-                    <Link to='/main' onClick={props.setUsersCurrentPageToFormPage}>Form Mappings</Link>
-                </span>
-                :
-                <span>
-                    Are you sure?
+            {!props.userIsMappingForm &&
+                <div>
+                    {!props.promptUserOnStartOver
+                        ?
+                        <span>
+                            {props.usersCurrentPage === 'main'
+                                ? <Link to='/main' onClick={togglePromptUserOnStartOver}>Start Over</Link>
+                                : <Link to='/main' onClick={props.setUsersCurrentPageToMainPage}>Continue Import</Link>
+                            }
+                            <Link to='/main' onClick={props.setUsersCurrentPageToFormPage}>Form Mappings</Link>
+                        </span>
+                        :
+                        <span>
+                            Are you sure?
                     <button onClick={props.fetchStubValuesViaAlias}>Yes</button>
-                    <button onClick={togglePromptUserOnStartOver}>Cancel</button>
-                </span>
+                            <button onClick={togglePromptUserOnStartOver}>Cancel</button>
+                        </span>
+                    }
+                </div>
             }
         </div>
     )
@@ -37,7 +41,8 @@ export const Header = (props) => {
 
 const mapStateToProps = (state) => ({
     promptUserOnStartOver: !!state.imports.promptUserOnStartOver,
-    usersCurrentPage: state.imports.usersCurrentPage
+    usersCurrentPage: state.imports.usersCurrentPage,
+    userIsMappingForm: state.imports.userIsMappingForm
 })
 
 const mapDispatchToProps = (dispatch) => ({

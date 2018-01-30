@@ -64,3 +64,91 @@ export const fetchStubValues = () => {
             store.dispatch(setRowIdentifiersAndStandardFields(rowIdentifiers, standardFields))
         })
 }
+
+export const setupContextMenu = () => {
+    const state = store.getState()
+    if (state.imports.userIsMappingForm) {
+        const contextMenuFetchItem = {
+            id: "TopLevelContext",
+            title: "Fetch",
+            contexts: ['all']
+        }
+        const contextMenuSetDefaultItem = {
+            id: "SetDefaultContext",
+            title: "Set Default",
+            parentId: "TopLevelContext",
+            contexts: ['all']
+        }
+        const contextMenuMapToFieldItem = {
+            id: "MapToFieldContext",
+            title: "Map to Field",
+            parentId: "TopLevelContext",
+            contexts: ['all']
+        }
+        const menuFetchItem = chrome.contextMenus.create(contextMenuFetchItem)
+        const setDefaultItem = chrome.contextMenus.create(contextMenuSetDefaultItem)
+        const mapToFieldItem = chrome.contextMenus.create(contextMenuMapToFieldItem)
+        // Create a contextMenuItem for each Row Identifier
+        // For each Row Identifier, create an option for each Standard Field
+        // If the Standard Field has an importedFieldName, show as: <StandardFieldName> - <Imported Field Name>
+        const standardFields = state.imports.standardFields
+        const rowIdentifiers = state.imports.rowIdentifiers
+        rowIdentifiers.map((ri) => {
+            const riContextItemInfo = {
+                id: ri.rowIdentifierId,
+                title: ri.rowIdentifierName,
+                parentId: "MapToFieldContext",
+                contexts: ['all']
+            }
+            const riContextItem = chrome.contextMenus.create(riContextItemInfo, () => {
+                standardFields.map((sf) => {
+                    const sfTitle = sf.importedFieldName 
+                        ? sf.standardFieldName + ' - ' + sf.importedFieldName 
+                        : sf.standardFieldName
+                    const sfContextItemInfo = {
+                        id: '' + sf.standardFieldId + '-' + ri.rowIdentifierId, //concat for unique id
+                        title: sfTitle,
+                        parentId: ri.rowIdentifierId,
+                        contexts: ['all']
+                    }
+                    const sfContextItem = chrome.contextMenus.create(sfContextItemInfo)
+                })
+            })
+        })
+        chrome.contextMenus.onClicked.addListener((item) => {
+            const menuId = item.menuItemId
+            const menuDashIndex = item.menuItemId.indexOf('-')
+            if (menuDashIndex !== -1) { // a "MapToFieldContext" child has been selected
+                // Get required data if the user selects a "MapToFieldContext" child:
+                // (FK) importRowIdentifierId (bigint) - from selected RowIdentifier contextMenuID
+                // (FK) createdByUserId (bigint) - from store
+                // (FK) formId (bigint) - from store
+                // (FK) standardFieldId (bigint) - from selected Standard Field contextMenuId
+                // formFieldSelector (text) - from store    
+                // publicMapping (boolean) - false unless form is public and user role is ADMIN
+
+                const sfId = menuId.substr(0, menuDashIndex)
+                const riId = menuId.substr(menuDashIndex + 1, menuId.length)
+                console.log('sfId: ', sfId)
+                console.log('riId: ', riId)
+
+                //LEFT OFF - MAKE SURE ALL OF THESE ARE BEING STORED IN STATE THEN CALL ALIAS FUNCTION VIA ACTION
+                // req.params.irid,
+                // req.params.formid,
+                // req.params.standardfieldid,
+                // req.params.formfieldselector,
+                // req.params.publicmapping,
+                // req.params.defaultvalue,
+                // req.params.override,
+                // req.params.usertoken))
+
+
+
+            }
+        })
+    }
+
+
+    // TODO code some indicator for Set defaul modal here (need to execute in context script though)
+
+}
