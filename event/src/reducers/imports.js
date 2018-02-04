@@ -33,12 +33,16 @@ export default (state = imports, action) => {
         selectedFormId: null,
         selectedFormName: null,
         selectedFormDescription: null,
-        selectedFormPublic: 'F',
+        selectedFormPublic: false,
         formConfirmed: false,
         importFieldMappingDbUpdates: [],
         preMapConfirmed: false,
         userIsMappingForm: false,
-        formFieldSelector: null
+        formFieldSelector: null,
+        formMappingStandardFieldId: null,
+        formMappingRowIdentifierId: null,
+        formMappingDefaultValue: null,
+        formMappingOverride: null
       }
     case 'STORE_IMPORT_FILE_SETUPS':
       return {
@@ -190,6 +194,20 @@ export default (state = imports, action) => {
       return {
         ...state,
         formFieldSelector: action.formFieldSelector
+      }
+    case 'SET_FORM_MAPPING_DATA':
+      return {
+        ...state,
+        formMappingRowIdentifierId: action.formMappingRowIdentifierId,
+        formMappingStandardFieldId: action.formMappingStandardFieldId
+      }
+    case 'RESET_FORM_MAPPING_FIELDS':
+      return {
+        ...state,
+        formMappingRowIdentifierId: action.formMappingRowIdentifierId,
+        formMappingStandardFieldId: action.formMappingStandardFieldId,
+        formMappingDefaultValue: action.formMappingDefaultValue,
+        formMappingOverride: action.formMappingOverride
       }
     default:
       return state

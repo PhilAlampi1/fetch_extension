@@ -196,10 +196,43 @@ export const updateFormInDb = () => {
 }
 
 export const activateContextMenus = () => {
-    return () => setupContextMenu()
+    return (dispatch) => setupContextMenu(dispatch)
 }
 
 export const removeContextMenus = () => {
     return () => chrome.contextMenus.removeAll()
 }
 
+export const createUpdateUserFormFieldMappingInDb = () => {
+    return (dispatch, getState) => {
+        const state = getState() // had to use state here because alias wasn't picking up arguements passed in from popup
+        const ffSelector = encodeURIComponent(state.imports.formFieldSelector)
+        const publicMapping = state.auth.userRole === 'ADMIN' ? true : false 
+        fetch(serverPath + 'createupdateuserformfieldmapping/' +
+            state.imports.formMappingRowIdentifierId + '/' +
+            state.imports.selectedFormId + '/' +
+            state.imports.formMappingStandardFieldId + '/' +
+            ffSelector + '/' +
+            publicMapping + '/' + //for publicMapping in API
+            state.imports.formMappingDefaultValue + '/' + // set and unset this store variable in defaults modal
+            state.imports.formMappingOverride + '/' + // set and unset this store variable in defaults modal
+            state.auth.userToken
+        )
+            .then(json)
+            .catch(error => console.error('Error:', error))
+            .then(r => { //
+
+            })
+            .then(result => {
+                return dispatch({
+                    type: 'RESET_FORM_MAPPING_FIELDS',
+                    formMappingRowIdentifierId: null,
+                    formMappingStandardFieldId: null,
+                    formMappingDefaultValue: null,
+                    formMappingOverride: null
+                })
+            })
+    }
+}
+
+//irId, formId, standardFieldId, formFieldSelector, publicMapping, defaultValue, override, userToken

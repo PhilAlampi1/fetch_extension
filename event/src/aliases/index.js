@@ -8,7 +8,8 @@ import {
     fetchStubValuesFromAlias,
     updateFormInDb,
     activateContextMenus,
-    removeContextMenus
+    removeContextMenus,
+    createUpdateUserFormFieldMappingInDb
 } from './imports'
 
 export default {
@@ -21,5 +22,6 @@ export default {
     'FETCH_STUB_VALUES_VIA_ALIAS': fetchStubValuesFromAlias,
     'UPDATE_EXISTING_FORM_IN_DB': updateFormInDb,
     'SET_UP_CONTEXT_MENUS': activateContextMenus,
-    'REMOVE_CONTEXT_MENUS': removeContextMenus
+    'REMOVE_CONTEXT_MENUS': removeContextMenus,
+    'CREATE_UPDATE_USER_FORM_FIELD_MAPPING_IN_DB': createUpdateUserFormFieldMappingInDb
 }

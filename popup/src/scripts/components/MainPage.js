@@ -11,6 +11,7 @@ import CreateEditFormMapping from './CreateEditFormMapping'
 import PreMapConfirmForm from './PreMapConfirmForm'
 import PreMapInstructions from './PreMapInstructions'
 import PromptIfUserIsMappingForm from './PromptIfUserIsMappingForm'
+import FillForm from './FillForm'
 import { storeRawImportData } from '../actions/imports'
 
 export const MainPage = (props) => {
@@ -42,14 +43,23 @@ export const MainPage = (props) => {
 
                     {(props.importConfirmed && !props.importFileNameConfirmed) && <ImportFileName />}
 
-                    {props.importFileNameConfirmed && <RowIdentifierMappings />}
+                    {(props.importFileNameConfirmed && !props.confirmRowIdentifiers) && <RowIdentifierMappings />}
+
+                    {(props.confirmRowIdentifiers && !props.selectedFormId) && <FormMappings 
+                        message={'Which form are we importing to?'}
+                    />}
+
+                    {props.selectedFormId && <FillForm />}
+
                 </div>
             }
             
             {(props.usersCurrentPage === 'form' && !props.userIsMappingForm) &&
                 <div>
                     
-                    {!props.selectedFormId && <FormMappings />}
+                    {!props.selectedFormId && <FormMappings 
+                        message={'Heads up, Form Mappings enable us to map Standard Fields to any web form, so they are kind of important. Select from the dropdown below to map a new form or edit an existing one.'}
+                    />}
 
                     {(props.selectedFormId && !props.formConfirmed) && <CreateEditFormMapping />}
 
@@ -97,7 +107,8 @@ const mapStateToProps = (state) => ({
     selectedFormId: state.imports.selectedFormId,
     formConfirmed: state.imports.formConfirmed,
     preMapConfirmed: state.imports.preMapConfirmed,
-    userIsMappingForm: state.imports.userIsMappingForm
+    userIsMappingForm: state.imports.userIsMappingForm,
+    confirmRowIdentifiers: state.imports.confirmRowIdentifiers
 })
 
 const mapDispatchToProps = (dispatch, props) => ({

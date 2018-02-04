@@ -7,14 +7,17 @@ class App extends Component {
   constructor(props) {
     super(props)
   }
-
   componentDidMount() {
     document.addEventListener('contextmenu', (e) => {
-      // if (this.props.userIsMappingForm) { // NOTE - COULDN'T GET THIS TO WORK, LOOKS LIKE PROPERTY IS NOT AVAILABLE AT THIS POINT IN LIFECYCLE?
-        const clickedEl = select(e.target)
+      if (this.props.userIsMappingForm) {
+        console.log('settingFormSelector!')
+        let clickedEl = select(e.target)
         this.props.setFormFieldSelector(clickedEl)
-      // }
+      }
     }, true)
+  }
+  componentWillUpdate() {
+    console.log('Updating')
   }
   render() {
     return (
@@ -24,7 +27,7 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  // userIsMappingForm: state.imports.userIsMappingForm
+  userIsMappingForm: state.imports.userIsMappingForm
 })
 
 const mapDispatchToProps = (dispatch) => ({

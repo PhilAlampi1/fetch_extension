@@ -13,10 +13,10 @@ const proxyStore = new Store({
 // )
 
 const unsubscribe = proxyStore.subscribe(() => {
-   unsubscribe(); // make sure to only fire once
+   unsubscribe() // make sure to only fire once
    render(
     <Provider store={proxyStore}>
       <AppRouter/>
     </Provider>
-    , document.getElementById('app'));
-});
+    , document.getElementById('app'))
+})

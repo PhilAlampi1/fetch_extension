@@ -1,4 +1,5 @@
 import { setRowIdentifiersAndStandardFields } from '../actions/init'
+import { setFormMappingData, createUpdateUserFormFieldMappingInDb } from '../actions/imports'
 import { store } from '../index'
 
 export const status = (response) => {
@@ -65,7 +66,7 @@ export const fetchStubValues = () => {
         })
 }
 
-export const setupContextMenu = () => {
+export const setupContextMenu = (dispatch) => {
     const state = store.getState()
     if (state.imports.userIsMappingForm) {
         const contextMenuFetchItem = {
@@ -102,8 +103,8 @@ export const setupContextMenu = () => {
             }
             const riContextItem = chrome.contextMenus.create(riContextItemInfo, () => {
                 standardFields.map((sf) => {
-                    const sfTitle = sf.importedFieldName 
-                        ? sf.standardFieldName + ' - ' + sf.importedFieldName 
+                    const sfTitle = sf.importedFieldName
+                        ? sf.standardFieldName + ' - ' + sf.importedFieldName
                         : sf.standardFieldName
                     const sfContextItemInfo = {
                         id: '' + sf.standardFieldId + '-' + ri.rowIdentifierId, //concat for unique id
@@ -119,31 +120,11 @@ export const setupContextMenu = () => {
             const menuId = item.menuItemId
             const menuDashIndex = item.menuItemId.indexOf('-')
             if (menuDashIndex !== -1) { // a "MapToFieldContext" child has been selected
-                // Get required data if the user selects a "MapToFieldContext" child:
-                // (FK) importRowIdentifierId (bigint) - from selected RowIdentifier contextMenuID
-                // (FK) createdByUserId (bigint) - from store
-                // (FK) formId (bigint) - from store
-                // (FK) standardFieldId (bigint) - from selected Standard Field contextMenuId
-                // formFieldSelector (text) - from store    
-                // publicMapping (boolean) - false unless form is public and user role is ADMIN
-
-                const sfId = menuId.substr(0, menuDashIndex)
-                const riId = menuId.substr(menuDashIndex + 1, menuId.length)
-                console.log('sfId: ', sfId)
-                console.log('riId: ', riId)
-
-                //LEFT OFF - MAKE SURE ALL OF THESE ARE BEING STORED IN STATE THEN CALL ALIAS FUNCTION VIA ACTION
-                // req.params.irid,
-                // req.params.formid,
-                // req.params.standardfieldid,
-                // req.params.formfieldselector,
-                // req.params.publicmapping,
-                // req.params.defaultvalue,
-                // req.params.override,
-                // req.params.usertoken))
-
-
-
+                const sfId = Number(menuId.substr(0, menuDashIndex))
+                const riId = Number(menuId.substr(menuDashIndex + 1, menuId.length))
+                dispatch(setFormMappingData(sfId, riId))
+                dispatch(createUpdateUserFormFieldMappingInDb())
+                alert('Mapping complete')
             }
         })
     }
