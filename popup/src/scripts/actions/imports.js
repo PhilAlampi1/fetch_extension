@@ -229,17 +229,14 @@ export const setUsersCurrentPageToMainPage = () => ({
     usersCurrentPage: 'main'
 })
 
-export const setSelectedForm = (
+export const setSelectedForm = (selectedFormId, selectedFormName, selectedFormDescription, selectedFormPublic, selectedFormConfirmedForImport) => ({
+    type: 'SET_SELECTED_FORM',
     selectedFormId,
     selectedFormName,
     selectedFormDescription,
-    selectedFormPublic) => ({
-        type: 'SET_SELECTED_FORM',
-        selectedFormId,
-        selectedFormName,
-        selectedFormDescription,
-        selectedFormPublic
-    })
+    selectedFormPublic,
+    selectedFormConfirmedForImport
+})
 
 export const updateExistingFormInDb = () => ({
     type: 'UPDATE_EXISTING_FORM_IN_DB'
@@ -271,4 +268,8 @@ export const setSelectedFormPublic = (setting) => ({
 
 export const removeContextMenus = () => ({
     type: 'REMOVE_CONTEXT_MENUS'
+})
+
+export const fillForm = () => ({
+    type: 'FILL_FORM'
 })

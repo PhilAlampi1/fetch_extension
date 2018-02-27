@@ -9,7 +9,9 @@ import {
     updateFormInDb,
     activateContextMenus,
     removeContextMenus,
-    createUpdateUserFormFieldMappingInDb
+    createUpdateUserFormFieldMappingInDb,
+    fillForm,
+    storeDefaultValueInDb
 } from './imports'
 
 export default {
@@ -23,5 +25,8 @@ export default {
     'UPDATE_EXISTING_FORM_IN_DB': updateFormInDb,
     'SET_UP_CONTEXT_MENUS': activateContextMenus,
     'REMOVE_CONTEXT_MENUS': removeContextMenus,
-    'CREATE_UPDATE_USER_FORM_FIELD_MAPPING_IN_DB': createUpdateUserFormFieldMappingInDb
+    'CREATE_UPDATE_USER_FORM_FIELD_MAPPING_IN_DB': createUpdateUserFormFieldMappingInDb,
+    'FILL_FORM': fillForm
+    // ,
+    // 'STORE_DEFAULT_VALUE_IN_DB': storeDefaultValueInDb
 }

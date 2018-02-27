@@ -25,7 +25,7 @@ module.exports = {
         exclude: /(node_modules)/,
         include: path.join(__dirname, 'src'),
         query: {
-          presets: ['env', 'react']
+          presets: ['env', 'react', 'stage-2']
         }
       }
     ]

@@ -98,7 +98,7 @@ export class CreateEditFormMapping extends React.Component {
             <div>
                 {this.props.selectedFormId === 'create'
                     ? <p>Tell us a little about the form you are mapping to.</p>
-                    : <p>Here's the information we have for your import file. Feel free to change or just click Next to continue.</p>
+                    : <p>Here's the information we have for your form. Feel free to change or just click Next to continue.</p>
                 }
                 <div>
                     <input onBlur={this.nameForm}
@@ -122,7 +122,8 @@ export class CreateEditFormMapping extends React.Component {
                         placeholder="enter your form description">
                     </input>
                     {this.props.userRole === 'ADMIN' &&
-                        <select onChange={this.setSelectedFormPublic} defaultValue={this.props.selectedFormPublic}>
+                        <select
+                            onChange={this.setSelectedFormPublic} defaultValue={this.props.selectedFormPublic}>
                             <option value='true'>Public Form</option>
                             <option value='false'>Private Form</option>
                         </select>

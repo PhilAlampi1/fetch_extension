@@ -30,10 +30,11 @@ export default (state = imports, action) => {
         // userCreatingNewImportFileSetup: false,
         selectedImportFileSetupId: null,
         selectedImportFileSetupText: null,
-        selectedFormId: null,
+        selectedFormId: undefined,
         selectedFormName: null,
         selectedFormDescription: null,
         selectedFormPublic: false,
+        selectedFormConfirmedForImport: false,
         formConfirmed: false,
         importFieldMappingDbUpdates: [],
         preMapConfirmed: false,
@@ -41,8 +42,15 @@ export default (state = imports, action) => {
         formFieldSelector: null,
         formMappingStandardFieldId: null,
         formMappingRowIdentifierId: null,
-        formMappingDefaultValue: null,
-        formMappingOverride: null
+        // formMappingDefaultValue: null,
+        // formMappingOverride: null,
+        enteredDefaultValue: null,
+        defaultValueConfirmed: false,
+        enteredDefaultOverride: true,
+        defaultOverrideConfirmed: false,
+        rightClickedFormElementType: null,
+        rightClickedFormElementValue: null,
+        rightClickedFormElementOptions: null
       }
     case 'STORE_IMPORT_FILE_SETUPS':
       return {
@@ -143,7 +151,8 @@ export default (state = imports, action) => {
         selectedFormId: action.selectedFormId,
         selectedFormName: action.selectedFormName,
         selectedFormDescription: action.selectedFormDescription,
-        selectedFormPublic: action.selectedFormPublic
+        selectedFormPublic: action.selectedFormPublic,
+        selectedFormConfirmedForImport: action.selectedFormConfirmedForImport
       }
     case 'NAME_FORM':
       return {
@@ -158,7 +167,8 @@ export default (state = imports, action) => {
     case 'SET_SELECTED_FORM_ID':
       return {
         ...state,
-        selectedFormId: action.selectedFormId
+        selectedFormId: action.selectedFormId,
+        formConfirmed: action.formConfirmed
       }
     case 'STORE_USER_FORMS':
       return {
@@ -206,8 +216,47 @@ export default (state = imports, action) => {
         ...state,
         formMappingRowIdentifierId: action.formMappingRowIdentifierId,
         formMappingStandardFieldId: action.formMappingStandardFieldId,
-        formMappingDefaultValue: action.formMappingDefaultValue,
-        formMappingOverride: action.formMappingOverride
+        enteredDefaultValue: action.enteredDefaultValue,
+        enteredDefaultOverride: action.enteredDefaultOverride,
+        rightClickedFormElementType: action.rightClickedFormElementType,
+        rightClickedFormElementValue: action.rightClickedFormElementValue,
+        rightClickedFormElementOptions: action.rightClickedFormElementOptions,
+        defaultValueConfirmed: action.defaultValueConfirmed,
+        defaultOverrideConfirmed: action.defaultOverrideConfirmed,
+        formFieldSelector: action.formFieldSelector
+      }
+      case 'STORE_FORM_MAPPINGS':
+      return {
+        ...state,
+        formMappingArray: action.formMappingArray,
+        importDataArray: action.importDataArray
+      }
+      case 'SET_DEFAULT_VALUE':
+      return {
+        ...state,
+        enteredDefaultValue: action.enteredDefaultValue
+      }
+      case 'SET_DEFAULT_OVERRIDE':
+      return {
+        ...state,
+        enteredDefaultOverride: action.enteredDefaultOverride
+      }
+      case 'TOGGLE_CONFIRM_DEFAULT_VALUE':
+      return {
+        ...state,
+        defaultValueConfirmed: action.defaultValueConfirmed
+      }
+      case 'TOGGLE_CONFIRM_DEFAULT_OVERRIDE':
+      return {
+        ...state,
+        defaultOverrideConfirmed: action.defaultOverrideConfirmed
+      }
+      case 'SET_RIGHT_CLICKED_FORM_ELEMENT_ITEMS':
+      return {
+        ...state,
+        rightClickedFormElementType: action.rightClickedFormElementType,
+        rightClickedFormElementValue: action.rightClickedFormElementValue,
+        rightClickedFormElementOptions: action.rightClickedFormElementOptions
       }
     default:
       return state

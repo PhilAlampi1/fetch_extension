@@ -45,11 +45,11 @@ export const MainPage = (props) => {
 
                     {(props.importFileNameConfirmed && !props.confirmRowIdentifiers) && <RowIdentifierMappings />}
 
-                    {(props.confirmRowIdentifiers && !props.selectedFormId) && <FormMappings 
+                    {(props.confirmRowIdentifiers && !props.selectedFormConfirmedForImport) && <FormMappings 
                         message={'Which form are we importing to?'}
                     />}
 
-                    {props.selectedFormId && <FillForm />}
+                    {props.selectedFormConfirmedForImport && <FillForm />}
 
                 </div>
             }
@@ -108,7 +108,8 @@ const mapStateToProps = (state) => ({
     formConfirmed: state.imports.formConfirmed,
     preMapConfirmed: state.imports.preMapConfirmed,
     userIsMappingForm: state.imports.userIsMappingForm,
-    confirmRowIdentifiers: state.imports.confirmRowIdentifiers
+    confirmRowIdentifiers: state.imports.confirmRowIdentifiers,
+    selectedFormConfirmedForImport: state.imports.selectedFormConfirmedForImport
 })
 
 const mapDispatchToProps = (dispatch, props) => ({

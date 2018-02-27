@@ -102,6 +102,8 @@ export const setupContextMenu = (dispatch) => {
                 contexts: ['all']
             }
             const riContextItem = chrome.contextMenus.create(riContextItemInfo, () => {
+                //LEFT OFF - TODO - you could lookup the import file value here (if one) and add to sfTitle below
+                //This would make it easier to map because the user would see the value while mapping
                 standardFields.map((sf) => {
                     const sfTitle = sf.importedFieldName
                         ? sf.standardFieldName + ' - ' + sf.importedFieldName
@@ -125,11 +127,12 @@ export const setupContextMenu = (dispatch) => {
                 dispatch(setFormMappingData(sfId, riId))
                 dispatch(createUpdateUserFormFieldMappingInDb())
                 alert('Mapping complete')
+            } else if (menuId === 'SetDefaultContext') { // "Set Defaults" has been clicked
+                // Send message to content script to open modal
+                chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+                    chrome.tabs.sendMessage(tabs[0].id, { type: "openModal" })
+                })
             }
         })
     }
-
-
-    // TODO code some indicator for Set defaul modal here (need to execute in context script though)
-
 }
