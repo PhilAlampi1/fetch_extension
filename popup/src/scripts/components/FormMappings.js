@@ -1,6 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { setSelectedForm, describeForm, confirmExistingForm, fillForm, setUsersCurrentPageToFormPage } from '../actions/imports'
+import { 
+    setSelectedForm, 
+    describeForm, 
+    confirmExistingForm, 
+    fillForm, 
+    setUsersCurrentPageToFormPage,
+    storeFormMappingsInDb
+} from '../actions/imports'
 
 export class FormMappings extends React.Component {
     constructor(props) {
@@ -39,36 +46,23 @@ export class FormMappings extends React.Component {
         const foundIndex = parseInt(this.props.userForms.findIndex((item) => {
             return item.formId === this.state.selectedOptionId
         }), 10)
-        if (foundIndex !== -1) {
+        if (foundIndex !== -1) { // user selected an existing form
             description = this.props.userForms[foundIndex].formDescription
             formPublic = this.props.userForms[foundIndex].public ? true : false
         }
-        if (formPublic && this.props.userRole !== 'ADMIN') { // only admins can edit public forms
+        if (formPublic && this.props.userRole !== 'ADMIN') { // only admins can edit public forms so skip that screen
             this.props.confirmExistingForm()
         }
-        // if (this.props.usersCurrentPage === 'main' && this.state.selectedOptionId !== 'create') {
-        //     selectedFormConfirmedForImport = true
-        // }
-
         if (this.state.showError === false) {
             if (this.state.selectedOptionId !== 'create') {
                 if (this.props.usersCurrentPage !== 'main') {
                     this.props.setSelectedForm(this.state.selectedOptionId, this.state.selectedOptionName, description, formPublic, selectedFormConfirmedForImport)
-                } else { //this.props.usersCurrentPage !== 'main' (aka. 'form')
+                    this.props.storeFormMappingsInDb() // load selected form mappings from DB into store
+                } else { //this.props.usersCurrentPage === 'main' 
                     selectedFormConfirmedForImport = true
                     this.props.setSelectedForm(this.state.selectedOptionId, this.state.selectedOptionName, description, formPublic, selectedFormConfirmedForImport)
                     this.props.fillForm()
                 }
-
-                // NOT create and NOT main (aka - is form) - setSelectedForm -- DONE
-                // NOT create and IS main - selectedFormConfirmedForImport = true -- DONE
-                // NOT create and IS main - setSelectedForm, fillForm () -- DONE
-                // IS create and IS main - setUsersCurrentPageToFormPage () -- DONE
-                // IS create and NOT main (aka - is form) - setSelectedForm -- DONE
-
-
-
-
             } else { //this.state.selectedOptionId === 'create' 
                 if (this.props.usersCurrentPage === 'main') {
                     this.props.setUsersCurrentPageToFormPage()
@@ -79,7 +73,6 @@ export class FormMappings extends React.Component {
         }
     }
     render() {
-        // defaultValue={this.props.selectedFormId}
         return (
             <div>
                 <p>{this.props.message}</p>
@@ -121,7 +114,8 @@ const mapDispatchToProps = (dispatch) => ({
     setSelectedForm: (id, name, description, formPublic, confirmed) => dispatch(setSelectedForm(id, name, description, formPublic, confirmed)),
     confirmExistingForm: () => dispatch(confirmExistingForm()),
     fillForm: () => dispatch(fillForm()),
-    setUsersCurrentPageToFormPage: () => dispatch(setUsersCurrentPageToFormPage())
+    setUsersCurrentPageToFormPage: () => dispatch(setUsersCurrentPageToFormPage()),
+    storeFormMappingsInDb: () => dispatch(storeFormMappingsInDb())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(FormMappings)

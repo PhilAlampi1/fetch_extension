@@ -6,8 +6,10 @@ import {
     findAndStoreImportFileSetups,
     fetchStubValues,
     findAndStoreUserForms,
-    setupContextMenu
+    setupContextMenu,
+    findAndSetFormFieldMappings
 } from '../utilities/utilities'
+import { resetFormMappingFields } from '../actions/imports'
 
 export const updateExistingImportFileNameInDb = () => {
     return (dispatch, getState) => {
@@ -200,60 +202,29 @@ export const updateFormInDb = () => {
 }
 
 export const activateContextMenus = () => {
+
     return (dispatch) => setupContextMenu(dispatch)
+
 }
 
 export const removeContextMenus = () => {
+
     return () => chrome.contextMenus.removeAll()
-}
 
-export const createUpdateUserFormFieldMappingInDb = () => {
-    return (dispatch, getState) => {
-        const state = getState() // had to use state here because alias wasn't picking up arguements passed in from popup
-        const ffSelector = encodeURIComponent(state.imports.formFieldSelector)
-        const publicMapping = state.auth.userRole === 'ADMIN' ? true : false
-        fetch(serverPath + 'createupdateuserformfieldmapping/' +
-            state.imports.formMappingRowIdentifierId + '/' +
-            state.imports.selectedFormId + '/' +
-            state.imports.formMappingStandardFieldId + '/' +
-            ffSelector + '/' +
-            publicMapping + '/' + // for publicMapping in API
-            state.imports.enteredDefaultValue + '/' + 
-            state.imports.enteredDefaultOverride + '/' + 
-            state.imports.rightClickedFormElementType + '/' +
-            state.auth.userToken
-        )
-            .then(json)
-            .catch(error => console.error('Error:', error))
-            .then(r => { // TODO - DELETE THIS? WHAT WAS IT FOR?
-
-            })
-            .then(result => {
-                return dispatch({
-                    type: 'RESET_FORM_MAPPING_FIELDS',
-                    formMappingRowIdentifierId: null,
-                    formMappingStandardFieldId: null,
-                    enteredDefaultValue: null, 
-                    enteredDefaultOverride: true,
-                    rightClickedFormElementType: null,
-                    rightClickedFormElementValue: null,
-                    rightClickedFormElementOptions: null, 
-                    defaultValueConfirmed: false,
-                    defaultOverrideConfirmed: false,
-                    formFieldSelector: null
-                })
-            })
-    }
 }
 
 export const fillForm = () => {
+
     return (dispatch, getState) => {
+
         const state = getState() // had to use state here because alias wasn't picking up arguements passed in from popup
+
         fetch(serverPath + 'findformfieldmappings/' + state.imports.selectedFormId + '/' + state.auth.userToken)
             .then(json)
             .then(result => {
                 const formMappingArray = result.data
                 const importSetupArray = state.imports.importSetupArray
+
                 // Find where standardFieldId and importRowIdentifierId match the same fields in formMappingArray
                 // and update importDataArray with the importedFieldValue
                 const tempImportDataArray = formMappingArray.map((fmItem) => {
@@ -263,24 +234,36 @@ export const fillForm = () => {
                     })
                     if (found) { // add import value field to importDataArray
                         fmItem['importedFieldValue'] = found.importedFieldValue
-                        console.log("HERE: ", fmItem.importedFieldValue)
                     }
                     return fmItem
                 })
+
                 const importDataArray = tempImportDataArray.filter((ele) => {
-                    console.log('ele ', ele)
-                    if (!ele.defaultValue && !ele.importedFieldValue) {
+                    // console.log('ele ', ele)
+                    if (!ele.defaultValue
+                        && !ele.importedFieldValue
+                        && (ele.formFieldType && !ele.formFieldType.includes('checkbox'))
+                        && (ele.formFieldType && !ele.formFieldType.includes('radio'))
+                    ) {
                         return false
                     } else {
                         return true
                     }
                 })
+
                 dispatch({
                     type: 'STORE_FORM_MAPPINGS',
                     formMappingArray,
                     importDataArray
                 })
-                // LEFT OFF - SEND IMPORTDATAARRAY TO CONTENT SCRIPT VIA MESSAGING
+
+                // Send importDataArry to fillForm in content script
+                chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+                    chrome.tabs.sendMessage(tabs[0].id, { type: "fillFormContent", ida: importDataArray }, (response) => {
+                        // TO INVESTIGATE AT SOME POINT - Set flag to prevent multiple calls here (may not matter if no symptoms)
+                        // IF NOT, REMOVE THIS CALLBACK
+                    })
+                })
 
             })
 
@@ -327,3 +310,51 @@ export const fillForm = () => {
 //     // 1 - clear out enteredDefaultValue (using 'SET_DEFAULT_VALUE')
 //     // 2 - clear out defaultValueConfirmed 
 // }
+
+
+export const createUpdateUserFormFieldMappingInDb = () => {
+
+    return (dispatch, getState) => {
+
+        const state = getState() // had to use state here because alias wasn't picking up arguements passed in from popup
+        const ffSelector = encodeURIComponent(state.imports.formFieldSelector)
+        const encodedEnteredDefaultValue = encodeURIComponent(state.imports.enteredDefaultValue)
+        const publicMapping = state.auth.userRole === 'ADMIN' ? true : false
+
+        if (state.imports.rightClickSelectionIsValid) { // if user clicked on a non-input field, don't save it (note, you were unable to supress the context menu in these cases, this was the Plan B)
+            fetch(serverPath + 'createupdateuserformfieldmapping/' +
+                state.imports.formMappingRowIdentifierId + '/' +
+                state.imports.selectedFormId + '/' +
+                state.imports.formMappingStandardFieldId + '/' +
+                ffSelector + '/' +
+                publicMapping + '/' + // for publicMapping in API
+                encodedEnteredDefaultValue + '/' +
+                state.imports.enteredDefaultOverride + '/' +
+                state.imports.rightClickedFormElementType + '/' +
+                state.auth.userToken
+            )
+                .then(json)
+                .catch(error => console.error('Error:', error))
+                .then(r => {
+                    return findAndSetFormFieldMappings(dispatch, state)
+                })
+                .then(() => {
+                    dispatch(fillForm())
+                    return dispatch(resetFormMappingFields())
+                })
+        } else {
+            return dispatch(resetFormMappingFields())
+        }
+
+    }
+
+}
+
+export const storeFormMappingsInDb = () => {
+
+    return (dispatch, getState) => {
+        const state = getState() // had to use state here because alias wasn't picking up arguements passed in from popup
+        findAndSetFormFieldMappings(dispatch, state)
+    }
+
+}

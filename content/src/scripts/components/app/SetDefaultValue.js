@@ -18,14 +18,14 @@ const SetDefaultValue = (props) => {
             <span><h1>Fetch</h1></span>
             <p>Enter the default value you would like to use for this field below.</p>
             {props.rightClickedFormElementOptions !== null &&
-                <select onChange={setDefaultValue}>
+                <select onChange={setDefaultValue} defaultValue={props.enteredDefaultValue}>
                     {props.rightClickedFormElementOptions.map((item) => (
-                        <option value={item.value}>{item.label}</option>
+                        <option key={item.value} value={item.value}>{item.label}</option>
                     ))}
                 </select>
             }
             {(props.rightClickedFormElementType === 'radio' || props.rightClickedFormElementType === 'checkbox') &&
-                <select onChange={setDefaultValue}>
+                <select onChange={setDefaultValue} defaultValue={props.enteredDefaultValue}>
                     <option value=''>Select one</option>
                     <option value='selected'>Selected</option>
                     <option value='notselected'>Not selected</option>
@@ -36,6 +36,7 @@ const SetDefaultValue = (props) => {
                     type="text"
                     placeholder="Enter default value"
                     onChange={setDefaultValue}
+                    defaultValue={props.enteredDefaultValue}
                 ></input>
             }
             <br></br>
@@ -54,6 +55,7 @@ const mapStateToProps = (state) => ({
     rightClickedFormElementValue: state.imports.rightClickedFormElementValue,
     rightClickedFormElementOptions: state.imports.rightClickedFormElementOptions,
     enteredDefaultValue: state.imports.enteredDefaultValue
+    // defaultModalValue: state.imports.defaultModalValue
 })
 
 const mapDispatchToProps = (dispatch) => ({

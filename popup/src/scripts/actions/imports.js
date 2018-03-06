@@ -273,3 +273,8 @@ export const removeContextMenus = () => ({
 export const fillForm = () => ({
     type: 'FILL_FORM'
 })
+
+export const storeFormMappingsInDb = () => ({
+    type: 'STORE_FORM_MAPPINGS_IN_DB'
+})
+

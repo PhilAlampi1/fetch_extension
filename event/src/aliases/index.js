@@ -11,7 +11,7 @@ import {
     removeContextMenus,
     createUpdateUserFormFieldMappingInDb,
     fillForm,
-    storeDefaultValueInDb
+    storeFormMappingsInDb
 } from './imports'
 
 export default {
@@ -26,7 +26,7 @@ export default {
     'SET_UP_CONTEXT_MENUS': activateContextMenus,
     'REMOVE_CONTEXT_MENUS': removeContextMenus,
     'CREATE_UPDATE_USER_FORM_FIELD_MAPPING_IN_DB': createUpdateUserFormFieldMappingInDb,
-    'FILL_FORM': fillForm
-    // ,
-    // 'STORE_DEFAULT_VALUE_IN_DB': storeDefaultValueInDb
+    'FILL_FORM': fillForm,
+    'STORE_FORM_MAPPINGS_IN_DB': storeFormMappingsInDb
+    // 'STORE_TRANSACTION_HISTORY': storeTransactionHistory
 }

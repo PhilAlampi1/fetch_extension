@@ -34,6 +34,22 @@ export const createUpdateUserFormFieldMappingInDbFromDefaultModal = () => ({
     type: 'CREATE_UPDATE_USER_FORM_FIELD_MAPPING_IN_DB'
 })
 
+export const setDefaultModalItems = (value, override) => ({
+    type: 'SET_DEFAULT_MODAL_ITEMS',
+    enteredDefaultValue: value,
+    enteredDefaultOverride: override
+})
+
+export const setRightClickSelectionIsValid = (setting) => ({
+    type: 'SET_RIGHT_CLICK_SELECTION_IS_VALID',
+    rightClickSelectionIsValid: setting
+})
+
+export const storeTransactionHistory = () => ({
+    type: 'STORE_TRANSACTION_HISTORY'
+})
+
+
 
 // ele.type && console.log('type: ', ele.type)
 // ele.options && console.log('options', ele.options)

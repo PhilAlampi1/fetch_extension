@@ -67,7 +67,9 @@ export const fetchStubValues = () => {
 }
 
 export const setupContextMenu = (dispatch) => {
+    
     const state = store.getState()
+
     if (state.imports.userIsMappingForm) {
         const contextMenuFetchItem = {
             id: "TopLevelContext",
@@ -89,6 +91,7 @@ export const setupContextMenu = (dispatch) => {
         const menuFetchItem = chrome.contextMenus.create(contextMenuFetchItem)
         const setDefaultItem = chrome.contextMenus.create(contextMenuSetDefaultItem)
         const mapToFieldItem = chrome.contextMenus.create(contextMenuMapToFieldItem)
+
         // Create a contextMenuItem for each Row Identifier
         // For each Row Identifier, create an option for each Standard Field
         // If the Standard Field has an importedFieldName, show as: <StandardFieldName> - <Imported Field Name>
@@ -118,21 +121,40 @@ export const setupContextMenu = (dispatch) => {
                 })
             })
         })
+
         chrome.contextMenus.onClicked.addListener((item) => {
             const menuId = item.menuItemId
             const menuDashIndex = item.menuItemId.indexOf('-')
+
             if (menuDashIndex !== -1) { // a "MapToFieldContext" child has been selected
                 const sfId = Number(menuId.substr(0, menuDashIndex))
                 const riId = Number(menuId.substr(menuDashIndex + 1, menuId.length))
                 dispatch(setFormMappingData(sfId, riId))
                 dispatch(createUpdateUserFormFieldMappingInDb())
-                alert('Mapping complete')
+                alert('Mapping saved! Nice work.')
             } else if (menuId === 'SetDefaultContext') { // "Set Defaults" has been clicked
+
                 // Send message to content script to open modal
                 chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
                     chrome.tabs.sendMessage(tabs[0].id, { type: "openModal" })
                 })
+                
             }
         })
+
     }
+}
+
+export const findAndSetFormFieldMappings = (dispatch, state) => {
+
+    fetch(serverPath + 'findformfieldmappings/' + state.imports.selectedFormId + '/' + state.auth.userToken)
+        .then(json)
+        .then(result => {
+            const formMappingArray = result.data
+            dispatch({
+                type: 'STORE_FORM_MAPPINGS_DIRECT_FROM_DB',
+                formMappingArray
+            })
+        })
+        
 }

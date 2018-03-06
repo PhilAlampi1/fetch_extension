@@ -42,15 +42,14 @@ export default (state = imports, action) => {
         formFieldSelector: null,
         formMappingStandardFieldId: null,
         formMappingRowIdentifierId: null,
-        // formMappingDefaultValue: null,
-        // formMappingOverride: null,
         enteredDefaultValue: null,
         defaultValueConfirmed: false,
-        enteredDefaultOverride: true,
+        enteredDefaultOverride: null,
         defaultOverrideConfirmed: false,
         rightClickedFormElementType: null,
         rightClickedFormElementValue: null,
-        rightClickedFormElementOptions: null
+        rightClickedFormElementOptions: null,
+        rightClickSelectionIsValid: false
       }
     case 'STORE_IMPORT_FILE_SETUPS':
       return {
@@ -223,7 +222,8 @@ export default (state = imports, action) => {
         rightClickedFormElementOptions: action.rightClickedFormElementOptions,
         defaultValueConfirmed: action.defaultValueConfirmed,
         defaultOverrideConfirmed: action.defaultOverrideConfirmed,
-        formFieldSelector: action.formFieldSelector
+        formFieldSelector: action.formFieldSelector,
+        rightClickSelectionIsValid: action.rightClickSelectionIsValid
       }
       case 'STORE_FORM_MAPPINGS':
       return {
@@ -257,6 +257,22 @@ export default (state = imports, action) => {
         rightClickedFormElementType: action.rightClickedFormElementType,
         rightClickedFormElementValue: action.rightClickedFormElementValue,
         rightClickedFormElementOptions: action.rightClickedFormElementOptions
+      }
+      case 'STORE_FORM_MAPPINGS_DIRECT_FROM_DB':
+      return {
+        ...state,
+        formMappingArray: action.formMappingArray
+      }
+      case 'SET_DEFAULT_MODAL_ITEMS':
+      return {
+        ...state,
+        enteredDefaultValue: action.enteredDefaultValue,
+        enteredDefaultOverride: action.enteredDefaultOverride
+      }
+      case 'SET_RIGHT_CLICK_SELECTION_IS_VALID':
+      return {
+        ...state,
+        rightClickSelectionIsValid: action.rightClickSelectionIsValid
       }
     default:
       return state
