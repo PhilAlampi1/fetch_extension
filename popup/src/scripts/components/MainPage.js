@@ -12,6 +12,7 @@ import PreMapConfirmForm from './PreMapConfirmForm'
 import PreMapInstructions from './PreMapInstructions'
 import PromptIfUserIsMappingForm from './PromptIfUserIsMappingForm'
 import FillForm from './FillForm'
+import Results from './Results'
 import { storeRawImportData } from '../actions/imports'
 
 export const MainPage = (props) => {
@@ -49,7 +50,9 @@ export const MainPage = (props) => {
                         message={'Which form are we importing to?'}
                     />}
 
-                    {props.selectedFormConfirmedForImport && <FillForm />}
+                    {(props.selectedFormConfirmedForImport && !props.totalFieldsPopulated) && <FillForm />}
+
+                    {props.totalFieldsPopulated && <Results />}
 
                 </div>
             }
@@ -65,7 +68,7 @@ export const MainPage = (props) => {
 
                     {(props.formConfirmed && !props.preMapConfirmed) && <PreMapConfirmForm />}
 
-                    {props.preMapConfirmed && <PreMapInstructions />}
+                    {(props.preMapConfirmed) && <PreMapInstructions />}
 
                 </div>
             }
@@ -109,7 +112,8 @@ const mapStateToProps = (state) => ({
     preMapConfirmed: state.imports.preMapConfirmed,
     userIsMappingForm: state.imports.userIsMappingForm,
     confirmRowIdentifiers: state.imports.confirmRowIdentifiers,
-    selectedFormConfirmedForImport: state.imports.selectedFormConfirmedForImport
+    selectedFormConfirmedForImport: state.imports.selectedFormConfirmedForImport,
+    totalFieldsPopulated: state.imports.totalFieldsPopulated
 })
 
 const mapDispatchToProps = (dispatch, props) => ({

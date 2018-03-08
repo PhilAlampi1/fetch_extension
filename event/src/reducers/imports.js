@@ -49,7 +49,10 @@ export default (state = imports, action) => {
         rightClickedFormElementType: null,
         rightClickedFormElementValue: null,
         rightClickedFormElementOptions: null,
-        rightClickSelectionIsValid: false
+        rightClickSelectionIsValid: false,
+        totalFieldsPopulated: null, 
+        importFieldsPopulated: null,
+        defaultFieldsPopulated: null
       }
     case 'STORE_IMPORT_FILE_SETUPS':
       return {
@@ -273,6 +276,22 @@ export default (state = imports, action) => {
       return {
         ...state,
         rightClickSelectionIsValid: action.rightClickSelectionIsValid
+      }
+      case 'SET_POST_FILL_FORM_FIELDS':
+      return {
+        ...state,
+        totalFieldsPopulated: action.totalFieldsPopulated, 
+        importFieldsPopulated: action.importFieldsPopulated,
+        defaultFieldsPopulated: action.defaultFieldsPopulated
+      }
+      case 'CLEAR_FILL_FORM_RESULTS':
+      return {
+        ...state,
+        totalFieldsPopulated: action.totalFieldsPopulated,
+        importFieldsPopulated: action.importFieldsPopulated,
+        defaultFieldsPopulated: action.defaultFieldsPopulated, 
+        confirmRowIdentifiers: action.confirmRowIdentifiers,
+        selectedFormConfirmedForImport: action.selectedFormConfirmedForImport
       }
     default:
       return state

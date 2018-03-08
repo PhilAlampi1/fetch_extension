@@ -9,7 +9,10 @@ import {
     setupContextMenu,
     findAndSetFormFieldMappings
 } from '../utilities/utilities'
-import { resetFormMappingFields } from '../actions/imports'
+import {
+    resetFormMappingFields,
+    setPostFillFormFields
+} from '../actions/imports'
 
 export const updateExistingImportFileNameInDb = () => {
     return (dispatch, getState) => {
@@ -259,9 +262,15 @@ export const fillForm = () => {
 
                 // Send importDataArry to fillForm in content script
                 chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-                    chrome.tabs.sendMessage(tabs[0].id, { type: "fillFormContent", ida: importDataArray }, (response) => {
-                        // TO INVESTIGATE AT SOME POINT - Set flag to prevent multiple calls here (may not matter if no symptoms)
-                        // IF NOT, REMOVE THIS CALLBACK
+                    console.log('chrome.tabs.query called')
+                    chrome.tabs.sendMessage(tabs[0].id, { type: "fillFormContent", ida: importDataArray }, (r) => {
+                            return dispatch(setPostFillFormFields(r.result[0], r.result[1], r.result[2]))
+                            //totalFieldsPopulated, importFieldsPopulated, defaultFieldsPopulated
+                            // LEFT OFF - RECIEVE RESPONSE (TOTAL FEILDS FILLED, FIELDS FILLED FROM IMPORT FILE, DEFAULTS)
+                            // CREATE AND TRIGGER ACTION
+                            // UPDATE TRANSACTION HISTORY
+                        // }
+
                     })
                 })
 

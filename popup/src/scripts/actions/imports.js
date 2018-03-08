@@ -278,3 +278,11 @@ export const storeFormMappingsInDb = () => ({
     type: 'STORE_FORM_MAPPINGS_IN_DB'
 })
 
+export const clearFillFormResults = () => ({
+    type: 'CLEAR_FILL_FORM_RESULTS',
+    totalFieldsPopulated: null,
+    importFieldsPopulated: null,
+    defaultFieldsPopulated: null, 
+    confirmRowIdentifiers: false,
+    selectedFormConfirmedForImport: false
+})

@@ -17,6 +17,8 @@ import { fillForm } from './utilities'
 import SetDefaultValue from './SetDefaultValue'
 import SetDefaultOverride from './SetDefaultOverride'
 
+console.log('loaded outside of component')
+
 class App extends Component {
 
   constructor(props) {
@@ -27,6 +29,8 @@ class App extends Component {
   }
 
   componentDidMount() {
+
+    console.log('loaded inside of componentDidMount')
 
     document.addEventListener('contextmenu', (e) => {
 
@@ -81,11 +85,39 @@ class App extends Component {
           break
 
         case 'fillFormContent':
-          fillForm(request.ida)
+
+          // Content script is loaded multiple times (3x), unable to prevent using APIs available
+          // So instead, check to see if fillForm has already run, if not run it
+          if (!this.props.totalFieldsPopulated || this.props.totalFieldsPopulated === 0) {
+            sendResponse({ result: fillForm(request.ida) })
+          }
+          // return true
           break
 
       }
+
     })
+
+
+
+    // // Listen for message from context menu when "Set Default" item is selected
+    // chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+
+    //   switch (request.type) {
+
+    //     case 'openModal':
+    //       this.toggleModal()
+    //       break
+
+    //     case 'fillFormContent':
+    //       sendResponse({ result: fillForm(request.ida) })
+    //       return true
+    //     // break
+
+    //   }
+
+    // })
+
   }
 
   validateSelection = (e) => {
@@ -108,7 +140,7 @@ class App extends Component {
       ...prevState,
       showModal: !this.state.showModal
     }))
-    
+
   }
 
   clearDefaultValues = () => {
@@ -156,7 +188,8 @@ const mapStateToProps = (state) => ({
   userIsMappingForm: state.imports.userIsMappingForm,
   defaultValueConfirmed: state.imports.defaultValueConfirmed,
   formFieldSelector: state.imports.formFieldSelector,
-  formMappingArray: state.imports.formMappingArray
+  formMappingArray: state.imports.formMappingArray,
+  totalFieldsPopulated: state.imports.totalFieldsPopulated
 })
 
 const mapDispatchToProps = (dispatch) => ({

@@ -2,7 +2,7 @@ import fuzz from 'fuzzball'
 
 export const fillForm = (ida) => {
 
-    let newValue = ''
+    let newValue = '', totalFieldsPopulated = 0, importFieldsPopulated = 0, defaultFieldsPopulated = 0, valueType = null
 
     const setFieldValue = (newVal, idaItem, el) => {
 
@@ -67,52 +67,34 @@ export const fillForm = (ida) => {
     }
 
     for (let i = 0; i < ida.length; i++) {
+
         const ele = document.querySelector(ida[i].formFieldSelector)
+
         if (ele) {
+
             if (ida[i].overrideImportWithDefault === true) {
                 newValue = ida[i].defaultValue
+                valueType = 'default'
             } else {
                 newValue = ida[i].importedFieldValue || ida[i].defaultValue
-                // replace newValue in fucntion call with ida || ida above?
+                !ida[i].importedFieldValue ? valueType = 'default' : valueType = 'imported'
                 newValue = findValueIfDropdown(newValue, ele)
             }
             setFieldValue(newValue, ida[i], ele)
+
+            // Vertify that the field value was set and, if so, adjust the appropriate counter
+            if (!!ele.value) {
+                valueType === 'default' ? defaultFieldsPopulated++ : importFieldsPopulated++
+            }
         }
+
     }
 
-    return true
+    totalFieldsPopulated = defaultFieldsPopulated + importFieldsPopulated
+    // console.log('totalFieldsPopulated :', totalFieldsPopulated)
+    // console.log('defaultFieldsPopulated :', defaultFieldsPopulated)
+    // console.log('importFieldsPopulated :', importFieldsPopulated)
+
+    return [totalFieldsPopulated, defaultFieldsPopulated, importFieldsPopulated]
 
 }
-
-// For each item in importDataArray
-
-
-
-
-
-        // 1 - DONE
-        // - Create importSetupArray that includes JSON objects for each mapped standard field: 
-        // [{
-        // standardFieldId: X,
-        // importedFieldValue: Y,
-        // importRowIdentifierId
-        // }]
-
-        // 2 - Get form mappings from DB [{
-        // standardFieldId,
-        // importRowIdentifierId,
-        // formFieldSelector,
-        // defaultValue,
-        // overrideImportWithDefault
-        // formFieldType
-        // }]
-
-        // 3 - Loop through form mappings results from DB to create importDataArray: [{
-        // standardFieldId, // DON'T NEED
-        // importRowIdentifierId, // DON'T NEED
-        // formFieldSelector,
-        // defaultValue,
-        // overrideImportWithDefault,
-        // formFieldType,
-        // importedFieldValue, 
-        // }]

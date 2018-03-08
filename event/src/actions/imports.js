@@ -22,3 +22,11 @@ export const resetFormMappingFields = () => ({
     formFieldSelector: null,
     rightClickSelectionIsValid: false
 })
+
+export const setPostFillFormFields = (total, def, imported) => ({
+    type: 'SET_POST_FILL_FORM_FIELDS',
+    totalFieldsPopulated: total, 
+    importFieldsPopulated: imported,
+    defaultFieldsPopulated: def
+})
+
