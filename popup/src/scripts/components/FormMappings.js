@@ -67,6 +67,9 @@ export class FormMappings extends React.Component {
                 if (this.props.usersCurrentPage === 'main') {
                     this.props.setUsersCurrentPageToFormPage()
                 } else { //this.props.usersCurrentPage !== 'main' (aka. 'form')
+                    if (this.props.userRole === 'ADMIN') {
+                        formPublic = true
+                    }
                     this.props.setSelectedForm(this.state.selectedOptionId, this.state.selectedOptionName, description, formPublic, selectedFormConfirmedForImport)
                 }
             }

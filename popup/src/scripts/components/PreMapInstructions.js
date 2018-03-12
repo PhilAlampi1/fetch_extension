@@ -14,7 +14,7 @@ export const PreMapInstructions = (props) => {
             <ol>
                 <li>Clicking the button below will take you back to your form</li>
                 <li>Once on your form, right click on one of the fields you wish to map</li>
-                <li>Select "Fetch Options" in the menu, then select the appropriate options from there to complete your mapping</li>
+                <li>Select "Fetch" in the menu, then select the appropriate options from there to complete your mapping (note you can map imported fields and default values)</li>
                 <li>Do this (Steps 2 and 3) for each field you want to map</li>
                 <li>Once finished, simply reopen Fetch and your mappings will be ready to use in an import</li>
             </ol>

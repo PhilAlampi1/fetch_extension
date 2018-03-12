@@ -17,8 +17,6 @@ import { fillForm } from './utilities'
 import SetDefaultValue from './SetDefaultValue'
 import SetDefaultOverride from './SetDefaultOverride'
 
-console.log('loaded outside of component')
-
 class App extends Component {
 
   constructor(props) {
@@ -29,8 +27,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-
-    console.log('loaded inside of componentDidMount')
 
     document.addEventListener('contextmenu', (e) => {
 
@@ -85,11 +81,10 @@ class App extends Component {
           break
 
         case 'fillFormContent':
-
           // Content script is loaded multiple times (3x), unable to prevent using APIs available
           // So instead, check to see if fillForm has already run, if not run it
           if (!this.props.totalFieldsPopulated || this.props.totalFieldsPopulated === 0) {
-            sendResponse({ result: fillForm(request.ida) })
+            sendResponse({ result: fillForm(request.ida, this.props.userIsMappingForm) })
           }
           // return true
           break

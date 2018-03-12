@@ -20,7 +20,10 @@ export const resetFormMappingFields = () => ({
     defaultValueConfirmed: false,
     defaultOverrideConfirmed: false,
     formFieldSelector: null,
-    rightClickSelectionIsValid: false
+    rightClickSelectionIsValid: false,
+    totalFieldsPopulated: null, 
+    importFieldsPopulated: null,
+    defaultFieldsPopulated: null
 })
 
 export const setPostFillFormFields = (total, def, imported) => ({

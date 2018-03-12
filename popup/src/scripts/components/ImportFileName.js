@@ -18,7 +18,8 @@ export class ImportFileName extends React.Component {
     }
     nameImportFile = (e) => {
         e.persist()
-       this.setState((prevState) => ({
+        !!e.target.value && console.log('VALUE: ', e.target.value)
+        this.setState((prevState) => ({
             ...prevState,
             enteredName: !e.target.value ? null : e.target.value,
             showError: !e.target.value ? true : false
@@ -61,11 +62,11 @@ export class ImportFileName extends React.Component {
                     : <p>Here's the name we have for your import file. Feel free to change or just click Next to continue.</p>
                 }
                 <div>
-                    <input onBlur={this.nameImportFile}
+                    <input onChange={this.nameImportFile}
                         defaultValue={
-                            this.props.selectedImportFileSetupId !== 'create' 
-                            ? this.props.selectedImportFileSetupName
-                            : ''
+                            this.props.selectedImportFileSetupId !== 'create'
+                                ? this.props.selectedImportFileSetupName
+                                : ''
                         }
                         name="importFileName"
                         type="text"

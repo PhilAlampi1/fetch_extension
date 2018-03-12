@@ -1,5 +1,9 @@
 import { setRowIdentifiersAndStandardFields } from '../actions/init'
-import { setFormMappingData, createUpdateUserFormFieldMappingInDb } from '../actions/imports'
+import {
+    setFormMappingData,
+    createUpdateUserFormFieldMappingInDb
+    // resetFormMappingFields
+} from '../actions/imports'
 import { store } from '../index'
 
 export const status = (response) => {
@@ -67,10 +71,11 @@ export const fetchStubValues = () => {
 }
 
 export const setupContextMenu = (dispatch) => {
-    
-    const state = store.getState()
 
+    const state = store.getState()
+    
     if (state.imports.userIsMappingForm) {
+
         const contextMenuFetchItem = {
             id: "TopLevelContext",
             title: "Fetch",
@@ -132,13 +137,14 @@ export const setupContextMenu = (dispatch) => {
                 dispatch(setFormMappingData(sfId, riId))
                 dispatch(createUpdateUserFormFieldMappingInDb())
                 alert('Mapping saved! Nice work.')
+
             } else if (menuId === 'SetDefaultContext') { // "Set Defaults" has been clicked
 
                 // Send message to content script to open modal
                 chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
                     chrome.tabs.sendMessage(tabs[0].id, { type: "openModal" })
                 })
-                
+
             }
         })
 
@@ -156,5 +162,5 @@ export const findAndSetFormFieldMappings = (dispatch, state) => {
                 formMappingArray
             })
         })
-        
+
 }

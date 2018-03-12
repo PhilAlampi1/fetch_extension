@@ -254,7 +254,8 @@ export const confirmPreMap = () => ({
 
 export const setUserIsMappingForm = (setting) => ({
     type: 'SET_USER_IS_MAPPING_FORM',
-    userIsMappingForm: setting
+    userIsMappingForm: setting,
+    confirmRowIdentifiers: false // always set to false to prevent FillForm screen from showing when user reenters "main"
 })
 
 export const setUpContextMenus = () => ({

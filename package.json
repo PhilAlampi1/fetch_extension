@@ -11,6 +11,7 @@
   "dependencies": {
     "fuzzball": "^0.13.5",
     "history": "^4.7.2",
+    "moment": "^2.21.0",
     "optimal-select": "^4.0.1",
     "papaparse": "^4.3.6",
     "react": "^16.0.0",

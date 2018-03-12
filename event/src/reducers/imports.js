@@ -195,7 +195,8 @@ export default (state = imports, action) => {
     case 'SET_USER_IS_MAPPING_FORM':
       return {
         ...state,
-        userIsMappingForm: action.userIsMappingForm
+        userIsMappingForm: action.userIsMappingForm,
+        confirmRowIdentifiers: action.confirmRowIdentifiers
       }
     case 'SET_SELECTED_FORM_PUBLIC':
       return {
@@ -226,7 +227,10 @@ export default (state = imports, action) => {
         defaultValueConfirmed: action.defaultValueConfirmed,
         defaultOverrideConfirmed: action.defaultOverrideConfirmed,
         formFieldSelector: action.formFieldSelector,
-        rightClickSelectionIsValid: action.rightClickSelectionIsValid
+        rightClickSelectionIsValid: action.rightClickSelectionIsValid,
+        totalFieldsPopulated: action.totalFieldsPopulated, 
+        importFieldsPopulated: action.importFieldsPopulated,
+        defaultFieldsPopulated: action.defaultFieldsPopulated
       }
       case 'STORE_FORM_MAPPINGS':
       return {

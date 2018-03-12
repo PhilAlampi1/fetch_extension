@@ -1,8 +1,17 @@
 import fuzz from 'fuzzball'
 
-export const fillForm = (ida) => {
+export const fillForm = (ida, userIsMappingForm) => {
 
     let newValue = '', totalFieldsPopulated = 0, importFieldsPopulated = 0, defaultFieldsPopulated = 0, valueType = null
+    
+    // Set events to be tested when a field is filled
+    const eventNames = ['click', 'change', 'blur', 'input', 'focus', 'select', 'keydown', 'keypress', 'keyup']
+    //['onchange', 'onblur', 'onfocus', 'oninput', 'onselect', 'onkeydown', 'onkeypress', 'onkeyup', 'onclick', 'click']
+    const possibleEvents = []
+    for (let k = 0; k < eventNames.length; k++) {
+        let eventHolder = new Event(eventNames[k])
+        possibleEvents.push(eventHolder)
+    }
 
     const setFieldValue = (newVal, idaItem, el) => {
 
@@ -82,10 +91,26 @@ export const fillForm = (ida) => {
             }
             setFieldValue(newValue, ida[i], ele)
 
-            // Vertify that the field value was set and, if so, adjust the appropriate counter
+            // Vertify that the field value was set
             if (!!ele.value) {
+
+                //Adjust the appropriate counter
                 valueType === 'default' ? defaultFieldsPopulated++ : importFieldsPopulated++
+
+                // If not mapping a form (but instead doing a full fillForm,
+                // cycle through executing all possible events
+                if (!userIsMappingForm) {
+                    for (let j = 0; j < possibleEvents.length; j++) {
+                        try {
+                            ele.dispatchEvent(possibleEvents[j])
+                        } catch (e) {
+                            console.log(e)
+                        }
+                    }
+                }
+
             }
+
         }
 
     }

@@ -225,6 +225,7 @@ export const fillForm = () => {
         fetch(serverPath + 'findformfieldmappings/' + state.imports.selectedFormId + '/' + state.auth.userToken)
             .then(json)
             .then(result => {
+
                 const formMappingArray = result.data
                 const importSetupArray = state.imports.importSetupArray
 
@@ -242,7 +243,6 @@ export const fillForm = () => {
                 })
 
                 const importDataArray = tempImportDataArray.filter((ele) => {
-                    // console.log('ele ', ele)
                     if (!ele.defaultValue
                         && !ele.importedFieldValue
                         && (ele.formFieldType && !ele.formFieldType.includes('checkbox'))
@@ -254,72 +254,35 @@ export const fillForm = () => {
                     }
                 })
 
-                dispatch({
+                return dispatch({
                     type: 'STORE_FORM_MAPPINGS',
                     formMappingArray,
                     importDataArray
                 })
 
+            }).then((r) => {
+                const state = getState() // had to use state here because alias wasn't picking up arguements passed in from popup
+                if (!!state.imports.userIsMappingForm) {
+                    dispatch(resetFormMappingFields())
+                }
+                return true
+
+            }).then((r2) => {
+                const state = getState() // had to use state here because alias wasn't picking up arguements passed in from popup
                 // Send importDataArry to fillForm in content script
                 chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-                    console.log('chrome.tabs.query called')
-                    chrome.tabs.sendMessage(tabs[0].id, { type: "fillFormContent", ida: importDataArray }, (r) => {
+                    chrome.tabs.sendMessage(tabs[0].id, { type: "fillFormContent", ida: state.imports.importDataArray }, (r) => {
+                        if (!state.imports.userIsMappingForm) {
                             return dispatch(setPostFillFormFields(r.result[0], r.result[1], r.result[2]))
-                            //totalFieldsPopulated, importFieldsPopulated, defaultFieldsPopulated
-                            // LEFT OFF - RECIEVE RESPONSE (TOTAL FEILDS FILLED, FIELDS FILLED FROM IMPORT FILE, DEFAULTS)
-                            // CREATE AND TRIGGER ACTION
-                            // UPDATE TRANSACTION HISTORY
-                        // }
-
+                        } else {
+                            return dispatch(resetFormMappingFields())
+                        }
                     })
                 })
-
             })
-
-
-
-
-
-
-
-        // 1 - DONE
-        // - Create importSetupArray that includes JSON objects for each mapped standard field: 
-        // [{
-        // standardFieldId: X,
-        // importedFieldValue: Y,
-        // importRowIdentifierId
-        // }]
-
-        // 2 - Get form mappings from DB [{
-        // standardFieldId,
-        // importRowIdentifierId,
-        // formFieldSelector,
-        // defaultValue,
-        // overrideImportWithDefault
-        // formFieldType
-        // }]
-
-        // 3 - Loop through form mappings results from DB to create finalImportDataset: [{
-        // standardFieldId,
-        // importRowIdentifierId,
-        // formFieldSelector,
-        // defaultValue,
-        // overrideImportWithDefault,
-        // importedFieldValue
-        // }]
-
 
     }
 }
-
-// export const storeDefaultValueInDb = () => {
-
-
-//     // Action for:
-//     // 1 - clear out enteredDefaultValue (using 'SET_DEFAULT_VALUE')
-//     // 2 - clear out defaultValueConfirmed 
-// }
-
 
 export const createUpdateUserFormFieldMappingInDb = () => {
 
@@ -347,7 +310,7 @@ export const createUpdateUserFormFieldMappingInDb = () => {
                 .then(r => {
                     return findAndSetFormFieldMappings(dispatch, state)
                 })
-                .then(() => {
+                .then((r2) => {
                     dispatch(fillForm())
                     return dispatch(resetFormMappingFields())
                 })

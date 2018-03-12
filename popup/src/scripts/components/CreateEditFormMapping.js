@@ -123,7 +123,9 @@ export class CreateEditFormMapping extends React.Component {
                     </input>
                     {this.props.userRole === 'ADMIN' &&
                         <select
-                            onChange={this.setSelectedFormPublic} defaultValue={this.props.selectedFormPublic}>
+                            onChange={this.setSelectedFormPublic} 
+                            defaultValue={this.props.userRole === 'ADMIN' ? 'true' : this.props.selectedFormPublic}
+                            >
                             <option value='true'>Public Form</option>
                             <option value='false'>Private Form</option>
                         </select>
