@@ -2,11 +2,6 @@ import React from 'react'
 import { shallow } from 'enzyme'
 import { SelectWithImportOptions } from '../../components/SelectWithImportOptions'
 import { importFieldOptions } from '../../../../../event/src/tests/fixtures/imports'
-// import auth from '../../../../../event/src/tests/fixtures/auth'
-
-// test('', () => {
-
-// })
 
 const onChangeSpy = jest.fn()
 const importedFieldName = "Number of Bathrooms"

@@ -9,6 +9,7 @@ import {
 } from '../actions/imports'
 
 export const MapImportToStandardFields = (props) => {
+
     const updateImportFileMapping = (standardFieldId, importedFieldName) => {
         props.updateImportFileMapping(
             standardFieldId,
@@ -18,6 +19,7 @@ export const MapImportToStandardFields = (props) => {
             props.importFieldMappingDbUpdates
         )
     }
+
     const confirmImport = () => {
         let importRowIdentifierExists = false
         for (let i = 0; i < props.standardFields.length; i++) {
@@ -31,6 +33,7 @@ export const MapImportToStandardFields = (props) => {
         props.importFieldMappingDbUpdates[0] && props.updateImportFieldMappingsInDb()
         !importRowIdentifierExists && props.setMapImportToStandardFieldsERROR() // for when standardFieldSet doesn't have any importRowIdentifier in it
     }
+    
     return (
         <div>
             <p>Your file was uploaded successfully, nice work!</p>

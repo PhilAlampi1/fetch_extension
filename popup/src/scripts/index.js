@@ -8,9 +8,6 @@ const proxyStore = new Store({
   portName: 'lightning0328200804082010'
 })
 
-// render(
-//   <Provider store={proxyStore}><AppRouter /></Provider>, document.getElementById('app')
-// )
 
 const unsubscribe = proxyStore.subscribe(() => {
    unsubscribe() // make sure to only fire once

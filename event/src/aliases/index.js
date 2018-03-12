@@ -28,5 +28,4 @@ export default {
     'CREATE_UPDATE_USER_FORM_FIELD_MAPPING_IN_DB': createUpdateUserFormFieldMappingInDb,
     'FILL_FORM': fillForm,
     'STORE_FORM_MAPPINGS_IN_DB': storeFormMappingsInDb
-    // 'STORE_TRANSACTION_HISTORY': storeTransactionHistory
 }

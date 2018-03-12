@@ -17,7 +17,6 @@ export class CreateEditFormMapping extends React.Component {
             showError: false,
             enteredName: this.props.selectedFormName || '',
             enteredDescription: this.props.selectedFormDescription || ''
-            // enteredPublic: this.props.selectedFormPublic
         }
     }
     nameForm = (e) => {

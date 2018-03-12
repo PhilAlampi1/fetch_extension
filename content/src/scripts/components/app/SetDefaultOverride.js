@@ -9,7 +9,6 @@ import {
 const SetDefaultOverride = (props) => {
     const setDefaultOverride = (e) => {
         const newVal = e.target.value === 'true' ? true : false
-        console.log('NEWVAL: ', newVal)
         props.setDefaultOverride(newVal)
     }
     const onClickHandler = () => {
@@ -42,7 +41,6 @@ const SetDefaultOverride = (props) => {
 const mapStateToProps = (state) => ({
     enteredDefaultOverride: state.imports.enteredDefaultOverride,
     defaultOverrideConfirmed: state.imports.defaultOverrideConfirmed
-    // defaultModalOverride: state.imports.defaultModalOverride
 })
 
 const mapDispatchToProps = (dispatch) => ({

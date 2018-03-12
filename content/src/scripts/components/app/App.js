@@ -93,26 +93,6 @@ class App extends Component {
 
     })
 
-
-
-    // // Listen for message from context menu when "Set Default" item is selected
-    // chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-
-    //   switch (request.type) {
-
-    //     case 'openModal':
-    //       this.toggleModal()
-    //       break
-
-    //     case 'fillFormContent':
-    //       sendResponse({ result: fillForm(request.ida) })
-    //       return true
-    //     // break
-
-    //   }
-
-    // })
-
   }
 
   validateSelection = (e) => {

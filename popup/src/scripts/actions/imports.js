@@ -1,6 +1,7 @@
 import fuzz from 'fuzzball'
 
 export const storeRawImportData = (importedData, standardFields, selectedImportFileSetupId) => {
+
     // Get all field names from import file
     const importedFieldNames = []
     Object.keys(importedData[0]).map((fieldName) => {
@@ -8,7 +9,9 @@ export const storeRawImportData = (importedData, standardFields, selectedImportF
     })
     let importRowIdentifierField = ''
     let query, choices, options, results
+
     for (let j = 0; j < standardFields.length; j++) {
+
         if (selectedImportFileSetupId === 'create') {
             // If creating new Import File Setup...
             // Compare imported file field names to standard field names and recommend or display saved mappings
@@ -24,12 +27,15 @@ export const storeRawImportData = (importedData, standardFields, selectedImportF
             // Note, all the other work done above is already handled in getAndStoreImportFieldMappings (see DB query)
             standardFields[j].importRowIdentifier && (importRowIdentifierField = standardFields[j].importedFieldName)
         }
+
     }
+
     // Get value to identify each row of import file
     let importRowIdentifierValues = []
     for (let i = 0, max = importedData.length; i < max; i++) {
         importedData[i][importRowIdentifierField] && importRowIdentifierValues.push(importedData[i][importRowIdentifierField])
     }
+
     return {
         type: 'STORE_RAW_IMPORT_DATA',
         importedData,
@@ -38,6 +44,7 @@ export const storeRawImportData = (importedData, standardFields, selectedImportF
         importRowIdentifierField,
         importRowIdentifierValues
     }
+
 }
 
 export const updateImportFileMapping = (standardFieldId,
@@ -45,16 +52,19 @@ export const updateImportFileMapping = (standardFieldId,
     importRowIdentifierField,
     standardFields,
     importFieldMappingDbUpdates) => {
+
     // When standard field to import file field mapping is changed by user, update in mapping in state and possibly DB
     const match = (item) => item.standardFieldId === standardFieldId
     const updateIndex = standardFields.findIndex(match)
     let newImportFieldMappingDbUpdates = []
-    importFieldMappingDbUpdates && (newImportFieldMappingDbUpdates = importFieldMappingDbUpdates.slice(0))
-    console.log('newImportFieldMappingDbUpdates', newImportFieldMappingDbUpdates)
     let importFieldMappingDbUpdate = [] // will set below if updating an existing record in the DB vs creating a new one
+
+    importFieldMappingDbUpdates && (newImportFieldMappingDbUpdates = importFieldMappingDbUpdates.slice(0))
+   
     if (updateIndex !== -1) { // if this is the Standard Field being updated
         standardFields[updateIndex].importedFieldName = importedFieldName
         standardFields[updateIndex].importRowIdentifier ? importRowIdentifierField = importedFieldName : true
+       
         if (standardFields[updateIndex].importFieldMappingId) {
             const importFieldMappingId = parseInt(standardFields[updateIndex].importFieldMappingId)
             const importedFieldName = standardFields[updateIndex].importedFieldName
@@ -62,6 +72,7 @@ export const updateImportFileMapping = (standardFieldId,
                 importFieldMappingId,
                 importedFieldName
             }
+           
             // Update or add to importFieldMappingDbUpdates depending on if the field has already been marked for change
             if (newImportFieldMappingDbUpdates) {
                 let existingIndex = newImportFieldMappingDbUpdates.findIndex((mapping) => {
@@ -75,22 +86,30 @@ export const updateImportFileMapping = (standardFieldId,
             } else {
                 newImportFieldMappingDbUpdates = [importFieldMappingDbUpdate]
             }
+
         }
+
     }
+
     if (importFieldMappingDbUpdate) { // updating existing DB record via updateImportFileSetupAndMappings alias function
+        
         return {
             type: 'UPDATE_IMPORT_FILE_MAPPING_IN_STORE_AND_FLAG_FOR_DB_UPDATE',
             standardFields,
             importRowIdentifierField,
             newImportFieldMappingDbUpdates
+        
         }
     } else { // will be creating a new DB record via createImportFileSetup alias function
+        
         return {
             type: 'UPDATE_IMPORT_FILE_MAPPING_IN_STORE',
             standardFields,
             importRowIdentifierField
         }
+
     }
+
 }
 
 export const setMapImportToStandardFieldsERROR = () => ({
@@ -98,16 +117,20 @@ export const setMapImportToStandardFieldsERROR = () => ({
 })
 
 export const confirmImport = (standardFields) => {
+
     // Remove standardFields that don't have an importedFieldName
     let newStandardFields = []
+
     for (let i = 0, sf = standardFields; i < sf.length; i++) {
         sf[i].importedFieldName && newStandardFields.push(sf[i])
     }
+
     return {
         type: 'CONFIRM_IMPORT',
         importConfirmed: true,
         standardFields: newStandardFields
     }
+
 }
 
 export const updateImportFieldMappingsInDb = () => ({
@@ -117,7 +140,6 @@ export const updateImportFieldMappingsInDb = () => ({
 export const nameImportFile = (importFileName) => ({
     type: 'NAME_IMPORT_FILE',
     selectedImportFileSetupName: importFileName
-    // importFileName
 })
 
 export const confirmNewImportFileName = () => ({
@@ -133,7 +155,6 @@ export const confirmExistingImportFileName = () => ({
     importFileNameConfirmed: true
 })
 
-////HERE
 export const nameForm = (formName) => ({
     type: 'NAME_FORM',
     selectedFormName: formName
@@ -148,31 +169,25 @@ export const confirmNewForm = () => ({
     type: 'CONFIRM_NEW_FORM'
 })
 
-// export const updateExistingImportFileNameInDb = () => ({
-//     type: 'UPDATE_EXISTING_IMPORT_FILE_NAME_IN_DB'
-// })
-
-// export const confirmExistingImportFileName = () => ({
-//     type: 'CONFIRM_EXISTING_IMPORT_FILE_NAME',
-//     importFileNameConfirmed: true
-// })
-
-///HERE
-
 export const setImportedRowIdentifierValue = (importedRowIdentifierValue, rowIdentifierId, rowIdentifiers) => {
     const match = (item) => item.rowIdentifierId === rowIdentifierId
     const updateIndex = rowIdentifiers.findIndex(match)
     let newRowIdentifiers = rowIdentifiers
+
     rowIdentifiers[updateIndex].importedRowIdentifierValue = importedRowIdentifierValue
+
     return {
         type: 'SET_IMPORT_ROW_IDENTIFIER_VALUE',
         rowIdentifiers: newRowIdentifiers
     }
+
 }
 
 export const confirmRowIdentifiers = (rowIdentifiers, importedData, importRowIdentifierField, standardFields) => {
+
     // Populate importSetupArray with standardFieldId, importedFieldValue, importRowIdentifierId
     const importSetupArray = []
+
     // Loop through rowIdentifiers - for each row
     for (let i = 0; i < rowIdentifiers.length; i++) {
         // Find importedData index where importRowIdentifierField = rowIdentifier.importedRowIdentifierValue
@@ -180,9 +195,12 @@ export const confirmRowIdentifiers = (rowIdentifiers, importedData, importRowIde
             return item[importRowIdentifierField] === rowIdentifiers[i]['importedRowIdentifierValue']
         }
         const importedDataIndex = importedData.findIndex(match2)
+
         // Loop through standardFields to set importSetupArray values
         if (importedDataIndex !== -1) {
+
             for (let j = 0; j < standardFields.length; j++) {
+
                 if (importedData[importedDataIndex][standardFields[j]['importedFieldName']]) {
                     importSetupArray.push({
                         importedFieldValue: importedData[importedDataIndex][standardFields[j]['importedFieldName']],
@@ -190,14 +208,19 @@ export const confirmRowIdentifiers = (rowIdentifiers, importedData, importRowIde
                         standardFieldId: standardFields[j]['standardFieldId']
                     })
                 }
+
             }
+            
         }
+
     }
+
     return {
         type: 'CONFIRM_ROW_IDENTIFIERS',
         confirmRowIdentifiers: true,
         importSetupArray
     }
+
 }
 
 export const setSelectedImportFileSetup = (selectedOptionId, selectedOptionName) => ({

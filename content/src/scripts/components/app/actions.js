@@ -48,13 +48,3 @@ export const setRightClickSelectionIsValid = (setting) => ({
 export const storeTransactionHistory = () => ({
     type: 'STORE_TRANSACTION_HISTORY'
 })
-
-
-
-// ele.type && console.log('type: ', ele.type)
-// ele.options && console.log('options', ele.options)
-// ele.value && console.log('value: ', ele.value)
-
-// export const storeDefaultValueInDb = () => ({
-//     type: 'STORE_DEFAULT_VALUE_IN_DB'
-// })

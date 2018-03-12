@@ -55,7 +55,6 @@ const mapStateToProps = (state) => ({
     rightClickedFormElementValue: state.imports.rightClickedFormElementValue,
     rightClickedFormElementOptions: state.imports.rightClickedFormElementOptions,
     enteredDefaultValue: state.imports.enteredDefaultValue
-    // defaultModalValue: state.imports.defaultModalValue
 })
 
 const mapDispatchToProps = (dispatch) => ({

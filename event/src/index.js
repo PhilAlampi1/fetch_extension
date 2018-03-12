@@ -4,11 +4,7 @@ import { wrapStore, alias } from 'react-chrome-redux'
 import { composeWithDevTools } from 'remote-redux-devtools'
 import rootReducer from './reducers'
 import aliases from './aliases/index'
-import { fetchStubValues } from './utilities/utilities' //json, serverPath, 
-
-
-// import contextMenu from './contextMenu/contextMenu'
-// import { setRowIdentifiersAndStandardFields } from './actions/init'
+import { fetchStubValues } from './utilities/utilities'
 
 const middleware = [
   alias(aliases),
@@ -33,12 +29,3 @@ wrapStore(store, {
 
 // Fetch initial standardFields and rowIdentifiers stub values from DB, update store
 fetchStubValues()
-
-// const rowIdentifiersPromise = fetch(serverPath + 'rowidentifiersstub').then(json)
-// const standardFieldsPromise = fetch(serverPath + 'standardfieldsstub').then(json)
-// Promise.all([standardFieldsPromise, rowIdentifiersPromise])
-//   .then(values => {
-//     const standardFields = values[0].data
-//     const rowIdentifiers = values[1].data
-//     store.dispatch(setRowIdentifiersAndStandardFields(rowIdentifiers, standardFields))
-//   })

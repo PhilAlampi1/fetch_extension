@@ -8,6 +8,7 @@ import {
 } from '../actions/imports'
 
 export class ImportFileName extends React.Component {
+
     constructor(props) {
         super(props)
         this.state = {
@@ -16,6 +17,7 @@ export class ImportFileName extends React.Component {
             enteredName: ''
         }
     }
+
     nameImportFile = (e) => {
         e.persist()
         !!e.target.value && console.log('VALUE: ', e.target.value)
@@ -33,6 +35,7 @@ export class ImportFileName extends React.Component {
         }
         this.props.nameImportFile(e)
     }
+
     createOrModifyImportFileName = () => {
         if (!this.props.selectedImportFileSetupName) {
             this.setState((prevState) => ({
@@ -53,7 +56,9 @@ export class ImportFileName extends React.Component {
             }
         }
     }
+
     render() {
+
         return (
             <div>
                 <p>Great job, it's all downhill from here!</p>
@@ -78,12 +83,13 @@ export class ImportFileName extends React.Component {
                 </div>
             </div>
         )
+
     }
+
 }
 
 const mapStateToProps = (state) => ({
     selectedImportFileSetupName: state.imports.selectedImportFileSetupName,
-    // importFileSetups: state.imports.importFileSetups,
     selectedImportFileSetupId: state.imports.selectedImportFileSetupId
 })
 

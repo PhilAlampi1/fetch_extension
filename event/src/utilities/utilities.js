@@ -2,7 +2,6 @@ import { setRowIdentifiersAndStandardFields } from '../actions/init'
 import {
     setFormMappingData,
     createUpdateUserFormFieldMappingInDb
-    // resetFormMappingFields
 } from '../actions/imports'
 import { store } from '../index'
 
@@ -110,8 +109,6 @@ export const setupContextMenu = (dispatch) => {
                 contexts: ['all']
             }
             const riContextItem = chrome.contextMenus.create(riContextItemInfo, () => {
-                //LEFT OFF - TODO - you could lookup the import file value here (if one) and add to sfTitle below
-                //This would make it easier to map because the user would see the value while mapping
                 standardFields.map((sf) => {
                     const sfTitle = sf.importedFieldName
                         ? sf.standardFieldName + ' - ' + sf.importedFieldName

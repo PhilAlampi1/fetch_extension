@@ -54,8 +54,6 @@ export const updateImportFieldMappingsInDb = () => {
                         importFieldMappingDbUpdates: []
                     })
                 } else {
-                    // TODO - ADD ERROR HANDLING TO REDUCERS AND THROW ERROR HERE
-                    // UPDATE UI COMPONENT TO DISPLAY ERROR
                     console.log('DATABASE REQUEST ERROR', res)
                 }
             }
@@ -111,8 +109,6 @@ export const createImportFileSetup = () => {
                                 importFileNameConfirmed: true
                             })
                         } else {
-                            // TODO - ADD ERROR HANDLING TO REDUCERS AND THROW ERROR HERE
-                            // UPDATE UI COMPONENT TO DISPLAY ERROR
                             console.log('DATABASE REQUEST ERROR', res)
                         }
                     }

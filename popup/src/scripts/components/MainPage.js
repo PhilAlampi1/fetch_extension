@@ -16,9 +16,11 @@ import Results from './Results'
 import { storeRawImportData } from '../actions/imports'
 
 export const MainPage = (props) => {
+
     const storeRawImportData = (importedData) => {
         props.storeRawImportData(importedData, props.standardFields, props.selectedImportFileSetupId)
     }
+
     const loadFileToStore = (e) => {
         Papa.parse(e.target.files[0], {
             header: true,
@@ -27,6 +29,7 @@ export const MainPage = (props) => {
             }
         })
     }
+
     return (
         <div>
             {props.userIsMappingForm && <PromptIfUserIsMappingForm />}
@@ -77,28 +80,6 @@ export const MainPage = (props) => {
     )
 
 }
-
-
-//LEFT OFF - (props.selectedImportFileSetup && !isImportedData) && <SelectImportFile ... />
-//change "handleOnChange prop you pass to it depending on value of selectedImportFileSetup (new vs. id of existing)"
-
-
-// {((props.isImportedData && !props.importConfirmed) && (!props.userHasImportFileSetups || props.userCreatingNewImportFileSetup)) &&
-//     <MapImportToStandardFields />}
-
-
-// TODO - WHICH OF THESE PROPS DO YOU NO LONGER NEED? (REMOVE FROM ACTIONS / REDUCERS)
-// {!props.isImportedData && <SelectImportFile
-//     message={`Hi ${props.firstName}, lets get started by uploading your import file.`}
-//     handleOnChange={loadFileToStore}
-// />}
-// {(props.userHasImportFileSetups && !props.userCreatingNewImportFileSetup && !props.importFileNameConfirmed) 
-//     && <SelectImportFileSetup />}
-//DONE pull importFileSetups for that users on init, store in Redux
-//DONE set userCreatingNewImportFileSetup = false on init
-//DONE assign userHasImportFileSetups and userCreatingNewImportFileSetup in component
-//DONE (!props.userHasImportFileSetups || props.userCreatingNewImportFileSetup - render MapImportToStandardFields
-//DONE props.userHasImportFileSetups && !props.userCreatingNewImportFileSetup &&  !props.importFileNameConfirmed - render SelectImportFileSetup
 
 const mapStateToProps = (state) => ({
     isImportedData: !!state.imports.importedData,

@@ -6,7 +6,7 @@ export const fillForm = (ida, userIsMappingForm) => {
     
     // Set events to be tested when a field is filled
     const eventNames = ['click', 'change', 'blur', 'input', 'focus', 'select', 'keydown', 'keypress', 'keyup']
-    //['onchange', 'onblur', 'onfocus', 'oninput', 'onselect', 'onkeydown', 'onkeypress', 'onkeyup', 'onclick', 'click']
+  
     const possibleEvents = []
     for (let k = 0; k < eventNames.length; k++) {
         let eventHolder = new Event(eventNames[k])
@@ -116,10 +116,7 @@ export const fillForm = (ida, userIsMappingForm) => {
     }
 
     totalFieldsPopulated = defaultFieldsPopulated + importFieldsPopulated
-    // console.log('totalFieldsPopulated :', totalFieldsPopulated)
-    // console.log('defaultFieldsPopulated :', defaultFieldsPopulated)
-    // console.log('importFieldsPopulated :', importFieldsPopulated)
-
+    
     return [totalFieldsPopulated, defaultFieldsPopulated, importFieldsPopulated]
 
 }

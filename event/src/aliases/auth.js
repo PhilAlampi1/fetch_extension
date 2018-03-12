@@ -9,15 +9,19 @@ import {
 // COMPLETE_SIGN_IN
 export const completeLogin = () => {
     return (dispatch) => {
+
         chrome.identity.getAuthToken({ interactive: true }, (googleToken) => {
+
             if (chrome.runtime.lastError) {
                 alert(chrome.runtime.lastError.message)
                 return
             }
+
             fetch('https://www.googleapis.com/oauth2/v2/userinfo?alt=json&access_token=' + googleToken)
                 .then(status)
                 .then(json)
                 .then((data) => {
+
                     //Add or update user in DB
                     fetch(serverPath + 'signin/' +
                         data.id + '/' +
@@ -39,9 +43,12 @@ export const completeLogin = () => {
                                 userRole: dbValues.data.userRole
                             })
                         })
+                        
                 }).catch((error) => {
                     console.log('Request failed', error);
                 })
+
         })
+
     }
 }

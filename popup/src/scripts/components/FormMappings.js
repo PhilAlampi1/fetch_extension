@@ -10,6 +10,7 @@ import {
 } from '../actions/imports'
 
 export class FormMappings extends React.Component {
+
     constructor(props) {
         super(props)
         this.state = {
@@ -18,6 +19,7 @@ export class FormMappings extends React.Component {
             showError: true
         }
     }
+
     checkForError = () => {
         !this.state.selectedOptionId
             ? this.setState((prevState) => ({
@@ -29,6 +31,7 @@ export class FormMappings extends React.Component {
                 showError: false
             }), () => null)
     }
+
     setOptionOnChange = (e) => {
         const newOptionId = e.target.value
         const newOptionName = e.target.options[e.target.selectedIndex].text
@@ -38,6 +41,7 @@ export class FormMappings extends React.Component {
             selectedOptionName: newOptionName
         }), () => this.checkForError())
     }
+
     setSelectedForm = () => {
         let description = null
         let formPublic = false
@@ -46,15 +50,20 @@ export class FormMappings extends React.Component {
         const foundIndex = parseInt(this.props.userForms.findIndex((item) => {
             return item.formId === this.state.selectedOptionId
         }), 10)
+
         if (foundIndex !== -1) { // user selected an existing form
             description = this.props.userForms[foundIndex].formDescription
             formPublic = this.props.userForms[foundIndex].public ? true : false
         }
+
         if (formPublic && this.props.userRole !== 'ADMIN') { // only admins can edit public forms so skip that screen
             this.props.confirmExistingForm()
         }
+
         if (this.state.showError === false) {
+
             if (this.state.selectedOptionId !== 'create') {
+
                 if (this.props.usersCurrentPage !== 'main') {
                     this.props.setSelectedForm(this.state.selectedOptionId, this.state.selectedOptionName, description, formPublic, selectedFormConfirmedForImport)
                     this.props.storeFormMappingsInDb() // load selected form mappings from DB into store
@@ -63,19 +72,28 @@ export class FormMappings extends React.Component {
                     this.props.setSelectedForm(this.state.selectedOptionId, this.state.selectedOptionName, description, formPublic, selectedFormConfirmedForImport)
                     this.props.fillForm()
                 }
+
             } else { //this.state.selectedOptionId === 'create' 
+
                 if (this.props.usersCurrentPage === 'main') {
                     this.props.setUsersCurrentPageToFormPage()
                 } else { //this.props.usersCurrentPage !== 'main' (aka. 'form')
+
                     if (this.props.userRole === 'ADMIN') {
                         formPublic = true
                     }
+
                     this.props.setSelectedForm(this.state.selectedOptionId, this.state.selectedOptionName, description, formPublic, selectedFormConfirmedForImport)
+
                 }
             }
+
         }
+
     }
+
     render() {
+
         return (
             <div>
                 <p>{this.props.message}</p>
@@ -101,10 +119,9 @@ export class FormMappings extends React.Component {
                 }
             </div>
         )
+
     }
 }
-
-//LEFT OFF - IF THE ABOVE IS "CREATE", NEED TO UPDATE REDUX SO MAIN PAGE DISPLAYS FORM WORKFLOW
 
 const mapStateToProps = (state) => ({
     userForms: state.imports.userForms,

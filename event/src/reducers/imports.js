@@ -1,18 +1,9 @@
-const imports = {
-  // confirmRowIdentifiers: false,
-  // importConfirmed: false,
-  // importFileNameConfirmed: false,
-  // importRowIdentifierValues: [],
-  // importSetupArray: [], // holds import setup values to be matched with formMappingArray from DB
-  // formMappingArray: [], // holds a dump of that form's mappings from DB
-  // importDataArray: [] // holds the final cut of data to be imported to the form
-}
+const imports = {}
 
 export default (state = imports, action) => {
   switch (action.type) {
     case 'SET_ROW_IDENTIFIERS_AND_STANDARD_FIELDS':
       return {
-        // ...state,
         importFileSetups: state.importFileSetups,
         usersCurrentPage: 'main',
         confirmRowIdentifiers: false,
@@ -27,7 +18,6 @@ export default (state = imports, action) => {
         importRowIdentifierStandardFieldName: 'Address',
         mapImportToStandardFieldsERROR: false,
         promptUserOnStartOver: false,
-        // userCreatingNewImportFileSetup: false,
         selectedImportFileSetupId: null,
         selectedImportFileSetupText: null,
         selectedFormId: undefined,
@@ -102,7 +92,6 @@ export default (state = imports, action) => {
       return {
         ...state,
         selectedImportFileSetupName: action.selectedImportFileSetupName
-        // importFileName: action.importFileName
       }
     case 'COMPLETE_CONFIRM_NEW_IMPORT_FILE_NAME':
       return {
