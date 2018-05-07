@@ -3,10 +3,10 @@ import fuzz from 'fuzzball'
 export const fillForm = (ida, userIsMappingForm) => {
 
     let newValue = '', totalFieldsPopulated = 0, importFieldsPopulated = 0, defaultFieldsPopulated = 0, valueType = null
-    
+
     // Set events to be tested when a field is filled
     const eventNames = ['click', 'change', 'blur', 'input', 'focus', 'select', 'keydown', 'keypress', 'keyup']
-  
+
     const possibleEvents = []
     for (let k = 0; k < eventNames.length; k++) {
         let eventHolder = new Event(eventNames[k])
@@ -116,7 +116,36 @@ export const fillForm = (ida, userIsMappingForm) => {
     }
 
     totalFieldsPopulated = defaultFieldsPopulated + importFieldsPopulated
-    
+
     return [totalFieldsPopulated, defaultFieldsPopulated, importFieldsPopulated]
+
+}
+
+export const customModalStyles = {
+
+    content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+        width: '700px',
+        height: '600px',
+        borderStyle: 'solid',
+        borderWidth: '5px',
+        
+        container: {
+            maxWidth: '60rem',
+            padding: '0 $m-size',
+            overflow: 'scroll',
+            textAlign: 'center',
+            margin: '25px 0 0 0'
+        },
+    
+        narrative: {
+            fontSize: '32px'
+        }
+    }
 
 }

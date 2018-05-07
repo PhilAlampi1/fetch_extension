@@ -95,8 +95,8 @@ export class FormMappings extends React.Component {
     render() {
 
         return (
-            <div>
-                <p>{this.props.message}</p>
+            <div className="container__centertext">
+                <p className="narrative-text">{this.props.message}</p>
                 <form>
                     <select onChange={this.setOptionOnChange}>
                         <option value="">Select one</option>
@@ -112,7 +112,7 @@ export class FormMappings extends React.Component {
                     </select>
                 </form>
                 {this.state.showError
-                    ? <p>Please select an option.</p>
+                    ? <p className="narrative-text">Please select an option.</p>
                     : <button onClick={this.setSelectedForm}>{
                         (this.props.usersCurrentPage !== 'main' || this.state.selectedOptionId === 'create') ? 'Next' : 'Start Import'
                     }</button>

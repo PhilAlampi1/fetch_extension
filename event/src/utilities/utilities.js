@@ -133,7 +133,7 @@ export const setupContextMenu = (dispatch) => {
                 const riId = Number(menuId.substr(menuDashIndex + 1, menuId.length))
                 dispatch(setFormMappingData(sfId, riId))
                 dispatch(createUpdateUserFormFieldMappingInDb())
-                alert('Mapping saved! Nice work.')
+                // alert('Mapping saved! Nice work.')
 
             } else if (menuId === 'SetDefaultContext') { // "Set Defaults" has been clicked
 

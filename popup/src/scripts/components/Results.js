@@ -5,10 +5,10 @@ import { clearFillFormResults } from '../actions/imports'
 const Results = (props) => {
 
     return (
-        <div>
-            <p>Your form is now populated, well done! We were able to fill {props.totalFieldsPopulated} fields ({props.importFieldsPopulated} from your import file and {props.defaultFieldsPopulated} from your defaults).</p>
-            <p>Did you know? You can set or change your defaults for the next time you import to this form. Click on "Form Mappings" above to learn more!</p>
-            <p>Thanks for using Fetch. Have a good one!</p>
+        <div className="container__centertext">
+            <p className="narrative-text">Your form is now populated, well done! We were able to fill {props.totalFieldsPopulated} fields ({props.importFieldsPopulated} from your import file and {props.defaultFieldsPopulated} from your defaults).</p>
+            <p className="narrative-text">FYI, you can set or change your defaults for the next time you import to this form. Click on "Form Mappings" above to get started.</p>
+            <p className="narrative-text">Thanks for using Fetch!</p>
             <button onClick={props.clearFillFormResults}>Fill Form Again</button>
         </div>
     )

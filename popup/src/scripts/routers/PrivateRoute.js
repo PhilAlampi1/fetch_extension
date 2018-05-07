@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Route, Redirect } from 'react-router-dom'
 import Header from '../components/Header'
+import Footer from '../components/Footer'
 
 // ...rest gives the rest of the props that were not destructured
 export const PrivateRoute = ({
@@ -11,9 +12,12 @@ export const PrivateRoute = ({
 }) => (
         <Route {...rest} component={(props) => (
             isAuthenticated ? (
-                <div>
+                <div className="spacer">
                     <Header />
                     <Component {...props} />
+                    <div className="spacer-bottom">
+                        <Footer />
+                    </div>
                 </div>
             ) : (
                     <Redirect to='/' />

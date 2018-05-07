@@ -31,7 +31,9 @@ export const MainPage = (props) => {
     }
 
     return (
-        <div>
+
+        <div className='container container--center'>
+        
             {props.userIsMappingForm && <PromptIfUserIsMappingForm />}
              
             {(props.usersCurrentPage === 'main' && !props.userIsMappingForm) &&

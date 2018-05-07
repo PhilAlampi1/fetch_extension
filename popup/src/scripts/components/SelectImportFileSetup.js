@@ -43,21 +43,23 @@ export class SelectImportFileSetup extends React.Component {
     }
     render() {
         return (
-            <div>
-                <p>Hi {this.props.firstName}, what kind of file are we importing today?</p>
-                <form>
-                    <select className="selectImportFileSetup" onChange={this.setOptionOnChange}>
-                        <option value="">Select one</option>
-                        {this.props.importFileSetups && this.props.importFileSetups.map((option, index) => (
-                            <option key={index} value={option.importFileSetupId}>{option.importFileSetupName}</option>
-                        ))}
-                        <option value="create">Create new</option>
-                    </select>
-                </form>
-                {this.state.showError
-                    ? <p>Please select an option.</p>
-                    : <button onClick={this.setSelectedImportFileSetup}>Next</button>
-                }
+            <div className="container__centerify">
+                <div className="container__child">
+                    <p className="narrative-text">Hi {this.props.firstName}, what kind of file are we importing today?</p>
+                    <form>
+                        <select className="selectImportFileSetup" onChange={this.setOptionOnChange}>
+                            <option value="">Select one</option>
+                            {this.props.importFileSetups && this.props.importFileSetups.map((option, index) => (
+                                <option key={index} value={option.importFileSetupId}>{option.importFileSetupName}</option>
+                            ))}
+                            <option value="create">Create new</option>
+                        </select>
+                    </form>
+                    {this.state.showError
+                        ? <p className="narrative-text">Please select an option.</p>
+                        : <button onClick={this.setSelectedImportFileSetup}>Next</button>
+                    }
+                </div>
             </div>
         )
     }

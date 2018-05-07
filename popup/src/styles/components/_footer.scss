@@ -1,0 +1,10 @@
+.footer {
+    display: flex;
+    justify-content: space-around;
+}
+
+.footer-item {
+    color: black;
+    font-size: $m-size;
+    margin: $xl-size $s-size 1rem $s-size;
+}

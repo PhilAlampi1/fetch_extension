@@ -60,11 +60,11 @@ export class ImportFileName extends React.Component {
     render() {
 
         return (
-            <div>
-                <p>Great job, it's all downhill from here!</p>
+            <div className="container__centertext">
+                <p className="narrative-text">Great job, it's all downhill from here!</p>
                 {this.props.selectedImportFileSetupId === 'create'
-                    ? <p>Now, what name should we give your import file so you can reuse these mappings in future imports?</p>
-                    : <p>Here's the name we have for your import file. Feel free to change or just click Next to continue.</p>
+                    ? <p className="narrative-text">Now, what name should we give your import file so you can reuse these mappings in future imports?</p>
+                    : <p className="narrative-text">Here's the name we have for your import file. Feel free to change or just click Next to continue.</p>
                 }
                 <div>
                     <input onChange={this.nameImportFile}
@@ -77,8 +77,8 @@ export class ImportFileName extends React.Component {
                         type="text"
                         placeholder="Enter your file name"></input>
                     {this.state.showError
-                        ? <p>Please enter an import file name.</p>
-                        : <button onClick={this.createOrModifyImportFileName}>Next</button>
+                        ? <p className="narrative-text">Please enter an import file name.</p>
+                        : <div><button onClick={this.createOrModifyImportFileName}>Next</button></div>
                     }
                 </div>
             </div>

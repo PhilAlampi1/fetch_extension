@@ -1,0 +1,44 @@
+.box-layout {
+    background: url('/images/buildings.jpeg');
+    background-size: cover;
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+}
+
+.box-layout__box {
+    background: fade-out(black, 0.25);
+    border-radius: 3px;
+    text-align: center;
+    width: 25rem;
+    margin: auto;
+}
+
+.box-layout__title {
+    color: white;
+    font-size: $xl-size;
+    font-weight: bold;
+}
+
+.box-layout__subtext {
+    color: white;
+    font-size: $m-size;
+    font-weight: 500;
+    padding: 0 0 $s-size 0;
+    text-align: center;
+}
+
+.box-layout__footer {
+    display: flex;
+    justify-content: space-around;
+}
+
+.box-layout__footertext {
+    color: white;
+    font-size: $s-size;
+    margin: $s-size;
+}
+
+.box-layout__disclaimer {
+    margin: $xl-size 0 0 0;
+}

@@ -1,0 +1,90 @@
+html {
+    height: 100%;
+    width: 700px;
+    font-size: 62.5%;
+    overflow: scroll;
+}
+
+body {
+    background: $very-light-grey;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: $m-size;
+}
+
+button {
+    background: $medium-green;
+    border-radius: $xs-size;
+    border: none;    
+    color: white;
+    cursor: pointer;
+    font-weight: 500;
+    margin: $m-size;
+    padding: $s-size $m-size;
+}
+
+.button--toneddown {
+    background: lightgrey;
+    border: black; 
+    color: black;
+}
+
+h1 {
+    margin: $xs-size 0;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: $s-size;
+}
+
+.link-button-dark {
+    background: none!important;
+    border: none; 
+    border-bottom: 1px solid black; 
+    color: black;
+    cursor: pointer;
+    font: inherit;
+    padding: 0!important;
+    font-size: $m-size;
+    margin: 0 0 $l-size 0;
+}
+
+.link-button-light {
+    background: none!important;
+    border: none; 
+    border-bottom: 1px solid white; 
+    color: inherit;
+    cursor: pointer;
+    font: inherit;
+    padding: 0!important;
+}
+
+.flexy-parent {
+    display: flex;
+    justify-content: space-between;
+}
+
+.flexy-child {
+ flex: 1
+}
+
+.spacer {
+    display: flex;
+    flex-direction: column;
+    min-height: 600px;
+    justify-content: space-between;
+    overflow: scroll;
+}
+
+.spacer-bottom {
+    justify-content: flex-end;
+}
+
+.narrative-text {
+    font-size: $ml-size;
+}
+
+.bold-text {
+    font-weight: bold;
+}

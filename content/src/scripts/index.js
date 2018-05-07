@@ -3,6 +3,7 @@ import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { Store } from 'react-chrome-redux'
 import App from './components/app/App'
+import './styles/styles.scss'
 
 const proxyStore = new Store({ portName: 'lightning0328200804082010' })
 const anchor = document.createElement('div')

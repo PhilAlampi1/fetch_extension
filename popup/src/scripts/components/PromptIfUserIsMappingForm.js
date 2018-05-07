@@ -14,10 +14,12 @@ export const PromptIfUserIsMappingForm = (props) => {
     }
     const closeWindow = () => window.close()
     return (
-        <div>
-            <p>Hey there, are you finished mapping your form?</p>
-            <button onClick={closeWindow}>No, take me back</button>
-            <button onClick={setUserIsMappingForm}>Yes</button>
+        <div className="container__centertext">
+            <p className="narrative-text">Hey there, are you finished mapping your form?</p>
+            <div>
+                <button onClick={setUserIsMappingForm}>Yes</button>
+                <button className="button--toneddown" onClick={closeWindow}>No, take me back</button>
+            </div>
         </div>
     )
 }

@@ -33,3 +33,8 @@ export const setPostFillFormFields = (total, def, imported) => ({
     defaultFieldsPopulated: def
 })
 
+export const setFillFormFailed = (value) => ({
+    type: 'SET_FILL_FORM_FAILED',
+    fillFormFailed: value
+})
+

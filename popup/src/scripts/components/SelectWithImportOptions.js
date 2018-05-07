@@ -14,7 +14,7 @@ export const SelectWithImportOptions = (props) => {
         </form>
     )
 }
-  
+
 const mapStateToProps = (state) => ({
     importFieldOptions: state.imports.importedFieldNames
 })

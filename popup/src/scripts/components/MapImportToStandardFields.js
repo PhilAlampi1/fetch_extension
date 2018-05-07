@@ -33,34 +33,40 @@ export const MapImportToStandardFields = (props) => {
         props.importFieldMappingDbUpdates[0] && props.updateImportFieldMappingsInDb()
         !importRowIdentifierExists && props.setMapImportToStandardFieldsERROR() // for when standardFieldSet doesn't have any importRowIdentifier in it
     }
-    
+
     return (
-        <div>
-            <p>Your file was uploaded successfully, nice work!</p>
+        <div className="container__centertext">
+            <p className="narrative-text">Your file was uploaded successfully, nice work!</p>
             {props.selectedImportFileSetupId !== 'create'
-                ? <p>Below are the current mappings you have saved for this import file. Look it over and make any changes as necessary before clicking Next below.</p>
-                : <p>We've taken a stab at mapping your import file to the Standard Fields we use in the system. However, it's unlikely we got this completely right. This is a very important step, so please check this over and make corrections where needed.</p>
+                ? <p className="narrative-text">Below are the current mappings you have saved for this import file. Look it over and make any changes as necessary before clicking Next below.</p>
+                : <p className="narrative-text">We've taken a stab at mapping your import file to the Standard Fields we use in the system. However, it's unlikely we got this completely right. This is a very important step, so please check this over and make corrections where needed.</p>
             }
-            <div className="list-header">
-                <div>Import Field</div>
-                <div>Standard Field</div>
-                <div>Description</div>
-            </div>
-            <div className="list-body">
-                {props.standardFields.map((standardField) => {
-                    return (
-                        < ImportMappingLineItem
-                            key={standardField.standardFieldId}
-                            standardFieldId={standardField.standardFieldId}
-                            standardFieldName={standardField.standardFieldName}
-                            standardFieldDescription={standardField.standardFieldDescription}
-                            importedFieldName={standardField.importedFieldName}
-                            handleOnChange={updateImportFileMapping}
-                        />)
-                })}
-            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Import Field</th>
+                        <th>Standard Field</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {props.standardFields.map((standardField) => {
+                        return (
+                            < ImportMappingLineItem
+                                key={standardField.standardFieldId}
+                                standardFieldId={standardField.standardFieldId}
+                                standardFieldName={standardField.standardFieldName}
+                                standardFieldDescription={standardField.standardFieldDescription}
+                                importedFieldName={standardField.importedFieldName}
+                                handleOnChange={updateImportFileMapping}
+                            />
+                        )
+                    })}
+                </tbody>
+
+            </table>
             {props.mapImportToStandardFieldsERROR &&
-                <p>ERROR: The "{props.importRowIdentifierStandardFieldName}" Standard Field is how you will identify which rows to import, so it must be mapped to one of your Import Fields above.</p>
+                <p className="narrative-text">Hang on! The "{props.importRowIdentifierStandardFieldName}" Standard Field is how you will identify which rows to import, so it must be mapped to one of your Import Fields above.</p>
             }
             <button onClick={confirmImport}>Next</button>
         </div>
@@ -88,3 +94,22 @@ const mapDispatchToProps = (dispatch) => ({
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(MapImportToStandardFields)
+
+{/* <div className="list-header">
+<div>Import Field</div>
+<div>Standard Field</div>
+<div>Description</div>
+</div>
+<div className="list-body">
+{props.standardFields.map((standardField) => {
+    return (
+        < ImportMappingLineItem
+            key={standardField.standardFieldId}
+            standardFieldId={standardField.standardFieldId}
+            standardFieldName={standardField.standardFieldName}
+            standardFieldDescription={standardField.standardFieldDescription}
+            importedFieldName={standardField.importedFieldName}
+            handleOnChange={updateImportFileMapping}
+        />)
+})}
+</div> */}

@@ -4,3 +4,4 @@ build.zip
 build/
 manifest.json
 package-lock.json
+content/src/scripts/styles/images/

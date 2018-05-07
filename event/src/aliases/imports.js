@@ -11,7 +11,8 @@ import {
 } from '../utilities/utilities'
 import {
     resetFormMappingFields,
-    setPostFillFormFields
+    setPostFillFormFields,
+    setFillFormFailed
 } from '../actions/imports'
 
 export const updateExistingImportFileNameInDb = () => {
@@ -127,6 +128,7 @@ export const createNewForm = () => {
         fetch(serverPath + 'createform/' +
             state.imports.selectedFormName + '/' +
             state.imports.selectedFormDescription + '/' +
+            state.imports.selectedFormPublic + '/' +
             state.auth.userToken
         )
             .then(json)
@@ -269,7 +271,11 @@ export const fillForm = () => {
                 chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
                     chrome.tabs.sendMessage(tabs[0].id, { type: "fillFormContent", ida: state.imports.importDataArray }, (r) => {
                         if (!state.imports.userIsMappingForm) {
-                            return dispatch(setPostFillFormFields(r.result[0], r.result[1], r.result[2]))
+                            if (r && r.result[0] !== 0) {
+                                return dispatch(setPostFillFormFields(r.result[0], r.result[1], r.result[2]))
+                            } else {
+                                return dispatch(setFillFormFailed(true))
+                            }
                         } else {
                             return dispatch(resetFormMappingFields())
                         }

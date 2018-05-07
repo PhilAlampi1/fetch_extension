@@ -42,7 +42,8 @@ export default (state = imports, action) => {
         rightClickSelectionIsValid: false,
         totalFieldsPopulated: null, 
         importFieldsPopulated: null,
-        defaultFieldsPopulated: null
+        defaultFieldsPopulated: null,
+        fillFormFailed: false
       }
     case 'STORE_IMPORT_FILE_SETUPS':
       return {
@@ -285,6 +286,11 @@ export default (state = imports, action) => {
         defaultFieldsPopulated: action.defaultFieldsPopulated, 
         confirmRowIdentifiers: action.confirmRowIdentifiers,
         selectedFormConfirmedForImport: action.selectedFormConfirmedForImport
+      }
+      case 'SET_FILL_FORM_FAILED':
+      return {
+        ...state,
+        fillFormFailed: action.fillFormFailed
       }
     default:
       return state

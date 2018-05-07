@@ -13,7 +13,7 @@ module.exports = {
     path: path.join(__dirname, '../', 'build'),
     publicPath: '/'
   },
- 
+
   resolve: {
     extensions: ['.js', '.jsx', '.scss', '.json'],
     modules: ['node_modules']
@@ -26,9 +26,17 @@ module.exports = {
         loader: 'babel-loader',
         exclude: /(node_modules)/,
         include: path.join(__dirname, 'src'),
-        query: { 
+        query: {
           presets: ['env', 'react', 'stage-2']
         }
+      },
+      {
+        test: /\.s?css$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          'sass-loader'
+        ]
       }
     ]
   }

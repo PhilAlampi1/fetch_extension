@@ -13,7 +13,7 @@ import {
   setRightClickSelectionIsValid,
   storeTransactionHistory
 } from './actions'
-import { fillForm } from './utilities'
+import { fillForm, customModalStyles } from './utilities'
 import SetDefaultValue from './SetDefaultValue'
 import SetDefaultOverride from './SetDefaultOverride'
 
@@ -140,23 +140,29 @@ class App extends Component {
   render() {
     return (
       <div>
-        <ReactModal
-          isOpen={this.state.showModal}
-          onRequestClose={this.onRequestClose}
-          contentLabel="Set Defaults"
-          ariaHideApp={false}
-          shouldCloseOnOverlayClick={false}
-        >
-          {!this.props.defaultValueConfirmed
-            ? <SetDefaultValue toggleModal={this.toggleModal}
-              clearDefaultValues={this.clearDefaultValues}
-            />
-            : <SetDefaultOverride toggleModal={this.toggleModal} clearDefaultValues={this.clearDefaultValues} />
-          }
-        </ReactModal>
+        {this.state.showModal &&
+          <iframe>
+            <ReactModal
+              isOpen={this.state.showModal}
+              onRequestClose={this.onRequestClose}
+              contentLabel="Set Defaults"
+              ariaHideApp={false}
+              shouldCloseOnOverlayClick={false}
+              style={customModalStyles}
+            >
+              {!this.props.defaultValueConfirmed
+                ? <SetDefaultValue toggleModal={this.toggleModal}
+                  clearDefaultValues={this.clearDefaultValues}
+                />
+                : <SetDefaultOverride toggleModal={this.toggleModal} clearDefaultValues={this.clearDefaultValues} />
+              }
+            </ReactModal>
+          </iframe>
+        }
       </div>
     )
   }
+  
 }
 
 const mapStateToProps = (state) => ({

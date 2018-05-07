@@ -10,6 +10,7 @@ import {
 } from '../actions/imports'
 
 export class CreateEditFormMapping extends React.Component {
+
     constructor(props) {
         super(props)
         this.state = {
@@ -19,6 +20,7 @@ export class CreateEditFormMapping extends React.Component {
             enteredDescription: this.props.selectedFormDescription || ''
         }
     }
+
     nameForm = (e) => {
         e.persist()
         const enteredName = (
@@ -41,6 +43,7 @@ export class CreateEditFormMapping extends React.Component {
         }
         this.props.nameForm(enteredName)
     }
+
     describeForm = (e) => {
         e.persist()
         const enteredDescription = !e.target.value ? '' : e.target.value
@@ -59,6 +62,7 @@ export class CreateEditFormMapping extends React.Component {
         }
         this.props.describeForm(enteredDescription)
     }
+
     setSelectedFormPublic = (e) => {
         e.persist()
         if ((this.props.selectedFormId !== 'create')
@@ -72,6 +76,7 @@ export class CreateEditFormMapping extends React.Component {
             e.target.value === 'true' ? true : false
         )
     }
+
     createOrModifyForm = () => {
         if (!this.props.selectedFormName || (this.props.selectedFormName === 'Create new')) {
             this.setState((prevState) => ({
@@ -92,51 +97,59 @@ export class CreateEditFormMapping extends React.Component {
             }
         }
     }
+
     render() {
         return (
-            <div>
+            <div className="container__centertext">
                 {this.props.selectedFormId === 'create'
-                    ? <p>Tell us a little about the form you are mapping to.</p>
-                    : <p>Here's the information we have for your form. Feel free to change or just click Next to continue.</p>
+                    ? <p className="narrative-text">Tell us a little about the form you are mapping to.</p>
+                    : <p className="narrative-text">Here's the information we have for your form. Feel free to change or just click Next to continue.</p>
                 }
-                <div>
-                    <input onBlur={this.nameForm}
-                        defaultValue={
-                            this.props.selectedFormName !== 'Create new'
-                                ? this.props.selectedFormName
-                                : ''
-                        }
-                        name="formName"
-                        type="text"
-                        placeholder="enter your form name">
-                    </input>
-                    <input onBlur={this.describeForm}
-                        defaultValue={
-                            this.props.selectedFormName !== 'Create new'
-                                ? this.props.selectedFormDescription
-                                : ''
-                        }
-                        name="formDescription"
-                        type="text"
-                        placeholder="enter your form description">
-                    </input>
+                <div className="container__flexvertical">
+                    <div className="container__addspace">
+                        <input onChange={this.nameForm}
+                            defaultValue={
+                                this.props.selectedFormName !== 'Create new'
+                                    ? this.props.selectedFormName
+                                    : ''
+                            }
+                            name="formName"
+                            type="text"
+                            placeholder="Form name">
+                        </input>
+                    </div>
+                    <div className="container__addspace">
+                        <input onChange={this.describeForm}
+                            defaultValue={
+                                this.props.selectedFormName !== 'Create new'
+                                    ? this.props.selectedFormDescription
+                                    : ''
+                            }
+                            name="formDescription"
+                            type="text"
+                            placeholder="Form description">
+                        </input>
+                    </div>
                     {this.props.userRole === 'ADMIN' &&
-                        <select
-                            onChange={this.setSelectedFormPublic} 
-                            defaultValue={this.props.userRole === 'ADMIN' ? 'true' : this.props.selectedFormPublic}
+                        <div className="container__addspace">
+                            <select
+                                onChange={this.setSelectedFormPublic}
+                                defaultValue={this.props.userRole === 'ADMIN' ? 'true' : this.props.selectedFormPublic}
                             >
-                            <option value='true'>Public Form</option>
-                            <option value='false'>Private Form</option>
-                        </select>
+                                <option value='true'>Public Form</option>
+                                <option value='false'>Private Form</option>
+                            </select>
+                        </div>
                     }
                     {this.state.showError
-                        ? <p>Please enter a form name and description.</p>
-                        : <button onClick={this.createOrModifyForm}>Next</button>
+                        ? <p className="narrative-text">Please enter a form name and description.</p>
+                        : <div><button onClick={this.createOrModifyForm}>Next</button></div>
                     }
                 </div>
             </div>
         )
     }
+
 }
 
 const mapStateToProps = (state) => ({

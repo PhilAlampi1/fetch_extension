@@ -3,29 +3,33 @@ import { connect } from 'react-redux'
 import { setDefaultValue, toggleConfirmDefaultValue, setDefaultOverride } from './actions'
 
 const SetDefaultValue = (props) => {
+
     const setDefaultValue = (e) => {
         e.target.value && props.setDefaultValue(e.target.value)
     }
+
     const toggleConfirmDefaultValue = () => {
         props.toggleConfirmDefaultValue(!props.defaultValueConfirmed)
     }
+
     const onClickHandler = () => {
         props.toggleModal()
         props.clearDefaultValues()
     }
+
     return (
-        <div>
-            <span><h1>Fetch</h1></span>
-            <p>Enter the default value you would like to use for this field below.</p>
+        <div className="fetch-container">
+            <h1 className="fetch-h1-style">Fetch</h1>
+            <p className="fetch-narrative-text">Enter the default value you would like to use for this field below.</p>
             {props.rightClickedFormElementOptions !== null &&
-                <select onChange={setDefaultValue} defaultValue={props.enteredDefaultValue}>
+                <select className="fetch-font" onChange={setDefaultValue} defaultValue={props.enteredDefaultValue}>
                     {props.rightClickedFormElementOptions.map((item) => (
                         <option key={item.value} value={item.value}>{item.label}</option>
                     ))}
                 </select>
             }
             {(props.rightClickedFormElementType === 'radio' || props.rightClickedFormElementType === 'checkbox') &&
-                <select onChange={setDefaultValue} defaultValue={props.enteredDefaultValue}>
+                <select className="fetch-font" onChange={setDefaultValue} defaultValue={props.enteredDefaultValue}>
                     <option value=''>Select one</option>
                     <option value='selected'>Selected</option>
                     <option value='notselected'>Not selected</option>
@@ -37,16 +41,23 @@ const SetDefaultValue = (props) => {
                     placeholder="Enter default value"
                     onChange={setDefaultValue}
                     defaultValue={props.enteredDefaultValue}
+                    className="fetch-font"
                 ></input>
             }
             <br></br>
-            {props.enteredDefaultValue
-                ? <button onClick={toggleConfirmDefaultValue}>Next</button>
-                : <p>Please enter a value</p>
+            {props.enteredDefaultValue === null
+                ? <div>
+                    <p className="fetch-narrative-text">Please enter a value</p>
+                    <button className="fetch-regular-button fetch-toneddown-button" onClick={onClickHandler}>Cancel</button>
+                </div>
+                : <div>
+                    <button className="fetch-regular-button fetch-toneddown-button" onClick={onClickHandler}>Cancel</button>
+                    <button className="fetch-regular-button" onClick={toggleConfirmDefaultValue}>Next</button>
+                </div>
             }
-            <button onClick={onClickHandler}>Cancel</button>
         </div>
     )
+
 }
 
 const mapStateToProps = (state) => ({

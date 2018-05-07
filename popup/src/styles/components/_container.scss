@@ -1,0 +1,57 @@
+.container {
+    margin: 0 auto;
+    max-width: 60rem;
+    padding: 0 $m-size;
+    overflow: scroll;
+}
+
+.container__centertext {
+    text-align: center;
+    margin: $xl-size 0 0 0;
+    overflow: scroll;
+}
+
+.container__lefttext {
+    text-align: left;
+    margin: 0;
+    overflow: scroll;
+}
+
+.container__flex {
+    display: flex;
+    justify-content: space-around;
+    overflow: scroll;
+}
+
+.container--center {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    overflow: scroll;
+}
+
+.container__flexvertical {
+    display: flex;
+    flex-direction: column;
+  }
+
+.container__addspace {
+    margin: $s-size 0;
+}
+
+.container__centerify {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: $xl-size 0 0 0;
+    overflow: scroll;
+}
+
+.container__child {
+    flex: 1;
+    overflow: scroll;
+}
+
+.add-space {
+    margin: $xl-size 0 0 0;
+}

@@ -310,3 +310,8 @@ export const clearFillFormResults = () => ({
     confirmRowIdentifiers: false,
     selectedFormConfirmedForImport: false
 })
+
+export const setFillFormFailed = (value) => ({
+    type: 'SET_FILL_FORM_FAILED',
+    fillFormFailed: value
+})
